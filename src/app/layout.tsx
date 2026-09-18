@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/top-header";
 import { SiteFooter } from "@/components/layout/footer";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
 import { Overlays } from "@/components/layout/overlays";
+import { CookieConsent } from "@/components/privacy/cookie-consent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -77,6 +78,7 @@ export default function RootLayout({
         <SiteFooter />
         <MobileBottomNav />
         <Overlays />
+        <CookieConsent />
         <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
