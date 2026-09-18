@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   BadgePercent,
   ChevronDown,
+  CircleHelp,
   Flame,
   Gift,
   Heart,
@@ -11,14 +12,11 @@ import {
   LayoutGrid,
   Menu,
   MoreHorizontal,
-  ShoppingCart,
   Sparkles,
-  User,
 } from "lucide-react";
 import { useMounted } from "@/hooks/use-mounted";
 import { CATEGORIES } from "@/lib/data";
 import { useUI, type CatalogFilter } from "@/lib/store/ui";
-import { useCart } from "@/lib/store/cart";
 import { useFavorites } from "@/lib/store/favorites";
 import { scrollToId } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
@@ -73,26 +71,14 @@ function Wordmark({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function CartBadge({ count }: { count: number }) {
-  if (count <= 0) return null;
-  return (
-    <span className="absolute -top-1.5 -right-1.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-brand px-1 text-[10px] font-bold text-white">
-      {count > 99 ? "99+" : count}
-    </span>
-  );
-}
-
 export function SiteHeader() {
   const mounted = useMounted();
-  const openSearch = useUI((s) => s.openSearch);
-  const openCart = useUI((s) => s.openCart);
-  const openFavorites = useUI((s) => s.openFavorites);
-  const openAccount = useUI((s) => s.openAccount);
-  const openMobileMenu = useUI((s) => s.openMobileMenu);
-  const setFilter = useUI((s) => s.setFilter);
-  const activeFilter = useUI((s) => s.filter);
-  const cartCount = useCart((s) => s.items.reduce((acc, i) => acc + i.qty, 0));
-  const favCount = useFavorites((s) => s.ids.length);
+  const openSearch = useUI((state) => state.openSearch);
+  const openFavorites = useUI((state) => state.openFavorites);
+  const openMobileMenu = useUI((state) => state.openMobileMenu);
+  const setFilter = useUI((state) => state.setFilter);
+  const activeFilter = useUI((state) => state.filter);
+  const favCount = useFavorites((state) => state.ids.length);
 
   const goFeaturedWithFilter = (filter: CatalogFilter | null) => {
     setFilter(filter);
@@ -100,17 +86,20 @@ export function SiteHeader() {
   };
 
   const goCategory = (categoryId: string) => {
-    const cat = CATEGORIES.find((c) => c.id === categoryId);
-    if (!cat) return;
-    goFeaturedWithFilter({ type: "category", value: cat.id, label: cat.name });
+    const category = CATEGORIES.find((item) => item.id === categoryId);
+    if (!category) return;
+
+    goFeaturedWithFilter({
+      type: "category",
+      value: category.id,
+      label: category.name,
+    });
   };
 
   return (
     <header className="sticky top-0 z-40 w-full">
-      {/* ——— Barra superior escura ——— */}
       <div className="bg-header shadow-header">
         <div className="relative mx-auto flex h-[62px] w-full max-w-[1440px] items-center gap-3 px-4 md:px-6 lg:h-[74px] lg:px-8">
-          {/* Mobile: menu */}
           <button
             type="button"
             aria-label="Abrir menu"
@@ -120,11 +109,9 @@ export function SiteHeader() {
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
 
-          {/* Logo (centralizado no mobile, à esquerda no desktop) */}
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Novidades.store — ir para o início"
+          <Link
+            href="/"
+            aria-label="Novidades.store — início"
             className="absolute left-1/2 shrink-0 -translate-x-1/2 focus-visible:outline-none lg:static lg:translate-x-0"
           >
             <div className="hidden lg:block">
@@ -136,9 +123,8 @@ export function SiteHeader() {
                 Todo dia, uma boa descoberta.
               </p>
             </div>
-          </button>
+          </Link>
 
-          {/* Busca desktop */}
           <div className="hidden flex-1 justify-center px-6 lg:flex">
             <button
               type="button"
@@ -150,42 +136,51 @@ export function SiteHeader() {
             </button>
           </div>
 
-          {/* Ações desktop */}
           <div className="ml-auto hidden items-center gap-1 lg:flex">
-            <HeaderAction icon={User} label="Entrar" onClick={openAccount} />
-            <HeaderAction
-              icon={Heart}
-              label="Favoritos"
+            <Link
+              href="/ajuda"
+              className="flex h-[52px] w-[68px] flex-col items-center justify-center gap-1 rounded-lg text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <CircleHelp className="h-[21px] w-[21px]" aria-hidden="true" />
+              <span className="text-[11px] font-medium">Ajuda</span>
+            </Link>
+
+            <button
+              type="button"
               onClick={openFavorites}
-              badge={mounted && favCount > 0 ? favCount : undefined}
-            />
-            <HeaderAction
-              icon={ShoppingCart}
-              label="Carrinho"
-              onClick={openCart}
-              badge={mounted && cartCount > 0 ? cartCount : undefined}
-              badgeClassName="bg-brand"
-            />
+              aria-label="Favoritos"
+              className="relative flex h-[52px] w-[68px] flex-col items-center justify-center gap-1 rounded-lg text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <Heart className="h-[21px] w-[21px]" aria-hidden="true" />
+              <span className="text-[11px] font-medium">Favoritos</span>
+              {mounted && favCount > 0 ? (
+                <span className="absolute top-1 right-3 grid h-[17px] min-w-[17px] place-items-center rounded-full bg-coral px-1 text-[10px] font-bold text-white">
+                  {favCount > 99 ? "99+" : favCount}
+                </span>
+              ) : null}
+            </button>
           </div>
 
-          {/* Mobile: carrinho */}
           <button
             type="button"
-            aria-label={`Abrir carrinho (${mounted ? cartCount : 0} itens)`}
-            onClick={openCart}
+            aria-label="Abrir favoritos"
+            onClick={openFavorites}
             className="relative z-10 ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
           >
-            <ShoppingCart className="h-[22px] w-[22px]" aria-hidden="true" />
-            <CartBadge count={mounted ? cartCount : 0} />
+            <Heart className="h-[22px] w-[22px]" aria-hidden="true" />
+            {mounted && favCount > 0 ? (
+              <span className="absolute top-0.5 right-0.5 grid h-[16px] min-w-[16px] place-items-center rounded-full bg-coral px-0.5 text-[9px] font-bold text-white">
+                {favCount > 9 ? "9+" : favCount}
+              </span>
+            ) : null}
           </button>
         </div>
 
-        {/* Busca mobile */}
         <div className="px-4 pb-3 lg:hidden">
           <button
             type="button"
             onClick={openSearch}
-            aria-label="Buscar produtos, categorias"
+            aria-label="Buscar produtos e categorias"
             className="flex h-[42px] w-full items-center gap-2.5 rounded-full bg-white px-4 text-left"
           >
             <SearchPlaceholder />
@@ -193,28 +188,24 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* ——— Navegação principal (desktop) ——— */}
       <nav
         aria-label="Navegação principal"
         className="hidden border-b border-border bg-background lg:block"
       >
         <div className="mx-auto flex h-[50px] w-full max-w-[1440px] items-center gap-1 px-6 xl:px-8">
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          <Link
+            href="/"
             className={cn(
               "inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold transition-colors",
               !activeFilter
                 ? "bg-soft text-foreground"
                 : "text-muted-foreground hover:bg-soft hover:text-foreground"
             )}
-            aria-current={!activeFilter ? "page" : undefined}
           >
             <Home className="h-4 w-4" aria-hidden="true" />
             Início
-          </button>
+          </Link>
 
-          {/* Categorias */}
           <DropdownMenu>
             <DropdownMenuTrigger className="inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-soft hover:text-foreground focus-visible:outline-none">
               <LayoutGrid className="h-4 w-4" aria-hidden="true" />
@@ -226,18 +217,18 @@ export function SiteHeader() {
                 Categorias
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              {CATEGORIES.map((cat) => (
+              {CATEGORIES.map((category) => (
                 <DropdownMenuItem
-                  key={cat.id}
+                  key={category.id}
                   className="gap-2.5"
-                  onSelect={() => goCategory(cat.id)}
+                  onSelect={() => goCategory(category.id)}
                 >
                   <span
                     className="h-2.5 w-2.5 rounded-full"
-                    style={{ backgroundColor: cat.color }}
+                    style={{ backgroundColor: category.color }}
                     aria-hidden="true"
                   />
-                  {cat.name}
+                  {category.name}
                 </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator />
@@ -255,6 +246,7 @@ export function SiteHeader() {
             const isActive =
               activeFilter?.type === "badge" &&
               activeFilter.value === item.filter.value;
+
             return (
               <button
                 key={item.id}
@@ -282,7 +274,6 @@ export function SiteHeader() {
             Presentes
           </button>
 
-          {/* Mais */}
           <InfoMenu />
 
           <div className="ml-auto">
@@ -316,42 +307,6 @@ function SearchPlaceholder() {
         /
       </kbd>
     </>
-  );
-}
-
-function HeaderAction({
-  icon: Icon,
-  label,
-  onClick,
-  badge,
-  badgeClassName = "bg-coral",
-}: {
-  icon: React.ElementType;
-  label: string;
-  onClick: () => void;
-  badge?: number;
-  badgeClassName?: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={label}
-      className="relative flex h-[52px] w-[68px] flex-col items-center justify-center gap-1 rounded-lg text-white/85 transition-colors hover:bg-white/10 hover:text-white"
-    >
-      <Icon className="h-[21px] w-[21px]" aria-hidden="true" />
-      <span className="text-[11px] font-medium">{label}</span>
-      {typeof badge === "number" && badge > 0 ? (
-        <span
-          className={cn(
-            "absolute top-1 right-3 grid h-[17px] min-w-[17px] place-items-center rounded-full px-1 text-[10px] font-bold text-white",
-            badgeClassName
-          )}
-        >
-          {badge > 99 ? "99+" : badge}
-        </span>
-      ) : null}
-    </button>
   );
 }
 
@@ -389,4 +344,3 @@ function InfoMenu() {
     </DropdownMenu>
   );
 }
-
