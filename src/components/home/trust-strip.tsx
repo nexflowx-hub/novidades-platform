@@ -1,35 +1,35 @@
 "use client";
 
-import { CreditCard, Headset, ShieldCheck, Truck } from "lucide-react";
+import { Headset, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { Reveal } from "@/components/commerce/reveal";
 
 const TRUST_ITEMS = [
   {
-    icon: Truck,
-    title: "Frete para todo o Brasil e Europa",
-    description: "Entregamos em todo o território nacional e europeu.",
+    icon: Sparkles,
+    title: "Curadoria antes de quantidade",
+    description: "Publicamos descobertas quando estão prontas para venda.",
   },
   {
-    icon: CreditCard,
-    title: "Pagamento seguro via XPAYMENTS",
-    description: "PIX com aprovação imediata.",
+    icon: Zap,
+    title: "PIX via XPAYMENTS",
+    description: "Pagamento BRL processado na infraestrutura XPAYMENTS.",
   },
   {
     icon: ShieldCheck,
-    title: "Compra protegida",
-    description: "Sua compra acompanhada do início ao fim.",
+    title: "Operação identificada",
+    description: "Dados do vendedor e políticas disponíveis no site.",
   },
   {
     icon: Headset,
-    title: "Suporte de verdade",
-    description: "Estamos aqui para ajudar.",
+    title: "Suporte Novidades.store",
+    description: "Canais oficiais para pedidos, entrega e pós-venda.",
   },
 ];
 
 export function TrustStrip() {
   return (
     <section
-      aria-label="Vantagens Novidades.store"
+      aria-label="Confiança Novidades.store"
       className="mx-auto w-full max-w-[1440px] px-4 pb-10 md:px-6 md:pb-14 lg:px-8"
     >
       <Reveal>
