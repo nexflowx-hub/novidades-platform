@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Heart, ShoppingCart, Truck } from "lucide-react";
-import { toast } from "sonner";
-import { getProduct, getCategory, type Product } from "@/lib/data";
+import { ArrowUpRight, Heart } from "lucide-react";
+import { getCategory, type Product } from "@/lib/data";
 import { useUI } from "@/lib/store/ui";
-import { useCart } from "@/lib/store/cart";
 import { useFavorites } from "@/lib/store/favorites";
 import { cn } from "@/lib/utils";
 import { Price } from "./price";
@@ -18,27 +16,15 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const setQuickView = useUI((s) => s.setQuickView);
-  const addItem = useCart((s) => s.addItem);
-  const toggleFavorite = useFavorites((s) => s.toggle);
-  const favoriteIds = useFavorites((s) => s.ids);
+  const setQuickView = useUI((state) => state.setQuickView);
+  const toggleFavorite = useFavorites((state) => state.toggle);
+  const favoriteIds = useFavorites((state) => state.ids);
   const isFavorite = favoriteIds.includes(product.id);
   const category = getCategory(product.categoryId);
 
-  const handleQuickAdd = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    addItem(product.id);
-    toast.success("Adicionado ao carrinho", {
-      description: product.name,
-    });
-  };
-
-  const handleToggleFavorite = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleToggleFavorite = (event: React.MouseEvent) => {
+    event.stopPropagation();
     toggleFavorite(product.id);
-    if (!isFavorite) {
-      toast("Salvo nos favoritos", { description: product.name });
-    }
   };
 
   return (
@@ -47,9 +33,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
       tabIndex={0}
       aria-label={`Ver ${product.name}`}
       onClick={() => setQuickView(product.id)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
           setQuickView(product.id);
         }
       }}
@@ -58,24 +44,27 @@ export function ProductCard({ product, className }: ProductCardProps) {
         className
       )}
     >
-      {/* Imagem */}
       <div className="relative aspect-square overflow-hidden bg-soft">
         <Image
           src={product.image}
           alt={product.name}
           fill
           sizes="(max-width: 640px) 46vw, (max-width: 1280px) 30vw, 260px"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
         />
-        <div className="absolute top-2.5 left-2.5">
-          {product.badge ? <ProductBadge badge={product.badge} /> : null}
-        </div>
+
+        {product.badge ? (
+          <div className="absolute top-2.5 left-2.5">
+            <ProductBadge badge={product.badge} />
+          </div>
+        ) : null}
+
         <button
           type="button"
           aria-label={isFavorite ? "Remover dos favoritos" : "Adicionar aos favoritos"}
           aria-pressed={isFavorite}
           onClick={handleToggleFavorite}
-          className="absolute top-2 right-2 grid h-9 w-9 place-items-center rounded-full bg-white/95 shadow-sm transition hover:scale-110"
+          className="absolute top-2 right-2 grid h-10 w-10 place-items-center rounded-full bg-white/95 shadow-sm transition hover:scale-105"
         >
           <Heart
             className={cn(
@@ -86,34 +75,38 @@ export function ProductCard({ product, className }: ProductCardProps) {
         </button>
       </div>
 
-      {/* Conteúdo */}
       <div className="flex flex-1 flex-col gap-1.5 p-3 md:p-4">
+        <p className="text-[10px] font-bold tracking-[0.12em] text-muted-foreground uppercase">
+          {category?.name}
+        </p>
+
         <h3 className="line-clamp-2 min-h-[2.4em] text-[13px] leading-snug font-semibold md:text-sm">
           {product.name}
         </h3>
-        <p className="text-[11px] text-muted-foreground">{category?.name}</p>
 
-        <RatingStars rating={product.rating} reviewCount={product.reviewCount} />
+        {typeof product.rating === "number" &&
+        typeof product.reviewCount === "number" &&
+        product.reviewCount > 0 ? (
+          <RatingStars rating={product.rating} reviewCount={product.reviewCount} />
+        ) : (
+          <p className="text-[11px] text-muted-foreground">
+            {product.tagline ?? "Descoberta selecionada"}
+          </p>
+        )}
 
-        <Price price={product.price} originalPrice={product.originalPrice} />
+        <Price price={product.price} />
 
-        <div className="mt-auto flex items-end justify-between gap-2 pt-1.5">
-          {product.freeShipping ? (
-            <span className="inline-flex items-center gap-1 rounded-md bg-success/10 px-1.5 py-1 text-[10px] font-semibold text-success">
-              <Truck className="h-3 w-3" aria-hidden="true" />
-              Frete grátis
-            </span>
-          ) : (
-            <span />
-          )}
-          <button
-            type="button"
-            aria-label={`Adicionar ${product.name} ao carrinho`}
-            onClick={handleQuickAdd}
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-primary text-primary-foreground transition-colors hover:bg-brand-dark active:scale-95"
+        <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+          <span className="text-[10px] font-medium text-muted-foreground">
+            {product.freeShipping ? "Frete grátis" : "Condições no checkout"}
+          </span>
+
+          <span
+            aria-hidden="true"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-[10px] bg-primary text-primary-foreground transition-colors group-hover:bg-brand-dark"
           >
-            <ShoppingCart className="h-4 w-4" aria-hidden="true" />
-          </button>
+            <ArrowUpRight className="h-4 w-4" />
+          </span>
         </div>
       </div>
     </article>
