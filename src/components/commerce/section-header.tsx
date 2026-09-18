@@ -44,13 +44,16 @@ export function Section({
   children,
   className = "",
   ariaLabel,
+  id,
 }: {
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
+  id?: string;
 }) {
   return (
     <section
+      id={id}
       aria-label={ariaLabel}
       className={`mx-auto w-full max-w-[1440px] scroll-mt-32 px-4 py-7 md:px-6 md:py-10 lg:px-8 lg:scroll-mt-36 ${className}`}
     >
