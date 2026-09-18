@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { PackageSearch, X } from "lucide-react";
-import { PRODUCTS, getProduct, type Product } from "@/lib/data";
+import { ArrowRight, PackageSearch, ShieldCheck, X } from "lucide-react";
+import type { Product } from "@/lib/data";
 import { useUI } from "@/lib/store/ui";
 import { ProductCard } from "@/components/commerce/product-card";
 import { Reveal } from "@/components/commerce/reveal";
@@ -16,29 +16,34 @@ const BADGE_FILTER_LABELS: Record<string, string> = {
   tendencia: "Tendências",
 };
 
-export function FeaturedProducts() {
-  const filter = useUI((s) => s.filter);
-  const setFilter = useUI((s) => s.setFilter);
+export function FeaturedProducts({ products }: { products: Product[] }) {
+  const filter = useUI((state) => state.filter);
+  const setFilter = useUI((state) => state.setFilter);
 
-  const filtered = PRODUCTS.filter((p) => {
+  const filtered = products.filter((product) => {
     if (!filter) return true;
-    if (filter.type === "category") return p.categoryId === filter.value;
-    return p.badge === filter.value;
+    if (filter.type === "category") return product.categoryId === filter.value;
+    return product.badge === filter.value;
   });
 
   return (
-    <Section ariaLabel="Produtos em destaque" className="scroll-mt-36 lg:scroll-mt-40">
+    <Section
+      id="destaques"
+      ariaLabel="Produtos em destaque"
+      className="scroll-mt-36 lg:scroll-mt-40"
+    >
       <SectionHeader
-        title={filter ? filter.label : "Em destaque hoje"}
+        title={filter ? filter.label : "Em destaque agora"}
         subtitle={
           filter
-            ? "Seleção filtrada do catálogo Novidades.store."
-            : "Selecionamos os melhores produtos para você."
+            ? "Produtos publicados nesta seleção."
+            : "Curadoria ativa: menos produtos, ofertas mais claras."
         }
-        action={{
-          label: filter ? "Limpar filtro" : "Ver todas",
-          onClick: () => setFilter(null),
-        }}
+        action={
+          filter
+            ? { label: "Limpar filtro", onClick: () => setFilter(null) }
+            : undefined
+        }
       />
 
       <AnimatePresence>
@@ -55,7 +60,7 @@ export function FeaturedProducts() {
                 type="button"
                 aria-label="Remover filtro"
                 onClick={() => setFilter(null)}
-                className="grid h-6 w-6 place-items-center rounded-full transition-colors hover:bg-brand/15 hover:text-brand-dark"
+                className="grid h-7 w-7 place-items-center rounded-full transition-colors hover:bg-brand/15 hover:text-brand-dark"
               >
                 <X className="h-3.5 w-3.5" aria-hidden="true" />
               </button>
@@ -65,12 +70,12 @@ export function FeaturedProducts() {
       </AnimatePresence>
 
       {filtered.length === 0 ? (
-        <div className="flex flex-col items-center gap-3 rounded-[18px] border border-dashed border-border bg-soft py-16 text-center">
+        <div className="flex flex-col items-center gap-3 rounded-[18px] border border-dashed border-border bg-soft py-14 text-center">
           <PackageSearch className="h-10 w-10 text-faint" aria-hidden="true" />
           <div>
-            <p className="font-semibold">Nenhum produto nesta seleção ainda</p>
+            <p className="font-semibold">Nenhuma oferta publicada nesta seleção</p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Novas descobertas entram no catálogo em breve.
+              Preferimos não preencher o catálogo com produtos ainda não validados.
             </p>
           </div>
           <button
@@ -78,18 +83,54 @@ export function FeaturedProducts() {
             onClick={() => setFilter(null)}
             className="text-sm font-semibold text-brand-dark hover:underline"
           >
-            Ver todos os produtos
+            Voltar aos destaques
           </button>
         </div>
+      ) : filtered.length === 1 && !filter ? (
+        <Reveal>
+          <div className="grid gap-4 lg:grid-cols-[minmax(280px,360px)_1fr]">
+            <ProductCard product={filtered[0]} />
+
+            <div className="flex min-h-[330px] flex-col justify-between rounded-[18px] border border-border bg-gradient-to-br from-soft to-warm p-6 md:p-8">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold tracking-[0.12em] text-brand-dark uppercase shadow-sm">
+                  <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                  Seleção de lançamento
+                </span>
+                <h3 className="mt-5 max-w-2xl text-3xl leading-[1.05] font-extrabold tracking-[-0.035em] md:text-4xl">
+                  A Novidades.store começa com uma regra simples:
+                  publicar apenas o que está pronto para ser apresentado.
+                </h3>
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground md:text-[15px]">
+                  Novas categorias já fazem parte da plataforma, mas cada produto
+                  só entra na vitrine quando preço, apresentação e operação de
+                  compra estiverem definidos.
+                </p>
+              </div>
+
+              {filtered[0].storefrontUrl ? (
+                <a
+                  href={filtered[0].storefrontUrl}
+                  className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-[10px] bg-primary px-5 text-sm font-bold text-white transition hover:bg-brand-dark"
+                >
+                  Conhecer a primeira descoberta
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              ) : null}
+            </div>
+          </div>
+        </Reveal>
       ) : (
         <Reveal>
           <ul
-            className={productListClasses}
+            className="flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-2 scrollbar-none md:gap-4 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0"
             aria-label={
-              filter ? `Produtos — ${BADGE_FILTER_LABELS[filter.value] ?? filter.label}` : "Produtos em destaque"
+              filter
+                ? `Produtos — ${BADGE_FILTER_LABELS[filter.value] ?? filter.label}`
+                : "Produtos em destaque"
             }
           >
-            {filtered.map((product: Product) => (
+            {filtered.map((product) => (
               <li
                 key={product.id}
                 className="min-w-[46%] snap-start sm:min-w-[38%] lg:min-w-0"
@@ -103,6 +144,3 @@ export function FeaturedProducts() {
     </Section>
   );
 }
-
-const productListClasses =
-  "flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-2 scrollbar-none md:gap-4 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0";
