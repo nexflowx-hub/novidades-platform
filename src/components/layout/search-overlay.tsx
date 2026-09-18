@@ -46,7 +46,6 @@ function writeRecent(list: string[]) {
 export function SearchOverlay() {
   const open = useUI((s) => s.searchOpen);
   const close = useUI((s) => s.closeSearch);
-  const setQuickView = useUI((s) => s.setQuickView);
   const setFilter = useUI((s) => s.setFilter);
   const showInfo = useUI((s) => s.showInfo);
 
@@ -114,10 +113,12 @@ export function SearchOverlay() {
     []
   );
 
-  const goProduct = (productId: string) => {
+  const goProduct = (product: SearchResults["products"][number]) => {
     close();
     setQuery("");
-    setQuickView(productId);
+    window.location.assign(
+      "/" + encodeURIComponent(product.categorySlug) + "/" + encodeURIComponent(product.slug)
+    );
   };
 
   const goCategory = (categoryId: string, label: string) => {
@@ -295,7 +296,7 @@ function SearchResultsPanel({
   query,
 }: {
   results: SearchResults;
-  onProduct: (id: string) => void;
+  onProduct: (product: SearchResults["products"][number]) => void;
   onCategory: (id: string, label: string) => void;
   query: string;
 }) {
@@ -340,7 +341,7 @@ function SearchResultsPanel({
               <li key={p.id}>
                 <button
                   type="button"
-                  onClick={() => onProduct(p.id)}
+                  onClick={() => onProduct(p)}
                   className="flex w-full items-center gap-3 rounded-xl p-2 text-left transition-colors hover:bg-soft"
                 >
                   <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-soft">
