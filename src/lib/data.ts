@@ -1,25 +1,23 @@
 /**
- * NOVIDADES.store — Catálogo central (Fase 1)
+ * NOVIDADES.store — safe fallback catalog.
  *
- * Fonte da verdade: especificação técnica do projeto.
- * IMPORTANTE (spec.critical_notes): ratings e contagens de avaliações são
- * PLACEHOLDERS de demonstração (`reviewsAreMock: true`) e devem ser
- * substituídos por avaliações reais antes da produção. Badges são data-driven.
+ * Production source of truth is the shared Supabase Commerce Core.
+ * This file exists only as a resilient fallback for the initial public launch.
+ * It intentionally contains ONLY products already approved for public use.
  */
 
 export type BadgeId =
-  | "mais-vendido"
   | "novo"
   | "em-alta"
   | "oferta"
-  | "tendencia";
+  | "tendencia"
+  | "mais-vendido";
 
 export interface Category {
   id: string;
   name: string;
   slug: string;
   description: string;
-  /** Cor de destaque da categoria (spec.category_colors) */
   color: string;
   image: string;
 }
@@ -30,25 +28,24 @@ export interface Product {
   name: string;
   categoryId: string;
   price: number;
-  originalPrice?: number;
-  currency: "BRL";
-  /** MOCK: placeholder até existirem avaliações reais */
-  rating: number;
-  reviewCount: number;
-  reviewsAreMock: true;
+  currency: "BRL" | "EUR";
+  rating?: number;
+  reviewCount?: number;
   badge?: BadgeId;
-  freeShipping: boolean;
+  freeShipping?: boolean;
   image: string;
+  secondaryImage?: string;
   tagline?: string;
   description: string;
-  /** Funil dedicado (ex.: signum312.novidades.store) */
   storefrontUrl?: string;
+  published: boolean;
 }
 
 export interface VideoCard {
   productId: string;
   poster: string;
   headline: string;
+  videoUrl?: string;
 }
 
 export const CATEGORIES: Category[] = [
@@ -56,7 +53,7 @@ export const CATEGORIES: Category[] = [
     id: "arte-vida",
     name: "Arte & Vida",
     slug: "arte-e-vida",
-    description: "Símbolos, decoração, presentes e produtos com significado.",
+    description: "Símbolos, presentes e objetos com significado.",
     color: "#D8C6A5",
     image: "/images/categories/arte.png",
   },
@@ -72,7 +69,7 @@ export const CATEGORIES: Category[] = [
     id: "auto-tech",
     name: "Auto & Tech",
     slug: "auto-tech",
-    description: "Tecnologia e acessórios para o seu veículo.",
+    description: "Mobilidade, acessórios e tecnologia útil.",
     color: "#C7DEE8",
     image: "/images/categories/auto.png",
   },
@@ -80,7 +77,7 @@ export const CATEGORIES: Category[] = [
     id: "pets",
     name: "Pets",
     slug: "pets",
-    description: "Produtos para cuidar de quem você ama.",
+    description: "Descobertas para a rotina de quem vive com animais.",
     color: "#F4D4C3",
     image: "/images/categories/pets.png",
   },
@@ -88,7 +85,7 @@ export const CATEGORIES: Category[] = [
     id: "saude-bem-estar",
     name: "Saúde & Bem-estar",
     slug: "saude-bem-estar",
-    description: "Equilíbrio e qualidade de vida no dia a dia.",
+    description: "Produtos de bem-estar avaliados antes da publicação.",
     color: "#D8E9D4",
     image: "/images/categories/saude.png",
   },
@@ -96,7 +93,7 @@ export const CATEGORIES: Category[] = [
     id: "viagem-estilo",
     name: "Viagem & Estilo",
     slug: "viagem-estilo",
-    description: "Acessórios para o próximo destino.",
+    description: "Acessórios e ideias para mobilidade e estilo.",
     color: "#C9DDEA",
     image: "/images/categories/viagem.png",
   },
@@ -104,7 +101,7 @@ export const CATEGORIES: Category[] = [
     id: "trabalho-estudo",
     name: "Trabalho & Estudo",
     slug: "trabalho-estudo",
-    description: "Produtividade e organização para a rotina.",
+    description: "Ferramentas para produtividade e organização.",
     color: "#DDD5CD",
     image: "/images/categories/trabalho.png",
   },
@@ -112,7 +109,7 @@ export const CATEGORIES: Category[] = [
     id: "presentes",
     name: "Presentes",
     slug: "presentes",
-    description: "Sugestões para marcar momentos especiais.",
+    description: "Seleções pensadas para presentear.",
     color: "#F1C6C0",
     image: "/images/categories/presentes.png",
   },
@@ -126,106 +123,33 @@ export const PRODUCTS: Product[] = [
     categoryId: "arte-vida",
     price: 99.9,
     currency: "BRL",
-    rating: 4.9,
-    reviewCount: 128,
-    reviewsAreMock: true,
-    badge: "mais-vendido",
-    freeShipping: true,
-    image: "/images/products/signum.png",
+    image: "/images/products/signum-patina-real.webp",
+    secondaryImage: "/images/products/signum-gold-real.webp",
     tagline: "Fé. Coragem. Propósito.",
-    description: "Mais que um colar. Um símbolo que atravessa o tempo.",
+    description:
+      "Coleção contemporânea inspirada em simbolismo histórico e cristão.",
     storefrontUrl: "https://signum312.novidades.store",
-  },
-  {
-    id: "pet-tracker-x1",
-    slug: "rastreador-pet-x1",
-    name: "Rastreador Pet X1",
-    categoryId: "pets",
-    price: 149.9,
-    currency: "BRL",
-    rating: 4.8,
-    reviewCount: 64,
-    reviewsAreMock: true,
-    badge: "novo",
-    freeShipping: true,
-    image: "/images/products/pet-tracker.png",
-    tagline: "Segurança para quem você ama.",
-    description: "Acompanhe seu pet e ganhe mais tranquilidade no dia a dia.",
-  },
-  {
-    id: "mini-projector-hd",
-    slug: "mini-projetor-hd",
-    name: "Mini Projetor HD",
-    categoryId: "casa-utilidade",
-    price: 299.9,
-    currency: "BRL",
-    rating: 4.7,
-    reviewCount: 92,
-    reviewsAreMock: true,
-    badge: "em-alta",
-    freeShipping: true,
-    image: "/images/products/projector.png",
-    tagline: "Cinema em qualquer lugar.",
-    description: "Transforme qualquer ambiente em uma sala de cinema.",
-  },
-  {
-    id: "magnetic-support",
-    slug: "suporte-magnetico-3-em-1",
-    name: "Suporte Magnético 3 em 1",
-    categoryId: "auto-tech",
-    price: 89.9,
-    originalPrice: 119.9,
-    currency: "BRL",
-    rating: 4.6,
-    reviewCount: 203,
-    reviewsAreMock: true,
-    badge: "oferta",
-    freeShipping: true,
-    image: "/images/products/car-mount.png",
-    tagline: "Tecnologia ao seu alcance.",
-    description: "Seu smartphone sempre ao alcance, com fixação magnética prática.",
-  },
-  {
-    id: "explorer-backpack",
-    slug: "mochila-explorer",
-    name: "Mochila Explorer",
-    categoryId: "viagem-estilo",
-    price: 259.9,
-    currency: "BRL",
-    rating: 4.8,
-    reviewCount: 47,
-    reviewsAreMock: true,
-    badge: "tendencia",
-    freeShipping: false,
-    image: "/images/products/backpack.png",
-    tagline: "Pronto para o próximo destino.",
-    description: "Companheira ideal para viagens, trilhas e o dia a dia.",
+    published: true,
   },
 ];
 
-export const VIDEO_CARDS: VideoCard[] = [
-  { productId: "signum312", poster: "/images/videos/signum.png", headline: "Um símbolo que inspira." },
-  { productId: "pet-tracker-x1", poster: "/images/videos/pet.png", headline: "Segurança para quem você ama." },
-  { productId: "mini-projector-hd", poster: "/images/videos/projector.png", headline: "Cinema em qualquer lugar." },
-  { productId: "magnetic-support", poster: "/images/videos/mount.png", headline: "Tecnologia ao seu alcance." },
-  { productId: "explorer-backpack", poster: "/images/videos/backpack.png", headline: "Pronto para o próximo destino." },
-];
+export const VIDEO_CARDS: VideoCard[] = [];
 
 export const POPULAR_SEARCHES = [
   "SIGNUM 312",
-  "Projetor",
-  "Rastreador pet",
-  "Mochila",
-  "Suporte veicular",
+  "Arte & Vida",
   "Presentes",
+  "Auto & Tech",
+  "Pets",
+  "Casa",
 ];
 
 export function getProduct(id: string): Product | undefined {
-  return PRODUCTS.find((p) => p.id === id);
+  return PRODUCTS.find((product) => product.id === id && product.published);
 }
 
 export function getCategory(id: string): Category | undefined {
-  return CATEGORIES.find((c) => c.id === id);
+  return CATEGORIES.find((category) => category.id === id);
 }
 
 export interface SearchResults {
@@ -237,6 +161,7 @@ export interface SearchResults {
     categoryName: string;
     price: number;
     image: string;
+    storefrontUrl?: string;
   }>;
   categories: Array<{
     id: string;
@@ -248,6 +173,7 @@ export interface SearchResults {
 
 export function searchCatalog(rawQuery: string): SearchResults {
   const query = rawQuery.trim().toLowerCase();
+
   if (!query) {
     return { query: rawQuery, products: [], categories: [] };
   }
@@ -264,19 +190,24 @@ export function searchCatalog(rawQuery: string): SearchResults {
       .includes(normalized);
 
   const products = PRODUCTS.filter(
-    (p) => match(p.name) || match(getCategory(p.categoryId)?.name ?? "") || match(p.tagline ?? "")
+    (product) =>
+      product.published &&
+      (match(product.name) ||
+        match(getCategory(product.categoryId)?.name ?? "") ||
+        match(product.tagline ?? ""))
   )
     .slice(0, 6)
-    .map(({ id, name, categoryId, price, image }) => ({
+    .map(({ id, name, categoryId, price, image, storefrontUrl }) => ({
       id,
       name,
       categoryId,
       categoryName: getCategory(categoryId)?.name ?? "",
       price,
       image,
+      storefrontUrl,
     }));
 
-  const categories = CATEGORIES.filter((c) => match(c.name))
+  const categories = CATEGORIES.filter((category) => match(category.name))
     .slice(0, 4)
     .map(({ id, name, image, color }) => ({ id, name, image, color }));
 
