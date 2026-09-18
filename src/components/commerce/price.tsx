@@ -1,20 +1,22 @@
-import { formatBRL } from "@/lib/format";
+import { formatMoney, type SupportedCurrency } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 interface PriceProps {
   price: number;
+  currency?: SupportedCurrency;
   originalPrice?: number;
   size?: "sm" | "md" | "lg";
   className?: string;
-  showInstallment?: boolean;
+  paymentHint?: string;
 }
 
 export function Price({
   price,
+  currency = "BRL",
   originalPrice,
   size = "md",
   className,
-  showInstallment = true,
+  paymentHint,
 }: PriceProps) {
   const priceClass = {
     sm: "text-base",
@@ -24,19 +26,19 @@ export function Price({
 
   return (
     <div className={cn("leading-tight", className)}>
-      <div className="flex items-baseline gap-2">
+      <div className="flex flex-wrap items-baseline gap-2">
         <span className={cn("font-extrabold tracking-tight", priceClass)}>
-          {formatBRL(price)}
+          {formatMoney(price, currency)}
         </span>
         {originalPrice && originalPrice > price ? (
           <span className="text-xs text-faint line-through">
-            {formatBRL(originalPrice)}
+            {formatMoney(originalPrice, currency)}
           </span>
         ) : null}
       </div>
-      {showInstallment ? (
+      {paymentHint ? (
         <p className="mt-0.5 text-[11px] text-muted-foreground">
-          ou 12x de {formatBRL(price / 12)}
+          {paymentHint}
         </p>
       ) : null}
     </div>
