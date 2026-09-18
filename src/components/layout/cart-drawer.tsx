@@ -149,22 +149,27 @@ export function CartDrawer() {
               </div>
               <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Zap className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
-                PIX com aprovação imediata via XPAYMENTS
+                Brasil: PIX via XPAYMENTS no checkout da oferta.
               </p>
               <Button
                 className="h-12 w-full bg-brand text-[15px] font-bold hover:bg-brand-dark"
-                onClick={() =>
+                onClick={() => {
+                  if (entries.length === 1 && entries[0].product.storefrontUrl) {
+                    window.location.assign(entries[0].product.storefrontUrl);
+                    return;
+                  }
+
                   showInfo(
-                    "Checkout em breve",
-                    "O checkout seguro via XPAYMENTS (PIX · BRL) será ativado na Fase 2. Seu carrinho fica salvo neste dispositivo."
-                  )
-                }
+                    "Revisar ofertas",
+                    "No lançamento, produtos com experiências de compra diferentes são concluídos no checkout próprio de cada oferta."
+                  );
+                }}
               >
-                Finalizar compra
+                Continuar para o checkout
               </Button>
               <p className="flex items-center justify-center gap-1.5 text-[11px] text-muted-foreground">
                 <ShieldCheck className="h-3.5 w-3.5 text-success" aria-hidden="true" />
-                Compra protegida Novidades.store
+                Vendedor, total e condições confirmados antes do pagamento
               </p>
             </SheetFooter>
           </>
