@@ -191,10 +191,13 @@ export async function searchPublicCatalog(rawQuery: string): Promise<SearchResul
       .slice(0, 8)
       .map((listing) => ({
         id: listing.productId,
+        slug: listing.slug,
         name: listing.title,
         categoryId: listing.categorySlug,
         categoryName: listing.categoryName,
+        categorySlug: listing.categorySlug,
         price: (listing.priceCents ?? 0) / 100,
+        currency: listing.currency,
         image: listing.image,
         storefrontUrl: listing.funnelUrl ?? undefined,
       }));
@@ -207,4 +210,18 @@ export async function searchPublicCatalog(rawQuery: string): Promise<SearchResul
   } catch {
     return searchFallbackCatalog(rawQuery);
   }
+}
+
+
+export async function getPublicListingBySlug(
+  categorySlug: string,
+  listingSlug: string,
+): Promise<CommerceListing | null> {
+  const listings = await getPublicCatalog();
+  return (
+    listings.find(
+      (listing) =>
+        listing.categorySlug === categorySlug && listing.slug === listingSlug,
+    ) ?? null
+  );
 }
