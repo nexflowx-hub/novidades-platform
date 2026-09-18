@@ -1,10 +1,11 @@
 import { CommerceHero } from "@/components/home/commerce-hero";
 import { CategoryShortcuts } from "@/components/home/category-shortcuts";
 import { FeaturedProducts } from "@/components/home/featured-products";
-import { VideoDiscovery } from "@/components/home/video-discovery";
 import { GiftBanner } from "@/components/home/gift-banner";
 import { FeaturedCategories } from "@/components/home/featured-categories";
 import { TrustStrip } from "@/components/home/trust-strip";
+import { getPublicCatalog } from "@/lib/commerce-db";
+import { CATEGORIES, type BadgeId, type Product } from "@/lib/data";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -32,7 +33,44 @@ const jsonLd = {
   ],
 };
 
-export default function HomePage() {
+const validBadges = new Set<BadgeId>([
+  "novo",
+  "em-alta",
+  "oferta",
+  "tendencia",
+  "mais-vendido",
+]);
+
+export default async function HomePage() {
+  const catalog = await getPublicCatalog();
+
+  const products: Product[] = catalog
+    .filter((listing) => listing.priceCents !== null)
+    .map((listing) => {
+      const category =
+        CATEGORIES.find((item) => item.slug === listing.categorySlug) ??
+        CATEGORIES[0];
+
+      const firstBadge = listing.badges.find((badge): badge is BadgeId =>
+        validBadges.has(badge as BadgeId)
+      );
+
+      return {
+        id: listing.productId,
+        slug: listing.slug,
+        name: listing.title,
+        categoryId: category.id,
+        price: (listing.priceCents ?? 0) / 100,
+        currency: listing.currency,
+        badge: firstBadge,
+        image: listing.image,
+        tagline: listing.subtitle,
+        description: listing.description,
+        storefrontUrl: listing.funnelUrl ?? undefined,
+        published: true,
+      };
+    });
+
   return (
     <>
       <script
@@ -41,8 +79,7 @@ export default function HomePage() {
       />
       <CommerceHero />
       <CategoryShortcuts />
-      <FeaturedProducts />
-      <VideoDiscovery />
+      <FeaturedProducts products={products} />
       <GiftBanner />
       <FeaturedCategories />
       <TrustStrip />
