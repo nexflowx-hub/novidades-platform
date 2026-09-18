@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   BadgePercent,
   ChevronDown,
@@ -355,22 +356,17 @@ function HeaderAction({
 }
 
 function InfoMenu() {
-  const showInfo = useUI((s) => s.showInfo);
-  const info = (title: string) =>
-    showInfo(
-      title,
-      "Esta página estará disponível em breve na Novidades.store."
-    );
-
   const links = [
-    "Sobre nós",
-    "Contato",
-    "Central de Ajuda",
-    "Entregas",
-    "Trocas e Devoluções",
-    "Privacidade",
-    "Termos de Uso",
-    "Cookies",
+    { label: "Sobre", href: "/sobre" },
+    { label: "Contato", href: "/contato" },
+    { label: "Central de Ajuda", href: "/ajuda" },
+    { label: "Entregas", href: "/entregas" },
+    { label: "Pagamentos", href: "/pagamentos" },
+    { label: "Trocas e Devoluções", href: "/trocas-e-devolucoes" },
+    { label: "Informações Legais", href: "/informacoes-legais" },
+    { label: "Privacidade", href: "/privacidade" },
+    { label: "Termos", href: "/termos" },
+    { label: "Cookies", href: "/cookies" },
   ];
 
   return (
@@ -379,17 +375,18 @@ function InfoMenu() {
         Mais
         <ChevronDown className="h-3.5 w-3.5 opacity-60" aria-hidden="true" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-56">
+      <DropdownMenuContent align="start" className="w-60">
         <DropdownMenuLabel className="text-xs text-muted-foreground">
           Institucional
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {links.map((label) => (
-          <DropdownMenuItem key={label} onSelect={() => info(label)}>
-            {label}
+        {links.map((link) => (
+          <DropdownMenuItem key={link.href} asChild>
+            <Link href={link.href}>{link.label}</Link>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
+
