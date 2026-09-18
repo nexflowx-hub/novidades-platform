@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchCatalog } from "@/lib/data";
+import { searchPublicCatalog } from "@/lib/commerce-db";
 
-/**
- * GET /api/search?q=termo
- * Busca global do commerce (Fase 1): produtos + categorias.
- * Futuro (Fase 3+): Commerce Core API com busca semântica / AI.
- */
 export async function GET(req: NextRequest) {
-  const q = req.nextUrl.searchParams.get("q") ?? "";
-  const results = searchCatalog(q);
+  const q = (req.nextUrl.searchParams.get("q") ?? "").slice(0, 120);
+  const results = await searchPublicCatalog(q);
+
   return NextResponse.json(results, {
-    headers: { "Cache-Control": "no-store" },
+    headers: {
+      "Cache-Control": "private, max-age=0, must-revalidate",
+    },
   });
 }
