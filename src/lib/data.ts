@@ -159,7 +159,10 @@ export interface SearchResults {
     name: string;
     categoryId: string;
     categoryName: string;
+    categorySlug: string;
+    slug: string;
     price: number;
+    currency: "BRL" | "EUR";
     image: string;
     storefrontUrl?: string;
   }>;
@@ -197,12 +200,15 @@ export function searchCatalog(rawQuery: string): SearchResults {
         match(product.tagline ?? ""))
   )
     .slice(0, 6)
-    .map(({ id, name, categoryId, price, image, storefrontUrl }) => ({
+    .map(({ id, slug, name, categoryId, price, currency, image, storefrontUrl }) => ({
       id,
+      slug,
       name,
       categoryId,
       categoryName: getCategory(categoryId)?.name ?? "",
+      categorySlug: getCategory(categoryId)?.slug ?? "",
       price,
+      currency,
       image,
       storefrontUrl,
     }));
