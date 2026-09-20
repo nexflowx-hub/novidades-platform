@@ -241,30 +241,31 @@ const DIGITAL_DETAILS: Record<
       "Suite para creators, ecommerce e equipas pequenas que liga mensagem, sales pages, lifecycle email, prompts e lançamento num único sistema de trabalho.",
     deliverables: [
       "Conversion Content OS - pacote completo",
+      "Social Content OS - pacote completo",
       "Sales Page Blueprint - pacote completo",
       "Email Conversion Kit - pacote completo",
       "Digital Product Launch Kit - pacote completo",
       "Creator Prompt Library - pacote completo",
       "Workbooks e scorecards incluídos",
       "Bibliotecas de hooks, prompts e CTAs",
-      "Acesso único aos cinco produtos",
+      "Acesso único aos seis produtos",
     ],
     highlights: [
       {
-        title: "5 produtos num acesso",
+        title: "6 produtos num acesso",
         body: "Entitlement do bundle libera automaticamente todos os SKUs incluídos.",
       },
       {
-        title: "Valor separado R$ 315",
-        body: "Suite por R$ 219 em pagamento único com os produtos atuais incluídos.",
+        title: "Valor separado R$ 362",
+        body: "Suite por R$ 219 em pagamento único com os seis produtos atuais incluídos.",
       },
       {
         title: "Do briefing à entrega",
-        body: "Mensagem, página, email, IA assistida, release, checkout e activation.",
+        body: "Mensagem, social, página, email, IA assistida, release, checkout e activation.",
       },
     ],
     checkoutMicrocopy:
-      "5 produtos · valor separado R$ 315 · suite R$ 219 · sem assinatura.",
+      "6 produtos · valor separado R$ 362 · suite R$ 219 · sem assinatura.",
   },
   "social-content-os": {
     intro:
