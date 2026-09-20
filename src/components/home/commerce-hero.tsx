@@ -1,183 +1,123 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Headset,
+  PackageCheck,
+  ShieldCheck,
+  ShoppingCart,
+  Zap,
+} from "lucide-react";
 import { scrollToId } from "@/lib/scroll";
+import { useUI } from "@/lib/store/ui";
 
 export function CommerceHero() {
+  const setFilter = useUI((state) => state.setFilter);
+
+  const showOffers = () => {
+    setFilter({ type: "badge", value: "oferta", label: "Ofertas Especiais" });
+    scrollToId("destaques");
+  };
+
   return (
-    <section
-      aria-label="Destaque do dia"
-      className="mx-auto w-full max-w-[1440px] px-4 pt-4 pb-2 md:px-6 md:pt-6 lg:px-8"
-    >
-      <div className="grid gap-4 lg:grid-cols-[3fr_1fr]">
-        <article className="relative min-h-[445px] overflow-hidden rounded-[20px] bg-[#0d100f] text-white lg:min-h-[470px]">
-          <div
-            className="absolute inset-0 opacity-90"
-            style={{
-              background:
-                "radial-gradient(circle at 76% 38%, rgba(77,118,97,.36), transparent 28%), radial-gradient(circle at 34% 92%, rgba(181,125,54,.18), transparent 32%), linear-gradient(135deg,#0b0d0c,#161b18 55%,#090a09)",
-            }}
-            aria-hidden="true"
-          />
+    <section className="nv-shell pt-4 md:pt-5" aria-label="Novidades.store">
+      <div className="relative min-h-[510px] overflow-hidden rounded-[26px] border border-cyan-300/20 bg-[#03152f] shadow-[0_30px_100px_rgba(0,35,90,.35)] lg:min-h-[525px]">
+        <Image
+          src="/images/promo/discovery.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-[.26] saturate-[1.25]"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_69%_43%,rgba(0,171,255,.22),transparent_27%),radial-gradient(circle_at_88%_78%,rgba(255,36,62,.16),transparent_24%),linear-gradient(90deg,rgba(2,13,34,.98)_0%,rgba(3,21,49,.9)_46%,rgba(3,21,49,.6)_100%)]"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent nv-neon-line" />
 
-          <div className="relative grid min-h-[445px] items-center md:grid-cols-[1.05fr_.95fr] lg:min-h-[470px]">
-            <div className="z-10 flex flex-col justify-center p-6 md:p-10 lg:p-12">
-              <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-[10px] font-bold tracking-[0.16em] text-white/75 uppercase">
-                <Sparkles className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
-                Arte &amp; Vida · Em destaque
-              </span>
+        <div className="relative grid min-h-[510px] items-center gap-8 p-6 md:p-9 lg:min-h-[525px] lg:grid-cols-[1fr_.95fr] lg:p-11 xl:p-14">
+          <div className="z-10 max-w-[650px]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-cyan-300/8 px-3 py-1.5 text-[10px] font-black tracking-[.16em] text-cyan-200 uppercase backdrop-blur">
+              <Zap className="h-3.5 w-3.5 fill-cyan-300 text-cyan-300" aria-hidden="true" />
+              Todo dia, uma boa descoberta
+            </span>
 
-              <h1 className="font-editorial text-[42px] leading-[.98] font-bold tracking-tight sm:text-5xl lg:text-[62px]">
-                SIGNUM 312
-              </h1>
+            <h1 className="mt-5 text-[46px] leading-[.94] font-black tracking-[-.055em] text-white sm:text-[58px] lg:text-[70px]">
+              Novidades<span className="text-cyan-300">.store</span>
+            </h1>
+            <p className="mt-3 text-2xl font-black tracking-[-.035em] text-white md:text-3xl">
+              Mais do que você procura.
+            </p>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/65 md:text-[16px] md:leading-7">
+              Produtos, descobertas e ofertas selecionadas para deixar o seu dia a dia mais prático, interessante e completo.
+            </p>
 
-              <p className="mt-3 text-base font-semibold text-[#E8C989] md:text-lg">
-                Fé. Coragem. Propósito.
-              </p>
-
-              <p className="mt-3 max-w-lg text-[14px] leading-relaxed text-white/72 md:text-[15px]">
-                Uma coleção contemporânea inspirada em simbolismo histórico,
-                criada para quem prefere carregar significado.
-              </p>
-
-              <div className="mt-6 flex flex-wrap items-end gap-5">
-                <div>
-                  <span className="block text-[10px] font-semibold tracking-[0.1em] text-white/45 uppercase">
-                    A partir de
-                  </span>
-                  <strong className="mt-1 block text-3xl tracking-tight md:text-4xl">
-                    R$ 89,90
-                  </strong>
-                </div>
-
-                <span className="inline-flex items-center gap-1.5 pb-1 text-xs text-white/60">
-                  <Zap className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
-                  PIX via XPAYMENTS
-                </span>
-              </div>
-
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="https://signum312.novidades.store"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[11px] bg-[#F3EDE2] px-7 text-sm font-bold text-[#151816] transition-all hover:bg-white hover:shadow-lg active:scale-[0.99]"
-                >
-                  Ver oferta SIGNUM 312
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </a>
-
-                <button
-                  type="button"
-                  onClick={() => scrollToId("destaques")}
-                  className="inline-flex h-12 items-center justify-center rounded-[11px] border border-white/14 bg-white/5 px-6 text-sm font-semibold text-white/85 transition hover:bg-white/10"
-                >
-                  Explorar Novidades.store
-                </button>
-              </div>
-
-              <p className="mt-4 inline-flex items-center gap-2 text-[10px] text-white/45">
-                <ShieldCheck className="h-3.5 w-3.5 text-success" aria-hidden="true" />
-                Produto real · condições e vendedor identificados antes do pagamento
-              </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => scrollToId("categorias")}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0797ff] to-[#075bd8] px-6 text-sm font-black text-white shadow-[0_0_26px_rgba(0,157,255,.25)] transition hover:brightness-110"
+              >
+                Explorar a loja
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={showOffers}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#d9162f] to-[#ff3148] px-6 text-sm font-black text-white shadow-[0_0_24px_rgba(255,38,64,.24)] transition hover:brightness-110"
+              >
+                <Zap className="h-4 w-4 fill-white" aria-hidden="true" />
+                Ofertas de hoje
+              </button>
             </div>
 
-            <div className="relative hidden h-full min-h-[445px] md:block">
-              <div className="absolute top-[9%] right-[12%] w-[54%] rotate-[3deg] overflow-hidden rounded-2xl border border-white/10 bg-white/6 p-2 shadow-2xl">
-                <Image
-                  src="/images/products/signum-patina-real.webp"
-                  alt="SIGNUM 312 edição pátina — fotografia real"
-                  width={300}
-                  height={411}
-                  priority
-                  className="h-auto w-full rounded-xl object-cover"
-                />
-              </div>
-
-              <div className="absolute right-[52%] bottom-[8%] w-[37%] -rotate-[5deg] overflow-hidden rounded-2xl border border-white/10 bg-white/6 p-2 shadow-2xl">
-                <Image
-                  src="/images/products/signum-gold-real.webp"
-                  alt="SIGNUM 312 edição dourada — fotografia real"
-                  width={300}
-                  height={411}
-                  priority
-                  className="h-auto w-full rounded-xl object-cover"
-                />
-              </div>
-
-              <span className="absolute right-[7%] bottom-[5%] text-[9px] tracking-[0.08em] text-white/35 uppercase">
-                Fotografias reais do produto
-              </span>
+            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-2 sm:grid-cols-4">
+              {[
+                [ShieldCheck, "Compra segura"],
+                [Zap, "PIX via XPAYMENTS"],
+                [PackageCheck, "Entrega acompanhada"],
+                [Headset, "Suporte oficial"],
+              ].map(([Icon, label]) => {
+                const IconComponent = Icon as typeof ShieldCheck;
+                return (
+                  <div key={String(label)} className="flex items-center gap-2 rounded-xl border border-white/8 bg-white/4 px-3 py-2.5 text-[10px] font-semibold text-white/70 backdrop-blur">
+                    <IconComponent className="h-4 w-4 shrink-0 text-cyan-300" aria-hidden="true" />
+                    <span>{String(label)}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </article>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          <HeroPromoCard
-            image="/images/promo/discovery.png"
-            alt="Seleção editorial Novidades.store"
-            title="Descobertas para o seu dia a dia"
-            description="Curadoria antes de quantidade."
-            ctaLabel="Explorar"
-            onCta={() => scrollToId("destaques")}
-          />
-          <HeroPromoCard
-            image="/images/promo/gift.png"
-            alt="Seleção de presentes"
-            title="Presentes com intenção"
-            description="Ideias selecionadas para momentos especiais."
-            ctaLabel="Ver universo"
-            onCta={() => scrollToId("presentes")}
-          />
+          <div className="relative hidden min-h-[410px] lg:block" aria-hidden="true">
+            <div className="absolute left-1/2 top-1/2 h-[330px] w-[330px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/14 blur-[55px]" />
+            <div className="absolute left-1/2 top-[52%] h-[82px] w-[390px] -translate-x-1/2 rounded-[50%] border border-cyan-300/50 bg-[#06214a] shadow-[0_0_65px_rgba(0,174,255,.45),inset_0_0_28px_rgba(0,216,255,.2)]" />
+            <Image
+              src="/brand/novidades-mark.svg"
+              alt=""
+              width={430}
+              height={430}
+              priority
+              className="absolute left-1/2 top-[47%] w-[390px] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_28px_35px_rgba(0,10,35,.72)]"
+            />
+
+            <div className="absolute right-0 top-8 w-[190px] rounded-2xl border border-cyan-200/20 bg-[#05214a]/84 p-4 text-xs text-white/75 shadow-2xl backdrop-blur">
+              <p className="font-black text-cyan-200">QUALIDADE</p>
+              <p className="mt-2">Variedade, confiança e informação clara antes da compra.</p>
+            </div>
+
+            <div className="absolute bottom-4 right-1 flex items-center gap-3 rounded-2xl border border-red-300/25 bg-red-500/12 px-4 py-3 text-white shadow-[0_0_28px_rgba(255,38,64,.18)] backdrop-blur">
+              <ShoppingCart className="h-7 w-7 text-red-300" />
+              <div>
+                <p className="text-[10px] font-bold tracking-[.12em] text-red-200 uppercase">Descubra</p>
+                <p className="text-sm font-black">Ofertas especiais</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroPromoCard({
-  image,
-  alt,
-  title,
-  description,
-  ctaLabel,
-  onCta,
-}: {
-  image: string;
-  alt: string;
-  title: string;
-  description: string;
-  ctaLabel: string;
-  onCta: () => void;
-}) {
-  return (
-    <article className="group relative min-h-[190px] overflow-hidden rounded-[18px] bg-header-2 lg:min-h-[227px]">
-      <Image
-        src={image}
-        alt={alt}
-        fill
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 350px"
-        className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/38 to-black/10"
-        aria-hidden="true"
-      />
-      <div className="relative flex h-full flex-col justify-between gap-4 p-5 lg:p-6">
-        <div>
-          <h2 className="text-lg leading-snug font-extrabold text-white md:text-xl">
-            {title}
-          </h2>
-          <p className="mt-1 text-xs text-white/72 md:text-[13px]">{description}</p>
-        </div>
-        <button
-          type="button"
-          onClick={onCta}
-          className="inline-flex h-10 w-fit items-center gap-2 rounded-[10px] bg-white/95 px-4 text-[13px] font-bold text-[#151816] transition-all hover:bg-white hover:shadow-lg active:scale-[0.99]"
-        >
-          {ctaLabel}
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </button>
-      </div>
-    </article>
   );
 }
