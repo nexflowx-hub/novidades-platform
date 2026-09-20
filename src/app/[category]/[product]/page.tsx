@@ -10,6 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import { CcosCheckout } from "@/components/digital/ccos-checkout";
+import { FinanceOsCheckout } from "@/components/digital/financeos-checkout";
 import { getPublicListingBySlug } from "@/lib/commerce-db";
 import { formatMoney } from "@/lib/format";
 
@@ -51,8 +52,9 @@ export default async function ProductPage({ params }: Props) {
   const funnelUrl = listing.funnelUrl;
   const isDigital = listing.fulfillmentType === "digital";
   const isCcos = isDigital && listing.slug === "conversion-content-os";
+  const isFinanceOs = isDigital && listing.slug === "financeos-mei-2026";
   const canonicalUrl = `https://novidades.store/${category}/${product}`;
-  const offerActive = Boolean(funnelUrl || isCcos);
+  const offerActive = Boolean(funnelUrl || isCcos || isFinanceOs);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -82,6 +84,17 @@ export default async function ProductPage({ params }: Props) {
     "CTA & Offer Swipe File",
     "Content Repurposing Matrix",
     "Quick Start & Activation Guide",
+    "Customer License & Terms",
+  ];
+
+  const financeOsDeliverables = [
+    "FinanceOS MEI 2026 — XLSX editável",
+    "Dashboard financeiro",
+    "Transações e Resumo Mensal",
+    "Monitor do teto MEI",
+    "Compromissos",
+    "Precificação & Margem",
+    "Quick Start",
     "Customer License & Terms",
   ];
 
@@ -158,6 +171,8 @@ export default async function ProductPage({ params }: Props) {
 
             {isCcos ? (
               <CcosCheckout />
+            ) : isFinanceOs ? (
+              <FinanceOsCheckout />
             ) : funnelUrl ? (
               <a
                 href={funnelUrl}
@@ -188,7 +203,7 @@ export default async function ProductPage({ params }: Props) {
           </section>
         </div>
 
-        {isCcos ? (
+        {isCcos || isFinanceOs ? (
           <section className="mt-8 rounded-[22px] border border-border bg-white p-5 shadow-card md:p-8">
             <p className="text-[11px] font-bold tracking-[0.14em] text-brand-dark uppercase">
               Release 1.0
@@ -197,39 +212,60 @@ export default async function ProductPage({ params }: Props) {
               O que está incluído no pacote
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-              O Conversion Content OS é um toolkit operacional para estruturar
-              mensagem, prova, hooks, conteúdo, CTAs, adaptação multicanal e
-              testes. Não promete receita, crescimento ou taxa de conversão.
+              {isCcos
+                ? "O Conversion Content OS é um toolkit operacional para estruturar mensagem, prova, hooks, conteúdo, CTAs, adaptação multicanal e testes. Não promete receita, crescimento ou taxa de conversão."
+                : "FinanceOS MEI 2026 centraliza receitas, despesas, taxas, compromissos, precificação, projeção e monitoramento gerencial do teto anual. É uma ferramenta de gestão e não substitui contador, Receita Federal, Portal do Empreendedor ou PGMEI."}
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {ccosDeliverables.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-2 rounded-xl border border-border bg-soft/60 p-4 text-sm font-semibold"
-                >
-                  <CheckCircle2
-                    className="mt-0.5 h-4 w-4 shrink-0 text-success"
-                    aria-hidden="true"
-                  />
-                  <span>{item}</span>
-                </div>
-              ))}
+              {(isCcos ? ccosDeliverables : financeOsDeliverables).map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-2 rounded-xl border border-border bg-soft/60 p-4 text-sm font-semibold"
+                  >
+                    <CheckCircle2
+                      className="mt-0.5 h-4 w-4 shrink-0 text-success"
+                      aria-hidden="true"
+                    />
+                    <span>{item}</span>
+                  </div>
+                ),
+              )}
             </div>
 
             <div className="mt-6 grid gap-3 rounded-xl bg-[#0b1220] p-5 text-sm text-slate-300 md:grid-cols-3">
-              <p>
-                <strong className="block text-white">Uso prático</strong>
-                Para projetos próprios, empresas e trabalho de cliente.
-              </p>
-              <p>
-                <strong className="block text-white">Entrega protegida</strong>
-                Downloads privados com URLs assinadas e de curta duração.
-              </p>
-              <p>
-                <strong className="block text-white">Guardrails</strong>
-                Sem testemunhos inventados, falsa urgência ou prova fabricada.
-              </p>
+              {isCcos ? (
+                <>
+                  <p>
+                    <strong className="block text-white">Uso prático</strong>
+                    Para projetos próprios, empresas e trabalho de cliente.
+                  </p>
+                  <p>
+                    <strong className="block text-white">Entrega protegida</strong>
+                    Downloads privados com URLs assinadas e de curta duração.
+                  </p>
+                  <p>
+                    <strong className="block text-white">Guardrails</strong>
+                    Sem testemunhos inventados, falsa urgência ou prova fabricada.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    <strong className="block text-white">Referência 2026</strong>
+                    Teto configurado em R$ 81 mil e parâmetros anuais documentados em fontes oficiais.
+                  </p>
+                  <p>
+                    <strong className="block text-white">Entrega protegida</strong>
+                    XLSX e materiais auxiliares por URLs assinadas e temporárias.
+                  </p>
+                  <p>
+                    <strong className="block text-white">Limite de uso</strong>
+                    Apoio gerencial e educacional; não realiza apuração fiscal oficial nem garante enquadramento.
+                  </p>
+                </>
+              )}
             </div>
           </section>
         ) : null}
