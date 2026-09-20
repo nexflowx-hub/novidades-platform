@@ -1,24 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   BadgePercent,
-  BookOpenText,
   ChevronDown,
   CircleHelp,
-  Flame,
   Gift,
   Heart,
-  Home,
   LayoutGrid,
   Menu,
-  MoreHorizontal,
+  PackageSearch,
+  ShoppingCart,
   Sparkles,
+  Star,
+  UserRound,
 } from "lucide-react";
 import { useMounted } from "@/hooks/use-mounted";
 import { CATEGORIES } from "@/lib/data";
 import { useUI, type CatalogFilter } from "@/lib/store/ui";
 import { useFavorites } from "@/lib/store/favorites";
+import { useCart } from "@/lib/store/cart";
 import { scrollToId } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 import {
@@ -36,12 +38,14 @@ const NAV_FILTERS: Array<{
   label: string;
   icon: React.ElementType;
   filter: CatalogFilter;
+  className?: string;
 }> = [
   {
-    id: "em-alta",
-    label: "Em alta",
-    icon: Flame,
-    filter: { type: "badge", value: "em-alta", label: "Em alta" },
+    id: "ofertas",
+    label: "Ofertas Especiais",
+    icon: BadgePercent,
+    filter: { type: "badge", value: "oferta", label: "Ofertas Especiais" },
+    className: "text-red-300 hover:bg-red-500/10 hover:text-red-200",
   },
   {
     id: "novidades",
@@ -50,24 +54,32 @@ const NAV_FILTERS: Array<{
     filter: { type: "badge", value: "novo", label: "Novidades" },
   },
   {
-    id: "ofertas",
-    label: "Ofertas",
-    icon: BadgePercent,
-    filter: { type: "badge", value: "oferta", label: "Ofertas" },
+    id: "mais-vendidos",
+    label: "Mais vendidos",
+    icon: Star,
+    filter: { type: "badge", value: "mais-vendido", label: "Mais vendidos" },
   },
 ];
 
-function Wordmark({ compact = false }: { compact?: boolean }) {
+function Brand() {
   return (
-    <div className="leading-none select-none">
-      <p className="text-lg font-extrabold tracking-tight text-white md:text-[21px]">
-        NOVIDADES<span className="text-brand">.store</span>
-      </p>
-      {!compact ? (
-        <p className="mt-1 text-[10px] text-white/60 md:text-[11px]">
-          Todo dia, uma boa descoberta.
+    <div className="flex items-center gap-2.5">
+      <Image
+        src="/brand/novidades-mark.svg"
+        alt=""
+        width={58}
+        height={58}
+        priority
+        className="h-12 w-12 drop-shadow-[0_0_16px_rgba(0,216,255,.35)] lg:h-14 lg:w-14"
+      />
+      <div className="hidden leading-none sm:block">
+        <p className="text-[22px] font-black tracking-[-.04em] text-white lg:text-[25px]">
+          Novidades
         </p>
-      ) : null}
+        <p className="mt-1 text-[10px] font-bold tracking-[.34em] text-cyan-300 uppercase">
+          Store
+        </p>
+      </div>
     </div>
   );
 }
@@ -77,9 +89,14 @@ export function SiteHeader() {
   const openSearch = useUI((state) => state.openSearch);
   const openFavorites = useUI((state) => state.openFavorites);
   const openMobileMenu = useUI((state) => state.openMobileMenu);
+  const openCart = useUI((state) => state.openCart);
+  const openAccount = useUI((state) => state.openAccount);
   const setFilter = useUI((state) => state.setFilter);
   const activeFilter = useUI((state) => state.filter);
   const favCount = useFavorites((state) => state.ids.length);
+  const cartCount = useCart((state) =>
+    state.items.reduce((total, item) => total + item.qty, 0)
+  );
 
   const goFeaturedWithFilter = (filter: CatalogFilter | null) => {
     setFilter(filter);
@@ -89,7 +106,6 @@ export function SiteHeader() {
   const goCategory = (categoryId: string) => {
     const category = CATEGORIES.find((item) => item.id === categoryId);
     if (!category) return;
-
     goFeaturedWithFilter({
       type: "category",
       value: category.id,
@@ -98,157 +114,111 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full">
-      <div className="bg-header shadow-header">
-        <div className="relative mx-auto flex h-[62px] w-full max-w-[1440px] items-center gap-3 px-4 md:px-6 lg:h-[74px] lg:px-8">
-          <button
-            type="button"
-            aria-label="Abrir menu"
-            onClick={openMobileMenu}
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
-          >
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </button>
-
-          <Link
-            href="/"
-            aria-label="Novidades.store — início"
-            className="absolute left-1/2 shrink-0 -translate-x-1/2 focus-visible:outline-none lg:static lg:translate-x-0"
-          >
-            <div className="hidden lg:block">
-              <Wordmark />
-            </div>
-            <div className="text-center lg:hidden">
-              <Wordmark compact />
-              <p className="mt-0.5 text-[9px] text-white/60">
-                Todo dia, uma boa descoberta.
-              </p>
-            </div>
-          </Link>
-
-          <div className="hidden flex-1 justify-center px-6 lg:flex">
-            <button
-              type="button"
-              onClick={openSearch}
-              aria-label="Buscar produtos, categorias ou marcas"
-              className="group flex h-11 w-full max-w-[640px] items-center gap-3 rounded-[10px] bg-white px-4 text-left shadow-sm transition-shadow hover:shadow-md"
-            >
-              <SearchPlaceholder />
-            </button>
+    <header className="sticky top-0 z-50 w-full bg-[#03152f] text-white shadow-[0_12px_35px_rgba(0,12,40,.26)]">
+      <div className="hidden border-b border-white/7 bg-[#021126] lg:block">
+        <div className="mx-auto flex h-8 w-full max-w-[1440px] items-center justify-between px-8 text-[10px] text-white/65">
+          <p>
+            Bem-vindo à Novidades.store
+            <span className="ml-2 font-semibold text-cyan-300">Mais do que você procura.</span>
+          </p>
+          <div className="flex items-center gap-5">
+            <Link href="/entregas" className="hover:text-white">Acompanhe seus pedidos</Link>
+            <Link href="/ajuda" className="hover:text-white">Ajuda &amp; Suporte</Link>
+            <RegionSelector />
           </div>
-
-          <div className="ml-auto hidden items-center gap-1 lg:flex">
-            <Link
-              href="/ajuda"
-              className="flex h-[52px] w-[68px] flex-col items-center justify-center gap-1 rounded-lg text-white/85 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <CircleHelp className="h-[21px] w-[21px]" aria-hidden="true" />
-              <span className="text-[11px] font-medium">Ajuda</span>
-            </Link>
-
-            <button
-              type="button"
-              onClick={openFavorites}
-              aria-label="Favoritos"
-              className="relative flex h-[52px] w-[68px] flex-col items-center justify-center gap-1 rounded-lg text-white/85 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <Heart className="h-[21px] w-[21px]" aria-hidden="true" />
-              <span className="text-[11px] font-medium">Favoritos</span>
-              {mounted && favCount > 0 ? (
-                <span className="absolute top-1 right-3 grid h-[17px] min-w-[17px] place-items-center rounded-full bg-coral px-1 text-[10px] font-bold text-white">
-                  {favCount > 99 ? "99+" : favCount}
-                </span>
-              ) : null}
-            </button>
-          </div>
-
-          <button
-            type="button"
-            aria-label="Abrir favoritos"
-            onClick={openFavorites}
-            className="relative z-10 ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-lg text-white transition-colors hover:bg-white/10 lg:hidden"
-          >
-            <Heart className="h-[22px] w-[22px]" aria-hidden="true" />
-            {mounted && favCount > 0 ? (
-              <span className="absolute top-0.5 right-0.5 grid h-[16px] min-w-[16px] place-items-center rounded-full bg-coral px-0.5 text-[9px] font-bold text-white">
-                {favCount > 9 ? "9+" : favCount}
-              </span>
-            ) : null}
-          </button>
-        </div>
-
-        <div className="px-4 pb-3 lg:hidden">
-          <button
-            type="button"
-            onClick={openSearch}
-            aria-label="Buscar produtos e categorias"
-            className="flex h-[42px] w-full items-center gap-2.5 rounded-full bg-white px-4 text-left"
-          >
-            <SearchPlaceholder />
-          </button>
         </div>
       </div>
 
-      <nav
-        aria-label="Navegação principal"
-        className="hidden border-b border-border bg-background lg:block"
-      >
-        <div className="mx-auto flex h-[50px] w-full max-w-[1440px] items-center gap-1 px-6 xl:px-8">
-          <Link
-            href="/"
-            className={cn(
-              "inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold transition-colors",
-              !activeFilter
-                ? "bg-soft text-foreground"
-                : "text-muted-foreground hover:bg-soft hover:text-foreground"
-            )}
-          >
-            <Home className="h-4 w-4" aria-hidden="true" />
-            Início
-          </Link>
+      <div className="mx-auto flex h-[68px] w-full max-w-[1440px] items-center gap-3 px-4 md:px-6 lg:h-[82px] lg:px-8">
+        <button
+          type="button"
+          aria-label="Abrir menu"
+          onClick={openMobileMenu}
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white transition hover:bg-white/8 lg:hidden"
+        >
+          <Menu className="h-6 w-6" aria-hidden="true" />
+        </button>
 
+        <Link href="/" aria-label="Novidades.store — início" className="shrink-0">
+          <Brand />
+        </Link>
+
+        <div className="hidden flex-1 justify-center px-5 lg:flex">
+          <button
+            type="button"
+            onClick={openSearch}
+            aria-label="Buscar produtos, categorias ou marcas"
+            className="group flex h-[50px] w-full max-w-[690px] items-center overflow-hidden rounded-[14px] border border-cyan-300/55 bg-white text-left shadow-[0_0_26px_rgba(0,157,255,.22)] transition hover:shadow-[0_0_34px_rgba(0,184,255,.32)]"
+          >
+            <SearchPlaceholder />
+            <span className="grid h-full w-14 place-items-center bg-gradient-to-br from-[#0b8cff] to-[#0451c7] text-white">
+              <PackageSearch className="h-5 w-5" aria-hidden="true" />
+            </span>
+          </button>
+        </div>
+
+        <div className="ml-auto hidden items-center gap-1 lg:flex">
+          <HeaderAction label="Minha conta" onClick={openAccount} icon={UserRound} />
+          <HeaderAction
+            label="Favoritos"
+            onClick={openFavorites}
+            icon={Heart}
+            badge={mounted ? favCount : 0}
+          />
+          <HeaderAction
+            label="Carrinho"
+            onClick={openCart}
+            icon={ShoppingCart}
+            badge={mounted ? cartCount : 0}
+          />
+        </div>
+
+        <button
+          type="button"
+          aria-label="Abrir carrinho"
+          onClick={openCart}
+          className="relative z-10 ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white transition hover:bg-white/8 lg:hidden"
+        >
+          <ShoppingCart className="h-[22px] w-[22px]" aria-hidden="true" />
+          {mounted && cartCount > 0 ? (
+            <span className="absolute right-0 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[9px] font-black text-white">
+              {cartCount > 9 ? "9+" : cartCount}
+            </span>
+          ) : null}
+        </button>
+      </div>
+
+      <div className="px-4 pb-3 lg:hidden">
+        <button
+          type="button"
+          onClick={openSearch}
+          aria-label="Buscar produtos e categorias"
+          className="flex h-[44px] w-full items-center gap-2.5 rounded-xl border border-cyan-300/35 bg-white px-4 text-left shadow-[0_0_20px_rgba(0,157,255,.16)]"
+        >
+          <SearchPlaceholder />
+        </button>
+      </div>
+
+      <nav aria-label="Navegação principal" className="hidden border-t border-white/7 bg-[#041a38] lg:block">
+        <div className="mx-auto flex h-[50px] w-full max-w-[1440px] items-center gap-1 px-8">
           <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-soft hover:text-foreground focus-visible:outline-none">
+            <DropdownMenuTrigger className="inline-flex h-9 items-center gap-2 rounded-lg bg-[#082c5d] px-4 text-[12px] font-bold text-white transition hover:bg-[#0a3978] focus-visible:outline-none">
               <LayoutGrid className="h-4 w-4" aria-hidden="true" />
-              Categorias
-              <ChevronDown className="h-3.5 w-3.5 opacity-60" aria-hidden="true" />
+              Todas as categorias
+              <ChevronDown className="h-3.5 w-3.5 text-white/60" aria-hidden="true" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-64">
+            <DropdownMenuContent align="start" className="w-72">
               <DropdownMenuLabel className="text-xs text-muted-foreground">
-                Categorias
+                Explore por categoria
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               {CATEGORIES.map((category) => (
-                <DropdownMenuItem
-                  key={category.id}
-                  className="gap-2.5"
-                  onSelect={() => goCategory(category.id)}
-                >
-                  <span
-                    className="h-2.5 w-2.5 rounded-full"
-                    style={{ backgroundColor: category.color }}
-                    aria-hidden="true"
-                  />
+                <DropdownMenuItem key={category.id} onSelect={() => goCategory(category.id)}>
                   {category.name}
                 </DropdownMenuItem>
               ))}
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onSelect={() => scrollToId("categorias-destaque")}
-              >
-                <MoreHorizontal className="h-4 w-4" aria-hidden="true" />
-                Ver todas as categorias
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Link
-            href="/conteudos-digitais"
-            className="inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold text-brand-dark transition-colors hover:bg-brand/10"
-          >
-            <BookOpenText className="h-4 w-4" aria-hidden="true" />
-            Conteúdos Digitais
-          </Link>
 
           {NAV_FILTERS.map((item) => {
             const Icon = item.icon;
@@ -262,10 +232,9 @@ export function SiteHeader() {
                 type="button"
                 onClick={() => goFeaturedWithFilter(item.filter)}
                 className={cn(
-                  "inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium transition-colors",
-                  isActive
-                    ? "bg-warm text-foreground"
-                    : "text-muted-foreground hover:bg-soft hover:text-foreground"
+                  "inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-[12px] font-semibold text-white/75 transition hover:bg-white/7 hover:text-white",
+                  item.className,
+                  isActive && "bg-white/10 text-white"
                 )}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
@@ -274,23 +243,62 @@ export function SiteHeader() {
             );
           })}
 
+          <Link
+            href="/conteudos-digitais"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-[12px] font-extrabold text-cyan-300 transition hover:bg-cyan-300/10"
+          >
+            <Sparkles className="h-4 w-4" aria-hidden="true" />
+            Academia Digital
+          </Link>
+
           <button
             type="button"
-            onClick={() => scrollToId("presentes")}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-soft hover:text-foreground"
+            onClick={() => scrollToId("colecoes")}
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-[12px] font-semibold text-white/75 transition hover:bg-white/7 hover:text-white"
           >
             <Gift className="h-4 w-4" aria-hidden="true" />
-            Presentes
+            Coleções
           </button>
 
           <InfoMenu />
 
-          <div className="ml-auto">
-            <RegionSelector />
-          </div>
+          <Link
+            href="/sobre"
+            className="ml-auto inline-flex h-9 items-center gap-1.5 rounded-lg border border-cyan-300/20 bg-cyan-300/7 px-3 text-[12px] font-bold text-cyan-200"
+          >
+            Nossas marcas
+          </Link>
         </div>
       </nav>
     </header>
+  );
+}
+
+function HeaderAction({
+  label,
+  onClick,
+  icon: Icon,
+  badge = 0,
+}: {
+  label: string;
+  onClick: () => void;
+  icon: React.ElementType;
+  badge?: number;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="relative flex h-[58px] w-[78px] flex-col items-center justify-center gap-1 rounded-xl text-white/80 transition hover:bg-white/7 hover:text-white"
+    >
+      <Icon className="h-[22px] w-[22px]" aria-hidden="true" />
+      <span className="text-[10px] font-semibold">{label}</span>
+      {badge > 0 ? (
+        <span className="absolute right-2 top-1 grid h-[17px] min-w-[17px] place-items-center rounded-full bg-red-500 px-1 text-[9px] font-black text-white">
+          {badge > 99 ? "99+" : badge}
+        </span>
+      ) : null}
+    </button>
   );
 }
 
@@ -298,7 +306,7 @@ function SearchPlaceholder() {
   return (
     <>
       <svg
-        className="h-4.5 w-4.5 shrink-0 text-faint"
+        className="h-4.5 w-4.5 shrink-0 text-[#74849c]"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -309,12 +317,9 @@ function SearchPlaceholder() {
         <circle cx="11" cy="11" r="7" />
         <path d="m20 20-3.5-3.5" />
       </svg>
-      <span className="flex-1 truncate text-[13px] text-faint md:text-sm">
-        Buscar produtos, categorias ou marcas...
+      <span className="flex-1 truncate text-[13px] text-[#718096] md:text-sm">
+        O que você procura hoje?
       </span>
-      <kbd className="hidden rounded border border-border bg-soft px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground md:inline">
-        /
-      </kbd>
     </>
   );
 }
@@ -328,14 +333,11 @@ function InfoMenu() {
     { label: "Pagamentos", href: "/pagamentos" },
     { label: "Trocas e Devoluções", href: "/trocas-e-devolucoes" },
     { label: "Informações Legais", href: "/informacoes-legais" },
-    { label: "Privacidade", href: "/privacidade" },
-    { label: "Termos", href: "/termos" },
-    { label: "Cookies", href: "/cookies" },
   ];
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="inline-flex h-9 items-center gap-1 rounded-full px-3.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-soft hover:text-foreground focus-visible:outline-none">
+      <DropdownMenuTrigger className="inline-flex h-9 items-center gap-1 rounded-lg px-3 text-[12px] font-semibold text-white/65 transition hover:bg-white/7 hover:text-white focus-visible:outline-none">
         Mais
         <ChevronDown className="h-3.5 w-3.5 opacity-60" aria-hidden="true" />
       </DropdownMenuTrigger>
