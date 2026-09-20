@@ -2,8 +2,7 @@
  * NOVIDADES.store — safe fallback catalog.
  *
  * Production source of truth is the shared Supabase Commerce Core.
- * This file exists only as a resilient fallback for the initial public launch.
- * It intentionally contains ONLY products already approved for public use.
+ * This file is a resilient fallback and storefront taxonomy.
  */
 
 export type BadgeId =
@@ -52,76 +51,76 @@ export interface VideoCard {
 
 export const CATEGORIES: Category[] = [
   {
-    id: "arte-vida",
-    name: "Arte & Vida",
-    slug: "arte-e-vida",
-    description: "Símbolos, presentes e objetos com significado.",
-    color: "#D8C6A5",
-    image: "/images/categories/arte.png",
-  },
-  {
-    id: "casa-utilidade",
-    name: "Casa & Utilidade",
-    slug: "casa-e-utilidade",
-    description: "Soluções práticas e descobertas para o seu lar.",
-    color: "#E5DDD1",
+    id: "utilidades",
+    name: "Utilidades",
+    slug: "utilidades",
+    description: "Soluções práticas, acessórios e itens úteis para o dia a dia.",
+    color: "#0B5DC2",
     image: "/images/categories/casa.png",
   },
   {
     id: "auto-tech",
-    name: "Auto & Tech",
+    name: "Auto & Rastreador GPS",
     slug: "auto-tech",
-    description: "Mobilidade, acessórios e tecnologia útil.",
-    color: "#C7DEE8",
+    description: "Mobilidade, rastreamento, segurança e tecnologia automotiva.",
+    color: "#0754A6",
     image: "/images/categories/auto.png",
   },
   {
+    id: "arte-vida",
+    name: "Medalhas & Terços",
+    slug: "arte-e-vida",
+    description: "Fé, espiritualidade, história, símbolos e presentes com significado.",
+    color: "#A57425",
+    image: "/images/categories/arte.png",
+  },
+  {
     id: "conteudos-digitais",
-    name: "Conteúdos Digitais",
+    name: "Academia Digital",
     slug: "conteudos-digitais",
-    description: "Guias, sistemas, templates, planilhas e ferramentas digitais.",
-    color: "#D9E7FF",
+    description: "Software, IA, ferramentas, produtos digitais e soluções para o mercado online.",
+    color: "#087FE8",
     image: "/images/categories/digital.svg",
+  },
+  {
+    id: "saude-bem-estar",
+    name: "Saúde & Bem-Estar",
+    slug: "saude-bem-estar",
+    description: "Suplementos, chás, acessórios e produtos de cuidado e bem-estar.",
+    color: "#0D8F7A",
+    image: "/images/categories/saude.png",
   },
   {
     id: "pets",
     name: "Pets",
     slug: "pets",
-    description: "Descobertas para a rotina de quem vive com animais.",
-    color: "#F4D4C3",
+    description: "Alimentação, cuidados, acessórios e descobertas para animais.",
+    color: "#1475BE",
     image: "/images/categories/pets.png",
   },
   {
-    id: "saude-bem-estar",
-    name: "Saúde & Bem-estar",
-    slug: "saude-bem-estar",
-    description: "Produtos de bem-estar avaliados antes da publicação.",
-    color: "#D8E9D4",
-    image: "/images/categories/saude.png",
+    id: "casa-utilidade",
+    name: "Casa & Jardim",
+    slug: "casa-e-utilidade",
+    description: "Decoração, plantas, cozinha, utensílios e organização.",
+    color: "#0A6A93",
+    image: "/images/categories/casa.png",
   },
   {
-    id: "viagem-estilo",
-    name: "Viagem & Estilo",
-    slug: "viagem-estilo",
-    description: "Acessórios e ideias para mobilidade e estilo.",
-    color: "#C9DDEA",
-    image: "/images/categories/viagem.png",
-  },
-  {
-    id: "trabalho-estudo",
-    name: "Trabalho & Estudo",
-    slug: "trabalho-estudo",
-    description: "Ferramentas para produtividade e organização.",
-    color: "#DDD5CD",
-    image: "/images/categories/trabalho.png",
-  },
-  {
-    id: "presentes",
-    name: "Presentes",
-    slug: "presentes",
-    description: "Seleções pensadas para presentear.",
-    color: "#F1C6C0",
+    id: "cosmeticos-perfumes",
+    name: "Cosméticos & Perfumes",
+    slug: "cosmeticos-perfumes",
+    description: "Perfumes, maquilhagem, cremes, beleza e cuidado pessoal.",
+    color: "#A54275",
     image: "/images/categories/presentes.png",
+  },
+  {
+    id: "roupa-acessorios",
+    name: "Roupa & Acessórios",
+    slug: "roupa-acessorios",
+    description: "Roupa, calçado, relógios, joias e acessórios de estilo.",
+    color: "#7C4C91",
+    image: "/images/categories/viagem.png",
   },
 ];
 
@@ -290,22 +289,23 @@ export const PRODUCTS: Product[] = [
 export const VIDEO_CARDS: VideoCard[] = [];
 
 export const POPULAR_SEARCHES = [
+  "Ofertas Especiais",
   "SIGNUM 312",
-  "Arte & Vida",
-  "Presentes",
-  "Auto & Tech",
-  "Conteúdos Digitais",
+  "Medalhas & Terços",
+  "Utilidades",
+  "Auto & Rastreador GPS",
+  "Academia Digital",
+  "Software",
+  "IA",
+  "Produtos Digitais",
   "Conversion Content OS",
-  "Conversion Growth Suite",
-  "FinanceOS MEI",
-  "Sales Page Blueprint",
-  "Hook Lab",
-  "Email Conversion Kit",
-  "Digital Product Launch Kit",
-  "Creator Prompt Library",
   "Creator Growth Suite",
+  "FinanceOS MEI",
   "Pets",
-  "Casa",
+  "Casa & Jardim",
+  "Saúde & Bem-Estar",
+  "Cosméticos & Perfumes",
+  "Roupa & Acessórios",
 ];
 
 export function getProduct(id: string): Product | undefined {
