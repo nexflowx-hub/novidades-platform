@@ -55,6 +55,10 @@ function safeProductImage(slug: string, remote?: string | null) {
     "financeos-mei-2026": "/images/products/financeos-mei-2026.svg",
     "sales-page-blueprint": "/images/products/sales-page-blueprint.svg",
     "conversion-growth-suite": "/images/products/conversion-growth-suite.svg",
+    "email-conversion-kit": "/images/products/email-conversion-kit.svg",
+    "digital-product-launch-kit": "/images/products/digital-product-launch-kit.svg",
+    "creator-prompt-library": "/images/products/creator-prompt-library.svg",
+    "creator-growth-suite": "/images/products/creator-growth-suite.svg",
   };
 
   return localImages[slug] ?? "/images/products/signum-patina-real.webp";
