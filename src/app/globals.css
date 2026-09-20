@@ -42,7 +42,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* ——— Novidades.store design tokens (spec) ——— */
   --color-header: var(--nv-header);
   --color-header-2: var(--nv-header-2);
   --color-soft: var(--nv-soft);
@@ -57,88 +56,87 @@
   --color-rating: var(--nv-rating);
   --color-faint: var(--nv-faint);
 
-  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.06);
-  --shadow-floating: 0 16px 45px rgba(0, 0, 0, 0.12);
-  --shadow-header: 0 1px 6px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 8px 30px rgba(0, 32, 82, 0.08);
+  --shadow-floating: 0 20px 55px rgba(0, 46, 120, 0.18);
+  --shadow-header: 0 10px 35px rgba(0, 12, 40, 0.22);
 }
 
 :root {
   --radius: 0.875rem;
   --background: #ffffff;
-  --foreground: #151816;
+  --foreground: #07142a;
   --card: #ffffff;
-  --card-foreground: #151816;
+  --card-foreground: #07142a;
   --popover: #ffffff;
-  --popover-foreground: #151816;
-  --primary: #151816;
+  --popover-foreground: #07142a;
+  --primary: #075bd8;
   --primary-foreground: #ffffff;
-  --secondary: #f7f7f5;
-  --secondary-foreground: #151816;
-  --muted: #f7f7f5;
-  --muted-foreground: #656a66;
-  --accent: #f5f0e8;
-  --accent-foreground: #151816;
-  --destructive: #f1573e;
-  --border: #e5e7e4;
-  --input: #e5e7e4;
-  --ring: #e9843d;
-  --chart-1: #e9843d;
-  --chart-2: #188754;
-  --chart-3: #d6a84f;
-  --chart-4: #2f8fbf;
-  --chart-5: #f1573e;
+  --secondary: #eef6ff;
+  --secondary-foreground: #07142a;
+  --muted: #f2f7fc;
+  --muted-foreground: #627189;
+  --accent: #e8f5ff;
+  --accent-foreground: #07142a;
+  --destructive: #ef3340;
+  --border: #dbe7f3;
+  --input: #dbe7f3;
+  --ring: #00a8ff;
+  --chart-1: #0787ff;
+  --chart-2: #00d8ff;
+  --chart-3: #f3b62d;
+  --chart-4: #ef3340;
+  --chart-5: #0bbf7b;
   --sidebar: #ffffff;
-  --sidebar-foreground: #151816;
-  --sidebar-primary: #151816;
+  --sidebar-foreground: #07142a;
+  --sidebar-primary: #075bd8;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f7f7f5;
-  --sidebar-accent-foreground: #151816;
-  --sidebar-border: #e5e7e4;
-  --sidebar-ring: #e9843d;
+  --sidebar-accent: #eef6ff;
+  --sidebar-accent-foreground: #07142a;
+  --sidebar-border: #dbe7f3;
+  --sidebar-ring: #00a8ff;
 
-  /* Novidades.store palette */
-  --nv-header: #151918;
-  --nv-header-2: #1f2422;
-  --nv-soft: #f7f7f5;
-  --nv-warm: #f5f0e8;
-  --nv-brand: #e9843d;
-  --nv-brand-dark: #c96528;
-  --nv-gold: #d6a84f;
-  --nv-pine: #188754;
-  --nv-coral: #f1573e;
-  --nv-sale: #ff533f;
-  --nv-success: #169455;
-  --nv-rating: #f3a400;
-  --nv-faint: #929792;
+  --nv-header: #03152f;
+  --nv-header-2: #06224a;
+  --nv-soft: #f3f8fd;
+  --nv-warm: #edf6ff;
+  --nv-brand: #0787ff;
+  --nv-brand-dark: #075bd8;
+  --nv-gold: #f3b62d;
+  --nv-pine: #0b9871;
+  --nv-coral: #ef3340;
+  --nv-sale: #ff2945;
+  --nv-success: #0bbf7b;
+  --nv-rating: #f5a623;
+  --nv-faint: #7e8ca2;
 }
 
 .dark {
-  --background: #111312;
-  --foreground: #f3f4f3;
-  --card: #1f2422;
-  --card-foreground: #f3f4f3;
-  --popover: #1f2422;
-  --popover-foreground: #f3f4f3;
-  --primary: #f3f4f3;
-  --primary-foreground: #151816;
-  --secondary: #262b29;
-  --secondary-foreground: #f3f4f3;
-  --muted: #262b29;
-  --muted-foreground: #929792;
-  --accent: #262b29;
-  --accent-foreground: #f3f4f3;
-  --destructive: #f1573e;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #e9843d;
-  --sidebar: #1f2422;
-  --sidebar-foreground: #f3f4f3;
-  --sidebar-primary: #e9843d;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #262b29;
-  --sidebar-accent-foreground: #f3f4f3;
-  --sidebar-border: rgba(255, 255, 255, 0.12);
-  --sidebar-ring: #e9843d;
+  --background: #020b19;
+  --foreground: #f3f8ff;
+  --card: #061b38;
+  --card-foreground: #f3f8ff;
+  --popover: #061b38;
+  --popover-foreground: #f3f8ff;
+  --primary: #17a5ff;
+  --primary-foreground: #021126;
+  --secondary: #08254d;
+  --secondary-foreground: #f3f8ff;
+  --muted: #08254d;
+  --muted-foreground: #9fb0c8;
+  --accent: #0a2d5b;
+  --accent-foreground: #f3f8ff;
+  --destructive: #ff4358;
+  --border: rgba(157, 205, 255, 0.14);
+  --input: rgba(157, 205, 255, 0.16);
+  --ring: #00d8ff;
+  --sidebar: #04172f;
+  --sidebar-foreground: #f3f8ff;
+  --sidebar-primary: #17a5ff;
+  --sidebar-primary-foreground: #021126;
+  --sidebar-accent: #08254d;
+  --sidebar-accent-foreground: #f3f8ff;
+  --sidebar-border: rgba(157, 205, 255, 0.14);
+  --sidebar-ring: #00d8ff;
 }
 
 @layer base {
@@ -161,7 +159,74 @@
   }
 }
 
-/* Hide scrollbars on horizontal discovery rails */
+.nv-home {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 50% 3%, rgba(0, 153, 255, 0.18), transparent 26rem),
+    radial-gradient(circle at 8% 24%, rgba(255, 35, 58, 0.09), transparent 24rem),
+    linear-gradient(180deg, #03142d 0%, #041a38 42%, #03142d 100%);
+}
+
+.nv-home::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .3;
+  background-image:
+    linear-gradient(rgba(55, 158, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55, 158, 255, .035) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+.nv-shell {
+  position: relative;
+  width: min(100% - 2rem, 1440px);
+  margin-inline: auto;
+}
+
+.nv-glass-card {
+  background:
+    linear-gradient(135deg, rgba(11, 49, 100, .86), rgba(3, 22, 51, .9));
+  border: 1px solid rgba(93, 190, 255, .2);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 20px 60px rgba(0, 20, 62, .22);
+  backdrop-filter: blur(14px);
+}
+
+.nv-offer-panel {
+  background:
+    radial-gradient(circle at 82% 15%, rgba(255, 183, 38, .32), transparent 30%),
+    linear-gradient(135deg, #9b0a19, #e3152f 55%, #7c0715);
+}
+
+.nv-metal-ring {
+  background:
+    linear-gradient(145deg, #f8fbff 0%, #8298af 17%, #f6fbff 34%, #55718f 51%, #e9f4ff 68%, #6f88a4 83%, #f6fbff 100%);
+  box-shadow:
+    0 10px 28px rgba(0, 37, 94, .34),
+    inset 0 1px 1px rgba(255,255,255,.9);
+}
+
+.nv-category-core {
+  background:
+    radial-gradient(circle at 36% 22%, #127cff 0%, #0750a9 38%, #031b3e 74%);
+  box-shadow:
+    inset 0 0 22px rgba(0, 216, 255, .24),
+    inset 0 -14px 24px rgba(0, 0, 0, .24);
+}
+
+.nv-neon-line {
+  box-shadow: 0 0 22px rgba(0, 173, 255, .64);
+}
+
+.nv-product-surface {
+  color: #07142a;
+  background: #ffffff;
+}
+
 @utility scrollbar-none {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -170,7 +235,6 @@
   }
 }
 
-/* Slim scrollbar for drawers/lists */
 @utility scrollbar-slim {
   scrollbar-width: thin;
   scrollbar-color: var(--nv-faint) transparent;
@@ -183,7 +247,6 @@
   }
 }
 
-/* Safe area helper for fixed mobile chrome */
 @utility pb-safe {
   padding-bottom: max(env(safe-area-inset-bottom), 0px);
 }
