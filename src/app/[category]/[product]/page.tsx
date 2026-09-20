@@ -266,6 +266,36 @@ const DIGITAL_DETAILS: Record<
     checkoutMicrocopy:
       "5 produtos · valor separado R$ 315 · suite R$ 219 · sem assinatura.",
   },
+  "social-content-os": {
+    intro:
+      "Sistema multicanal 30/60/90 dias para transformar ideias verificadas em conteúdo com funções claras: attract, educate, demonstrate, de-risk, convert e activate.",
+    deliverables: [
+      "Social Content OS Playbook",
+      "90-Day Social Content Planner XLSX",
+      "Channel Adaptation Matrix",
+      "Creative Brief Library",
+      "Repurposing Matrix",
+      "Learning Log",
+      "Quick Start",
+      "Customer License & Terms",
+    ],
+    highlights: [
+      {
+        title: "Content jobs",
+        body: "Planeie pela função do conteúdo antes de escolher formato ou canal.",
+      },
+      {
+        title: "Repurposing com contexto",
+        body: "Adapte entrada, densidade e formato sem remover qualifiers da claim original.",
+      },
+      {
+        title: "90-day planner",
+        body: "Calendar, creative briefs, repurposing e learning loop num XLSX editável.",
+      },
+    ],
+    checkoutMicrocopy:
+      "Playbook + 90-Day Planner + matrices + briefs · pagamento único.",
+  },
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
