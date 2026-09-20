@@ -3,9 +3,12 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
+  Bot,
   BookMarked,
-  BookOpenCheck,
+  BrainCircuit,
   ClipboardCheck,
+  Code2,
+  Cpu,
   Layers3,
   Mail,
   Rocket,
@@ -18,9 +21,9 @@ import { getPublicCatalog } from "@/lib/commerce-db";
 import { CATEGORIES, type BadgeId, type Product } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Conteúdos Digitais",
+  title: "Academia Digital",
   description:
-    "Produtos e ferramentas digitais para conteúdo, conversão, páginas de venda e gestão.",
+    "Software, IA, ferramentas, produtos digitais e soluções práticas para criação, vendas, operação e crescimento no mercado digital.",
   alternates: { canonical: "https://novidades.store/conteudos-digitais" },
 };
 
@@ -68,13 +71,6 @@ const tools = [
       "Release gate para produto, checkout, delivery, mobile e suporte.",
     icon: Rocket,
   },
-  {
-    href: "/ferramentas/content-planner",
-    title: "Content Planner",
-    description:
-      "Transforme uma ideia verificável em jobs de conteúdo, formatos e CTAs.",
-    icon: Layers3,
-  },
 ];
 
 export default async function DigitalContentPage() {
@@ -107,47 +103,62 @@ export default async function DigitalContentPage() {
     }));
 
   return (
-    <main className="bg-[#f7f7f5]">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_75%_4%,rgba(0,180,255,.18),transparent_28rem),linear-gradient(180deg,#03152f,#061f42_48%,#f5f8fc_48%)]">
       <section className="mx-auto w-full max-w-[1280px] px-4 py-8 md:px-6 md:py-12 lg:px-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition hover:text-foreground"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100/70 transition hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" />
           Voltar à Novidades.store
         </Link>
 
-        <div className="mt-7 overflow-hidden rounded-[24px] bg-[#0b1220] px-6 py-8 text-white md:px-10 md:py-12">
-          <div className="max-w-4xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold tracking-[0.12em] uppercase">
-              <BookOpenCheck className="h-4 w-4 text-cyan-300" />
-              Novidades Digital Suite
-            </span>
-            <h1 className="mt-5 text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">
-              Produtos, ferramentas e sistemas para executar melhor.
-            </h1>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
-              Conteúdo, conversão, páginas de venda e gestão numa linha de
-              produtos versionados, com checkout server-side e entrega privada.
-            </p>
+        <div className="mt-7 overflow-hidden rounded-[28px] border border-cyan-200/20 bg-[radial-gradient(circle_at_80%_22%,rgba(0,216,255,.25),transparent_32%),linear-gradient(135deg,#04162f,#082d5e_62%,#031126)] px-6 py-8 text-white shadow-[0_28px_90px_rgba(0,34,92,.3)] md:px-10 md:py-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_.55fr] lg:items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-cyan-300/10 px-3 py-1.5 text-xs font-black tracking-[0.12em] text-cyan-200 uppercase">
+                <BrainCircuit className="h-4 w-4" />
+                Academia Digital Novidades
+              </span>
+              <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-[-0.045em] md:text-6xl">
+                Software, IA e soluções para executar melhor no mercado digital.
+              </h1>
+              <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
+                Produtos digitais, sistemas, ferramentas, templates e recursos práticos para criação, marketing, vendas, automação, operação e crescimento online.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                [Cpu, "Software"],
+                [Bot, "IA & Automação"],
+                [Code2, "Ferramentas"],
+                [Layers3, "Produtos Digitais"],
+              ].map(([Icon, label]) => {
+                const IconComponent = Icon as typeof Cpu;
+                return (
+                  <div
+                    key={String(label)}
+                    className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur"
+                  >
+                    <IconComponent className="h-6 w-6 text-cyan-300" />
+                    <p className="mt-3 text-sm font-black">{String(label)}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
               ["1", "Mensagem", "Conversion Content OS"],
-              ["2", "Social", "Social Content OS"],
-              ["3", "Página", "Sales Page Blueprint"],
-              ["4", "Email", "Email Conversion Kit"],
-              ["5", "Lançamento", "Digital Product Launch Kit"],
-              ["6", "Operação", "FinanceOS MEI"],
+              ["2", "Página", "Sales Page Blueprint"],
+              ["3", "Email", "Email Conversion Kit"],
+              ["4", "Lançamento", "Digital Product Launch Kit"],
+              ["5", "Operação", "FinanceOS MEI"],
             ].map(([step, label, product]) => (
-              <div
-                key={step}
-                className="rounded-2xl border border-white/10 bg-white/5 p-4"
-              >
-                <span className="text-xs font-extrabold text-cyan-300">
-                  {step}
-                </span>
+              <div key={step} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <span className="text-xs font-extrabold text-cyan-300">{step}</span>
                 <p className="mt-2 text-sm font-extrabold">{label}</p>
                 <p className="mt-1 text-xs text-slate-400">{product}</p>
               </div>
@@ -156,7 +167,7 @@ export default async function DigitalContentPage() {
         </div>
 
         <div className="mt-8 grid gap-3 md:grid-cols-[1fr_auto]">
-          <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-4 text-sm text-muted-foreground">
+          <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-4 text-sm text-muted-foreground shadow-card">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-success" />
             <p>
               O valor é resolvido no servidor a partir do catálogo publicado.
@@ -176,10 +187,10 @@ export default async function DigitalContentPage() {
         <section className="mt-10" aria-label="Produtos digitais">
           <div className="mb-5">
             <p className="text-xs font-bold tracking-[0.14em] text-brand-dark uppercase">
-              Releases digitais
+              Academia Digital
             </p>
-            <h2 className="mt-1 text-2xl font-extrabold tracking-tight md:text-3xl">
-              Soluções disponíveis
+            <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-[#07142a] md:text-3xl">
+              Software, sistemas e produtos digitais disponíveis
             </h2>
           </div>
 
@@ -193,7 +204,7 @@ export default async function DigitalContentPage() {
             </ul>
           ) : (
             <div className="rounded-2xl border border-dashed border-border bg-white p-8 text-sm text-muted-foreground">
-              Os primeiros produtos digitais estão em ativação no Commerce Core.
+              Os primeiros produtos da Academia Digital estão em ativação no Commerce Core.
             </div>
           )}
         </section>
@@ -205,8 +216,8 @@ export default async function DigitalContentPage() {
               <p className="text-xs font-bold tracking-[0.14em] text-brand-dark uppercase">
                 Ferramentas web
               </p>
-              <h2 className="mt-1 text-2xl font-extrabold md:text-3xl">
-                Use antes de comprar ou enquanto implementa.
+              <h2 className="mt-1 text-2xl font-extrabold text-[#07142a] md:text-3xl">
+                Soluções práticas para criar, testar e operar.
               </h2>
             </div>
           </div>
@@ -221,7 +232,7 @@ export default async function DigitalContentPage() {
                   className="group rounded-2xl border border-border bg-soft/60 p-5 transition hover:border-brand"
                 >
                   <Icon className="h-5 w-5 text-brand-dark" aria-hidden="true" />
-                  <h3 className="mt-4 text-lg font-extrabold">{item.title}</h3>
+                  <h3 className="mt-4 text-lg font-extrabold text-[#07142a]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
                     {item.description}
                   </p>
