@@ -23,27 +23,33 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://novidades.store"),
   title: {
-    default: "Novidades.store — Todo dia, uma boa descoberta.",
+    default: "Novidades.store | Produtos, Ofertas e Descobertas Online",
     template: "%s · Novidades.store",
   },
   description:
-    "Plataforma de discovery commerce com curadoria: produtos de múltiplos ecossistemas, ofertas selecionadas e descobertas para o seu dia a dia. Pagamento seguro via XPAYMENTS.",
+    "Descubra produtos, ofertas e novidades para utilidades, auto, casa, pets, saúde, beleza, moda e mercado digital. Novidades.store — mais do que você procura.",
   keywords: [
     "novidades.store",
-    "discovery commerce",
+    "loja online",
     "ofertas",
-    "curadoria",
-    "presentes",
-    "casa e utilidade",
+    "utilidades",
+    "auto e rastreador GPS",
+    "medalhas e terços",
+    "academia digital",
+    "software",
+    "inteligência artificial",
+    "produtos digitais",
+    "saúde e bem-estar",
     "pets",
-    "auto tech",
-    "arte e vida",
+    "casa e jardim",
+    "cosméticos e perfumes",
+    "roupa e acessórios",
   ],
   applicationName: "Novidades.store",
   openGraph: {
-    title: "Novidades.store — Todo dia, uma boa descoberta.",
+    title: "Novidades.store — Mais do que você procura.",
     description:
-      "Descobertas curadas para o seu dia a dia. Pagamento seguro via XPAYMENTS.",
+      "Produtos, descobertas e ofertas selecionadas para o seu dia a dia.",
     url: "https://novidades.store",
     siteName: "Novidades.store",
     locale: "pt_BR",
@@ -52,13 +58,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Novidades.store",
-    description: "Todo dia, uma boa descoberta.",
+    description: "Mais do que você procura. Todo dia, uma boa descoberta.",
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#151918",
+  themeColor: "#03152f",
   width: "device-width",
   initialScale: 1,
 };
