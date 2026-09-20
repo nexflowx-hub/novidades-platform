@@ -267,6 +267,24 @@ export const PRODUCTS: Product[] = [
     requiresShipping: false,
   },
   {
+    id: "social-content-os",
+    slug: "social-content-os",
+    name: "Social Content OS",
+    categoryId: "conteudos-digitais",
+    price: 47,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/social-content-os.svg",
+    tagline: "30/60/90-day planner, channel adaptation e creative briefs.",
+    description:
+      "Sistema multicanal com Content Planner, repurposing, creative briefs e learning loop.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/social-content-os",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
     id: "creator-growth-suite",
     slug: "creator-growth-suite",
     name: "Creator Growth Suite",
