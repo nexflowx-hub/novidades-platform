@@ -1,136 +1,88 @@
 "use client";
 
 import Image from "next/image";
-import { Ellipsis, Flame, Sparkles } from "lucide-react";
+import { BadgePercent } from "lucide-react";
 import { CATEGORIES } from "@/lib/data";
 import { useUI } from "@/lib/store/ui";
 import { scrollToId } from "@/lib/scroll";
 
 export function CategoryShortcuts() {
-  const setFilter = useUI((s) => s.setFilter);
+  const setFilter = useUI((state) => state.setFilter);
 
   const goCategory = (id: string, label: string) => {
     setFilter({ type: "category", value: id, label });
     scrollToId("destaques");
   };
 
-  const quickFilters: Array<{
-    label: string;
-    icon: React.ElementType;
-    className: string;
-    action: () => void;
-  }> = [
-    {
-      label: "Em alta",
-      icon: Flame,
-      className: "bg-brand/12 text-brand-dark",
-      action: () => {
-        setFilter({ type: "badge", value: "em-alta", label: "Em alta" });
-        scrollToId("destaques");
-      },
-    },
-    {
-      label: "Novidades",
-      icon: Sparkles,
-      className: "bg-rating/15 text-[#8a6200]",
-      action: () => {
-        setFilter({ type: "badge", value: "novo", label: "Novidades" });
-        scrollToId("destaques");
-      },
-    },
-  ];
+  const goOffers = () => {
+    setFilter({ type: "badge", value: "oferta", label: "Ofertas Especiais" });
+    scrollToId("destaques");
+  };
 
   return (
-    <section aria-label="Atalhos de categorias" className="py-2">
-      {/* Mobile: scroll horizontal (mockup) */}
-      <div className="scrollbar-none flex gap-1 overflow-x-auto px-3 pb-1 lg:hidden">
-        {quickFilters.map(({ label, icon: Icon, className, action }) => (
-          <button
-            key={label}
-            type="button"
-            onClick={action}
-            className="flex w-[68px] shrink-0 flex-col items-center gap-1.5 py-1"
-          >
-            <span
-              className={`grid h-[58px] w-[58px] place-items-center rounded-full ${className}`}
-            >
-              <Icon className="h-6 w-6" aria-hidden="true" />
-            </span>
-            <span className="text-[11px] leading-tight font-medium">{label}</span>
-          </button>
+    <section id="categorias" aria-label="Categorias Novidades.store" className="nv-shell scroll-mt-36 py-5 md:py-7">
+      <div className="scrollbar-none flex gap-3 overflow-x-auto pb-2 lg:grid lg:grid-cols-10 lg:overflow-visible">
+        <CategoryMedallion
+          label="Ofertas Especiais"
+          onClick={goOffers}
+          offer
+        />
+        {CATEGORIES.map((category) => (
+          <CategoryMedallion
+            key={category.id}
+            label={category.name}
+            image={category.image}
+            onClick={() => goCategory(category.id, category.name)}
+          />
         ))}
-        {CATEGORIES.slice(0, 6).map((cat) => (
-          <CategoryBubble key={cat.id} category={cat} onClick={() => goCategory(cat.id, cat.name)} />
-        ))}
-      </div>
-
-      {/* Desktop: 10 colunas (9 categorias + ver todas) */}
-      <div className="mx-auto hidden w-full max-w-[1440px] px-8 lg:block">
-        <div className="grid grid-cols-10 gap-2">
-          {CATEGORIES.map((cat) => (
-            <CategoryBubble
-              key={cat.id}
-              category={cat}
-              large
-              onClick={() => goCategory(cat.id, cat.name)}
-            />
-          ))}
-          <button
-            type="button"
-            onClick={() => scrollToId("categorias-destaque")}
-            className="group flex flex-col items-center gap-2 py-1"
-          >
-            <span className="grid h-[76px] w-[76px] place-items-center rounded-full bg-soft ring-border transition-all group-hover:bg-warm group-hover:ring-2 group-hover:ring-brand/50">
-              <Ellipsis className="h-7 w-7 text-muted-foreground" aria-hidden="true" />
-            </span>
-            <span className="text-[13px] leading-tight font-semibold text-foreground">
-              Ver todas
-            </span>
-          </button>
-        </div>
       </div>
     </section>
   );
 }
 
-function CategoryBubble({
-  category,
-  large = false,
+function CategoryMedallion({
+  label,
+  image,
   onClick,
+  offer = false,
 }: {
-  category: (typeof CATEGORIES)[number];
-  large?: boolean;
+  label: string;
+  image?: string;
   onClick: () => void;
+  offer?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="group flex shrink-0 flex-col items-center gap-1.5 py-1 focus-visible:outline-none"
-      aria-label={`Ver produtos de ${category.name}`}
+      className="group flex w-[92px] shrink-0 flex-col items-center gap-2.5 text-center lg:w-auto"
+      aria-label={label}
     >
       <span
-        className={`overflow-hidden rounded-full transition-all duration-300 group-hover:scale-[1.05] group-focus-visible:ring-2 group-focus-visible:ring-brand ${
-          large
-            ? "h-[76px] w-[76px] ring-border group-hover:ring-2 group-hover:ring-brand/50"
-            : "h-[58px] w-[58px]"
-        }`}
-        style={{ backgroundColor: category.color }}
+        className={`nv-metal-ring grid h-[82px] w-[82px] place-items-center rounded-full p-[4px] transition duration-300 group-hover:-translate-y-1 group-hover:scale-[1.035] lg:h-[96px] lg:w-[96px] ${offer ? "shadow-[0_0_30px_rgba(255,43,67,.30)]" : ""}`}
       >
-        <Image
-          src={category.image}
-          alt=""
-          width={152}
-          height={152}
-          className="h-full w-full object-cover"
-        />
+        <span
+          className={`relative grid h-full w-full place-items-center overflow-hidden rounded-full border border-white/20 ${offer ? "bg-[radial-gradient(circle_at_35%_20%,#ff6b52,#c40e24_55%,#5c0610)]" : "nv-category-core"}`}
+        >
+          {offer ? (
+            <>
+              <BadgePercent className="h-10 w-10 text-amber-200 drop-shadow-[0_2px_8px_rgba(255,184,40,.45)]" aria-hidden="true" />
+              <span className="absolute bottom-2 text-[8px] font-black tracking-[.09em] text-white uppercase">Ofertas</span>
+            </>
+          ) : image ? (
+            <Image
+              src={image}
+              alt=""
+              fill
+              sizes="96px"
+              className="object-cover opacity-95 transition duration-500 group-hover:scale-110"
+            />
+          ) : null}
+          <span className="absolute inset-0 rounded-full bg-gradient-to-br from-white/18 via-transparent to-black/15" />
+        </span>
       </span>
-      <span
-        className={`leading-tight font-medium text-foreground ${
-          large ? "text-[13px]" : "text-[11px]"
-        } text-center`}
-      >
-        {category.name}
+      <span className="max-w-[110px] text-[10px] leading-[1.12] font-extrabold text-white/86 lg:text-[11px]">
+        {label}
       </span>
     </button>
   );
