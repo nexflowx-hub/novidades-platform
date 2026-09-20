@@ -157,7 +157,7 @@ export const PRODUCTS: Product[] = [
       "Bundle com mensagem, hooks, conteúdo, wireframes, proof governance, checkout continuity e release QA.",
     storefrontUrl:
       "https://novidades.store/conteudos-digitais/conversion-growth-suite",
-    published: false,
+    published: true,
     fulfillmentType: "digital",
     requiresShipping: false,
   },
