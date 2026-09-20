@@ -293,9 +293,9 @@ export const PRODUCTS: Product[] = [
     currency: "BRL",
     badge: "oferta",
     image: "/images/products/creator-growth-suite.svg",
-    tagline: "5 sistemas para conteúdo, conversão e lançamento.",
+    tagline: "6 sistemas para conteúdo, social, conversão e lançamento.",
     description:
-      "CCOS + Sales Page Blueprint + Email Conversion Kit + Launch Kit + Creator Prompt Library.",
+      "CCOS + Social Content OS + Sales Page Blueprint + Email Conversion Kit + Launch Kit + Creator Prompt Library.",
     storefrontUrl:
       "https://novidades.store/conteudos-digitais/creator-growth-suite",
     published: true,
