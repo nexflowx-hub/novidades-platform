@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Download, ShieldCheck, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Download,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
+import { CcosCheckout } from "@/components/digital/ccos-checkout";
 import { getPublicListingBySlug } from "@/lib/commerce-db";
 import { formatMoney } from "@/lib/format";
 
@@ -43,7 +50,10 @@ export default async function ProductPage({ params }: Props) {
   const price = listing.priceCents / 100;
   const funnelUrl = listing.funnelUrl;
   const isDigital = listing.fulfillmentType === "digital";
+  const isCcos = isDigital && listing.slug === "conversion-content-os";
   const canonicalUrl = `https://novidades.store/${category}/${product}`;
+  const offerActive = Boolean(funnelUrl || isCcos);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -51,7 +61,7 @@ export default async function ProductPage({ params }: Props) {
     description: listing.description,
     image: [listing.image, ...listing.gallery].filter(Boolean),
     sku: listing.slug,
-    ...(funnelUrl
+    ...(offerActive
       ? {
           offers: {
             "@type": "Offer",
@@ -64,6 +74,17 @@ export default async function ProductPage({ params }: Props) {
       : {}),
   };
 
+  const ccosDeliverables = [
+    "Conversion Content OS — Guide",
+    "Conversion Workbook",
+    "Hook Library — 300 Structures",
+    "Prompt Library — 36 prompts",
+    "CTA & Offer Swipe File",
+    "Content Repurposing Matrix",
+    "Quick Start & Activation Guide",
+    "Customer License & Terms",
+  ];
+
   return (
     <article className="bg-[#f7f7f5]">
       <script
@@ -73,9 +94,11 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="mx-auto w-full max-w-[1280px] px-4 py-6 md:px-6 md:py-10 lg:px-8">
         <nav className="mb-5 text-xs text-muted-foreground" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-foreground">Início</Link>
+          <Link href="/" className="hover:text-foreground">
+            Início
+          </Link>
           <span className="mx-2">/</span>
-          <Link href={`/#destaques`} className="hover:text-foreground">
+          <Link href="/conteudos-digitais" className="hover:text-foreground">
             {listing.categoryName}
           </Link>
           <span className="mx-2">/</span>
@@ -133,7 +156,9 @@ export default async function ProductPage({ params }: Props) {
               ) : null}
             </div>
 
-            {funnelUrl ? (
+            {isCcos ? (
+              <CcosCheckout />
+            ) : funnelUrl ? (
               <a
                 href={funnelUrl}
                 className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-[12px] bg-brand px-6 text-sm font-extrabold text-white transition hover:bg-brand-dark"
@@ -156,12 +181,58 @@ export default async function ProductPage({ params }: Props) {
               </p>
               <p>
                 {isDigital
-                  ? "Entrega digital desacoplada do frete físico e liberada pelo fluxo da oferta."
+                  ? "Acesso liberado após confirmação de pagamento por entitlement protegido e links temporários."
                   : "Uma experiência Novidades.store."}
               </p>
             </div>
           </section>
         </div>
+
+        {isCcos ? (
+          <section className="mt-8 rounded-[22px] border border-border bg-white p-5 shadow-card md:p-8">
+            <p className="text-[11px] font-bold tracking-[0.14em] text-brand-dark uppercase">
+              Release 1.0
+            </p>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.03em] md:text-3xl">
+              O que está incluído no pacote
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
+              O Conversion Content OS é um toolkit operacional para estruturar
+              mensagem, prova, hooks, conteúdo, CTAs, adaptação multicanal e
+              testes. Não promete receita, crescimento ou taxa de conversão.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {ccosDeliverables.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-2 rounded-xl border border-border bg-soft/60 p-4 text-sm font-semibold"
+                >
+                  <CheckCircle2
+                    className="mt-0.5 h-4 w-4 shrink-0 text-success"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-3 rounded-xl bg-[#0b1220] p-5 text-sm text-slate-300 md:grid-cols-3">
+              <p>
+                <strong className="block text-white">Uso prático</strong>
+                Para projetos próprios, empresas e trabalho de cliente.
+              </p>
+              <p>
+                <strong className="block text-white">Entrega protegida</strong>
+                Downloads privados com URLs assinadas e de curta duração.
+              </p>
+              <p>
+                <strong className="block text-white">Guardrails</strong>
+                Sem testemunhos inventados, falsa urgência ou prova fabricada.
+              </p>
+            </div>
+          </section>
+        ) : null}
       </div>
     </article>
   );
