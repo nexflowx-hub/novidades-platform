@@ -1,20 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, PackageSearch, ShieldCheck, X } from "lucide-react";
+import { PackageSearch, X } from "lucide-react";
 import type { Product } from "@/lib/data";
 import { useUI } from "@/lib/store/ui";
 import { ProductCard } from "@/components/commerce/product-card";
-import { Reveal } from "@/components/commerce/reveal";
-import { Section, SectionHeader } from "@/components/commerce/section-header";
-
-const BADGE_FILTER_LABELS: Record<string, string> = {
-  "mais-vendido": "Mais vendidos",
-  novo: "Novidades",
-  "em-alta": "Em alta",
-  oferta: "Ofertas",
-  tendencia: "Tendências",
-};
 
 export function FeaturedProducts({ products }: { products: Product[] }) {
   const filter = useUI((state) => state.filter);
@@ -27,24 +17,33 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
   });
 
   return (
-    <Section
-      id="destaques"
-      ariaLabel="Produtos em destaque"
-      className="scroll-mt-36 lg:scroll-mt-40"
-    >
-      <SectionHeader
-        title={filter ? filter.label : "Em destaque agora"}
-        subtitle={
-          filter
-            ? "Produtos publicados nesta seleção."
-            : "Curadoria ativa: menos produtos, ofertas mais claras."
-        }
-        action={
-          filter
-            ? { label: "Limpar filtro", onClick: () => setFilter(null) }
-            : undefined
-        }
-      />
+    <section id="destaques" className="nv-shell scroll-mt-36 py-5 md:py-8" aria-label="Produtos e ofertas">
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-[10px] font-black tracking-[.16em] text-cyan-300 uppercase">
+            Seleção Novidades.store
+          </p>
+          <h2 className="mt-1 text-2xl font-black tracking-[-.035em] text-white md:text-3xl">
+            {filter ? filter.label : "Ofertas & Descobertas de Hoje"}
+          </h2>
+          <p className="mt-1 text-xs text-white/52 md:text-sm">
+            {filter
+              ? "Produtos publicados nesta seleção."
+              : "Produtos reais do catálogo, apresentados sem promoções artificiais."}
+          </p>
+        </div>
+
+        {filter ? (
+          <button
+            type="button"
+            onClick={() => setFilter(null)}
+            className="inline-flex items-center gap-2 rounded-xl border border-white/12 bg-white/6 px-4 py-2 text-xs font-bold text-white/72 transition hover:bg-white/10"
+          >
+            Limpar filtro
+            <X className="h-3.5 w-3.5" aria-hidden="true" />
+          </button>
+        ) : null}
+      </div>
 
       <AnimatePresence>
         {filter ? (
@@ -54,93 +53,39 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
             exit={{ opacity: 0, height: 0 }}
             className="mb-4 overflow-hidden"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-warm py-2 pr-3 pl-4 text-[13px] font-semibold">
+            <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200/15 bg-cyan-300/8 py-2 pr-3 pl-4 text-[12px] font-semibold text-cyan-100">
               {filter.type === "category" ? "Categoria" : "Seleção"}: {filter.label}
-              <button
-                type="button"
-                aria-label="Remover filtro"
-                onClick={() => setFilter(null)}
-                className="grid h-7 w-7 place-items-center rounded-full transition-colors hover:bg-brand/15 hover:text-brand-dark"
-              >
-                <X className="h-3.5 w-3.5" aria-hidden="true" />
-              </button>
             </span>
           </motion.div>
         ) : null}
       </AnimatePresence>
 
       {filtered.length === 0 ? (
-        <div className="flex flex-col items-center gap-3 rounded-[18px] border border-dashed border-border bg-soft py-14 text-center">
-          <PackageSearch className="h-10 w-10 text-faint" aria-hidden="true" />
+        <div className="flex flex-col items-center gap-3 rounded-[20px] border border-dashed border-cyan-200/18 bg-white/4 py-14 text-center text-white">
+          <PackageSearch className="h-10 w-10 text-cyan-300/70" aria-hidden="true" />
           <div>
-            <p className="font-semibold">Nenhuma oferta publicada nesta seleção</p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Preferimos não preencher o catálogo com produtos ainda não validados.
+            <p className="font-bold">Ainda não há produtos publicados nesta seleção.</p>
+            <p className="mt-1 text-sm text-white/48">
+              A categoria já faz parte da loja e será preenchida apenas com itens validados.
             </p>
           </div>
           <button
             type="button"
             onClick={() => setFilter(null)}
-            className="text-sm font-semibold text-brand-dark hover:underline"
+            className="text-sm font-bold text-cyan-300 hover:underline"
           >
-            Voltar aos destaques
+            Ver catálogo publicado
           </button>
         </div>
-      ) : filtered.length === 1 && !filter ? (
-        <Reveal>
-          <div className="grid gap-4 lg:grid-cols-[minmax(280px,360px)_1fr]">
-            <ProductCard product={filtered[0]} />
-
-            <div className="flex min-h-[330px] flex-col justify-between rounded-[18px] border border-border bg-gradient-to-br from-soft to-warm p-6 md:p-8">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold tracking-[0.12em] text-brand-dark uppercase shadow-sm">
-                  <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
-                  Seleção de lançamento
-                </span>
-                <h3 className="mt-5 max-w-2xl text-3xl leading-[1.05] font-extrabold tracking-[-0.035em] md:text-4xl">
-                  A Novidades.store começa com uma regra simples:
-                  publicar apenas o que está pronto para ser apresentado.
-                </h3>
-                <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground md:text-[15px]">
-                  Novas categorias já fazem parte da plataforma, mas cada produto
-                  só entra na vitrine quando preço, apresentação e operação de
-                  compra estiverem definidos.
-                </p>
-              </div>
-
-              {filtered[0].storefrontUrl ? (
-                <a
-                  href={filtered[0].storefrontUrl}
-                  className="mt-7 inline-flex h-11 w-fit items-center gap-2 rounded-[10px] bg-primary px-5 text-sm font-bold text-white transition hover:bg-brand-dark"
-                >
-                  Conhecer a primeira descoberta
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </a>
-              ) : null}
-            </div>
-          </div>
-        </Reveal>
       ) : (
-        <Reveal>
-          <ul
-            className="flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-2 scrollbar-none md:gap-4 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0"
-            aria-label={
-              filter
-                ? `Produtos — ${BADGE_FILTER_LABELS[filter.value] ?? filter.label}`
-                : "Produtos em destaque"
-            }
-          >
-            {filtered.map((product) => (
-              <li
-                key={product.id}
-                className="min-w-[46%] snap-start sm:min-w-[38%] lg:min-w-0"
-              >
-                <ProductCard product={product} className="h-full" />
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+        <ul className="scrollbar-none flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-3 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4 xl:grid-cols-5">
+          {filtered.map((product) => (
+            <li key={product.id} className="min-w-[76%] snap-start sm:min-w-0">
+              <ProductCard product={product} className="h-full" />
+            </li>
+          ))}
+        </ul>
       )}
-    </Section>
+    </section>
   );
 }
