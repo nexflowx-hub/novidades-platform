@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   BadgePercent,
   ChevronDown,
-  CircleHelp,
   Gift,
   Heart,
   LayoutGrid,
