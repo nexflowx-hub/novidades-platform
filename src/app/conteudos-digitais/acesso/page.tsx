@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { BookMarked, CheckCircle2, LayoutGrid } from "lucide-react";
 import { DigitalAccessPanel } from "@/components/digital/digital-access-panel";
 
 export const metadata: Metadata = {
   title: "Acesso Digital",
   robots: { index: false, follow: false },
+  referrer: "no-referrer",
 };
 
 type Props = {
@@ -49,12 +50,22 @@ export default async function DigitalAccessPage({ searchParams }: Props) {
           claim={one(params.claim)}
         />
 
-        <Link
-          href="/conteudos-digitais/conversion-content-os"
-          className="mt-7 inline-flex min-h-11 items-center justify-center rounded-xl bg-primary px-5 text-sm font-bold text-primary-foreground"
-        >
-          Voltar ao produto
-        </Link>
+        <div className="mt-7 flex flex-col justify-center gap-2 sm:flex-row">
+          <Link
+            href="/conteudos-digitais/biblioteca"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-bold text-primary-foreground"
+          >
+            <BookMarked className="h-4 w-4" aria-hidden="true" />
+            Minha biblioteca
+          </Link>
+          <Link
+            href="/conteudos-digitais"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border bg-white px-5 text-sm font-bold"
+          >
+            <LayoutGrid className="h-4 w-4" aria-hidden="true" />
+            Ver soluções
+          </Link>
+        </div>
       </section>
     </main>
   );

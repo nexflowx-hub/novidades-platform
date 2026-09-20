@@ -174,7 +174,7 @@ export const PRODUCTS: Product[] = [
       "Guia, wireframes, auditoria de claims e prova, QA mobile e de funil, spec para developers e scorecard.",
     storefrontUrl:
       "https://novidades.store/conteudos-digitais/sales-page-blueprint",
-    published: false,
+    published: true,
     fulfillmentType: "digital",
     requiresShipping: false,
   },

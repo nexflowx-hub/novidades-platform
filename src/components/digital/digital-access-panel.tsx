@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle2, Download, LoaderCircle, ShieldCheck } from "lucide-react";
+import {
+  CheckCircle2,
+  Download,
+  LoaderCircle,
+  ShieldCheck,
+} from "lucide-react";
 
 const ACCESS_URL =
   "https://eivqvrfsreaopzlvhadu.supabase.co/functions/v1/digital-access";
@@ -13,6 +18,52 @@ type DownloadFile = {
   url: string;
   expiresIn: number;
 };
+
+type SavedAccess = {
+  reference: string;
+  claim: string;
+  productSlug?: string;
+  createdAt?: string;
+};
+
+function rememberAccess(access: SavedAccess) {
+  localStorage.setItem("nv:digital:last-access", JSON.stringify(access));
+
+  if (!access.productSlug) return;
+
+  try {
+    const existing = JSON.parse(
+      localStorage.getItem("nv:digital:accesses") || "[]",
+    ) as SavedAccess[];
+
+    const normalized = {
+      ...access,
+      createdAt: access.createdAt || new Date().toISOString(),
+    };
+
+    const next = [
+      normalized,
+      ...existing.filter(
+        (item) =>
+          item &&
+          typeof item.reference === "string" &&
+          item.reference !== access.reference,
+      ),
+    ].slice(0, 20);
+
+    localStorage.setItem("nv:digital:accesses", JSON.stringify(next));
+  } catch {
+    localStorage.setItem(
+      "nv:digital:accesses",
+      JSON.stringify([
+        {
+          ...access,
+          createdAt: access.createdAt || new Date().toISOString(),
+        },
+      ]),
+    );
+  }
+}
 
 export function DigitalAccessPanel({
   reference: initialReference,
@@ -30,12 +81,43 @@ export function DigitalAccessPanel({
   const [message, setMessage] = useState("Validando o pagamento...");
 
   useEffect(() => {
+    if (initialReference && initialClaim) {
+      let productSlug: string | undefined;
+
+      try {
+        const existing = JSON.parse(
+          localStorage.getItem("nv:digital:accesses") || "[]",
+        ) as SavedAccess[];
+
+        productSlug = existing.find(
+          (item) => item.reference === initialReference,
+        )?.productSlug;
+      } catch {
+        // Ignore malformed local state.
+      }
+
+      rememberAccess({
+        reference: initialReference,
+        claim: initialClaim,
+        productSlug,
+        createdAt: new Date().toISOString(),
+      });
+
+      window.history.replaceState(
+        {},
+        document.title,
+        "/conteudos-digitais/acesso",
+      );
+      return;
+    }
+
     if (reference && claim) return;
 
     try {
       const saved = JSON.parse(
         localStorage.getItem("nv:digital:last-access") || "{}",
-      );
+      ) as SavedAccess;
+
       if (saved.reference && saved.claim) {
         setReference(saved.reference);
         setClaim(saved.claim);
@@ -43,13 +125,13 @@ export function DigitalAccessPanel({
     } catch {
       // Ignore malformed local state.
     }
-  }, [claim, reference]);
+  }, [claim, initialClaim, initialReference, reference]);
 
   useEffect(() => {
     if (!reference || !claim) {
       setState("error");
       setMessage(
-        "Não encontramos a credencial desta compra neste navegador. Use o mesmo navegador usado no checkout ou contacte o suporte.",
+        "Não encontramos a credencial desta compra neste navegador. Abra a Biblioteca Digital ou contacte o suporte.",
       );
       return;
     }
@@ -74,19 +156,28 @@ export function DigitalAccessPanel({
 
         if (cancelled) return;
 
+        if (data?.productSlug) {
+          rememberAccess({
+            reference,
+            claim,
+            productSlug: String(data.productSlug),
+            createdAt: new Date().toISOString(),
+          });
+        }
+
         if (response.status === 202) {
           setState("pending");
           setMessage(
             "Pagamento ainda pendente. A página atualiza automaticamente.",
           );
-          if (attempts < 80) {
-            timer = setTimeout(check, 3000);
-          }
+          if (attempts < 80) timer = setTimeout(check, 3000);
           return;
         }
 
         if (!response.ok) {
-          throw new Error(data?.message || "Não foi possível validar o acesso.");
+          throw new Error(
+            data?.message || "Não foi possível validar o acesso.",
+          );
         }
 
         if (data.paid && !data.deliveryReady) {
@@ -170,6 +261,8 @@ export function DigitalAccessPanel({
             <a
               key={file.id}
               href={file.url}
+              referrerPolicy="no-referrer"
+              rel="nofollow"
               className="flex items-center justify-between gap-3 rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold transition hover:border-brand"
             >
               <span>{file.name}</span>

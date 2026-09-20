@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
+  BookMarked,
   BookOpenCheck,
   ClipboardCheck,
   Layers3,
@@ -120,13 +121,22 @@ export default async function DigitalContentPage() {
           </div>
         </div>
 
-        <div className="mt-8 flex items-start gap-3 rounded-2xl border border-border bg-white p-4 text-sm text-muted-foreground">
-          <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-success" />
-          <p>
-            O valor é resolvido no servidor a partir do catálogo publicado.
-            Produtos digitais não exigem frete e o acesso só é concedido após
-            confirmação de pagamento.
-          </p>
+        <div className="mt-8 grid gap-3 md:grid-cols-[1fr_auto]">
+          <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-4 text-sm text-muted-foreground">
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-success" />
+            <p>
+              O valor é resolvido no servidor a partir do catálogo publicado.
+              Produtos digitais não exigem frete e o acesso só é concedido após
+              confirmação de pagamento.
+            </p>
+          </div>
+          <Link
+            href="/conteudos-digitais/biblioteca"
+            className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-primary px-5 text-sm font-extrabold text-primary-foreground"
+          >
+            <BookMarked className="h-4 w-4" aria-hidden="true" />
+            Minha biblioteca
+          </Link>
         </div>
 
         <section className="mt-10" aria-label="Produtos digitais">

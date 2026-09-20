@@ -6,6 +6,37 @@ import { ArrowRight, LoaderCircle, ShieldCheck } from "lucide-react";
 const CHECKOUT_URL =
   "https://eivqvrfsreaopzlvhadu.supabase.co/functions/v1/digital-checkout";
 
+type SavedAccess = {
+  reference: string;
+  claim: string;
+  productSlug: string;
+  createdAt: string;
+};
+
+function saveAccess(access: SavedAccess) {
+  localStorage.setItem("nv:digital:last-access", JSON.stringify(access));
+
+  try {
+    const existing = JSON.parse(
+      localStorage.getItem("nv:digital:accesses") || "[]",
+    ) as SavedAccess[];
+
+    const next = [
+      access,
+      ...existing.filter(
+        (item) =>
+          item &&
+          typeof item.reference === "string" &&
+          item.reference !== access.reference,
+      ),
+    ].slice(0, 20);
+
+    localStorage.setItem("nv:digital:accesses", JSON.stringify(next));
+  } catch {
+    localStorage.setItem("nv:digital:accesses", JSON.stringify([access]));
+  }
+}
+
 export function DigitalCheckout({
   productSlug,
   priceLabel,
@@ -34,10 +65,7 @@ export function DigitalCheckout({
       const response = await fetch(CHECKOUT_URL, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          productSlug,
-          email: normalized,
-        }),
+        body: JSON.stringify({ productSlug, email: normalized }),
       });
       const data = await response.json();
 
@@ -48,13 +76,12 @@ export function DigitalCheckout({
       }
 
       if (data.reference && data.claim) {
-        localStorage.setItem(
-          "nv:digital:last-access",
-          JSON.stringify({
-            reference: data.reference,
-            claim: data.claim,
-          }),
-        );
+        saveAccess({
+          reference: data.reference,
+          claim: data.claim,
+          productSlug,
+          createdAt: new Date().toISOString(),
+        });
       }
 
       window.location.assign(data.checkoutUrl);
