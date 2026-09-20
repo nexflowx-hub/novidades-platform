@@ -7,8 +7,11 @@ import {
   BookOpenCheck,
   ClipboardCheck,
   Layers3,
+  Mail,
+  Rocket,
   ShieldCheck,
   Sparkles,
+  WandSparkles,
 } from "lucide-react";
 import { ProductCard } from "@/components/commerce/product-card";
 import { getPublicCatalog } from "@/lib/commerce-db";
@@ -43,6 +46,27 @@ const tools = [
     description:
       "Scorecard interativo para prova, mobile, checkout e entrega.",
     icon: ClipboardCheck,
+  },
+  {
+    href: "/ferramentas/email-sequence-builder",
+    title: "Email Sequence Builder",
+    description:
+      "Mapeie welcome, nurture, recovery, launch e activation antes de escrever copy.",
+    icon: Mail,
+  },
+  {
+    href: "/ferramentas/prompt-builder",
+    title: "Prompt Builder",
+    description:
+      "Monte prompts com evidence rules, output schema e quality check.",
+    icon: WandSparkles,
+  },
+  {
+    href: "/ferramentas/launch-readiness",
+    title: "Launch Readiness",
+    description:
+      "Release gate para produto, checkout, delivery, mobile e suporte.",
+    icon: Rocket,
   },
 ];
 
@@ -179,7 +203,7 @@ export default async function DigitalContentPage() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {tools.map((item) => {
               const Icon = item.icon;
               return (
