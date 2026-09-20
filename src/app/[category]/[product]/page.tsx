@@ -26,6 +26,38 @@ const DIGITAL_DETAILS: Record<
     checkoutMicrocopy?: string;
   }
 > = {
+  "conversion-growth-suite": {
+    intro:
+      "Bundle para transformar estratégia de mensagem em execução de página: Conversion Content OS + Sales Page Blueprint num único acesso, com os workbooks, libraries, wireframes, auditorias e ferramentas dos dois produtos.",
+    deliverables: [
+      "Conversion Content OS - pacote completo",
+      "Sales Page Blueprint - pacote completo",
+      "Hook Library - 300 Structures",
+      "Prompt Library - 36 prompts",
+      "CTA & Offer Swipe File",
+      "Wireframe Library",
+      "Claims & Proof Audit",
+      "Sales Page Audit Scorecard XLSX",
+      "Content Repurposing Matrix",
+      "Developer Implementation Spec",
+    ],
+    highlights: [
+      {
+        title: "Bundle sem duplicação",
+        body: "Um checkout concede acesso aos dois produtos e respetivos assets privados.",
+      },
+      {
+        title: "Valor combinado",
+        body: "Produtos separados: R$ 164. Suite: R$ 139 em pagamento único.",
+      },
+      {
+        title: "Fluxo completo",
+        body: "Briefing, mensagem, proof map, hooks, conteúdo, página, checkout continuity e release QA.",
+      },
+    ],
+    checkoutMicrocopy:
+      "Inclui CCOS + Sales Page Blueprint · pagamento único · sem assinatura.",
+  },
   "conversion-content-os": {
     intro:
       "Toolkit operacional para estruturar mensagem, prova, hooks, conteúdo, CTAs, adaptação multicanal e testes. Não promete receita, crescimento ou taxa de conversão.",

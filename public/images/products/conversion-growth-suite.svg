@@ -1,0 +1,22 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="1200" rx="96" fill="#07111F"/>
+<circle cx="1000" cy="190" r="250" fill="#16B8D4" fill-opacity=".18"/>
+<circle cx="150" cy="1050" r="280" fill="#E9843D" fill-opacity=".14"/>
+<path d="M188 315H1012" stroke="#24435A" stroke-width="3"/>
+<rect x="188" y="180" width="350" height="82" rx="24" fill="#16B8D4"/>
+<rect x="565" y="180" width="447" height="82" rx="24" fill="#E9843D"/>
+<text x="224" y="233" fill="#07111F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">CONTENT OS</text>
+<text x="602" y="233" fill="#07111F" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">SALES PAGE BLUEPRINT</text>
+<rect x="188" y="384" width="824" height="360" rx="40" fill="#0F1D2C" stroke="#24435A" stroke-width="4"/>
+<circle cx="315" cy="510" r="58" fill="#16B8D4" fill-opacity=".22" stroke="#67E8F9" stroke-width="3"/>
+<circle cx="600" cy="510" r="58" fill="#E9843D" fill-opacity=".20" stroke="#F5B17C" stroke-width="3"/>
+<circle cx="885" cy="510" r="58" fill="#16B8D4" fill-opacity=".22" stroke="#67E8F9" stroke-width="3"/>
+<path d="M375 510H540M660 510H825" stroke="#94A3B8" stroke-width="8" stroke-linecap="round"/>
+<rect x="248" y="626" width="704" height="54" rx="18" fill="#D9F3F8" fill-opacity=".10"/>
+<text x="600" y="665" text-anchor="middle" fill="#D9F3F8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">BRIEF → MESSAGE → PAGE → CHECKOUT → QA</text>
+<text x="188" y="880" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="800">CONVERSION</text>
+<text x="188" y="960" fill="#67E8F9" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="800">GROWTH SUITE</text>
+<text x="192" y="1024" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="600">MESSAGE · CONTENT · PROOF · PAGE · QA</text>
+<rect x="188" y="1074" width="270" height="58" rx="18" fill="#E9843D"/>
+<text x="323" y="1112" text-anchor="middle" fill="#07111F" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">BUNDLE · R$139</text>
+</svg>

@@ -144,6 +144,24 @@ export const PRODUCTS: Product[] = [
     requiresShipping: true,
   },
   {
+    id: "conversion-growth-suite",
+    slug: "conversion-growth-suite",
+    name: "Conversion Growth Suite",
+    categoryId: "conteudos-digitais",
+    price: 139,
+    currency: "BRL",
+    badge: "oferta",
+    image: "/images/products/conversion-growth-suite.svg",
+    tagline: "Conversion Content OS + Sales Page Blueprint.",
+    description:
+      "Bundle com mensagem, hooks, conteúdo, wireframes, proof governance, checkout continuity e release QA.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/conversion-growth-suite",
+    published: false,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
     id: "conversion-content-os",
     slug: "conversion-content-os",
     name: "Conversion Content OS",
@@ -206,6 +224,7 @@ export const POPULAR_SEARCHES = [
   "Auto & Tech",
   "Conteúdos Digitais",
   "Conversion Content OS",
+  "Conversion Growth Suite",
   "FinanceOS MEI",
   "Sales Page Blueprint",
   "Hook Lab",

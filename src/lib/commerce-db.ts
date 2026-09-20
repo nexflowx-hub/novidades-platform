@@ -54,6 +54,7 @@ function safeProductImage(slug: string, remote?: string | null) {
     "conversion-content-os": "/images/products/conversion-content-os.svg",
     "financeos-mei-2026": "/images/products/financeos-mei-2026.svg",
     "sales-page-blueprint": "/images/products/sales-page-blueprint.svg",
+    "conversion-growth-suite": "/images/products/conversion-growth-suite.svg",
   };
 
   return localImages[slug] ?? "/images/products/signum-patina-real.webp";
