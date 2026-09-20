@@ -101,11 +101,13 @@ export default async function DigitalContentPage() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-3 md:grid-cols-3">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
               ["1", "Mensagem", "Conversion Content OS"],
               ["2", "Página", "Sales Page Blueprint"],
-              ["3", "Operação", "FinanceOS MEI"],
+              ["3", "Email", "Email Conversion Kit"],
+              ["4", "Lançamento", "Digital Product Launch Kit"],
+              ["5", "Operação", "FinanceOS MEI"],
             ].map(([step, label, product]) => (
               <div
                 key={step}
