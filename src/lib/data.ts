@@ -172,7 +172,8 @@ export const PRODUCTS: Product[] = [
     tagline: "Controle financeiro e monitor gerencial para MEI.",
     description:
       "Dashboard, transações, resumo mensal, monitor do teto, compromissos, precificação e fontes.",
-    published: false,
+    storefrontUrl: "https://novidades.store/conteudos-digitais/financeos-mei-2026",
+    published: true,
     fulfillmentType: "digital",
     requiresShipping: false,
   },
