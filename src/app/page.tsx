@@ -68,6 +68,8 @@ export default async function HomePage() {
         description: listing.description,
         storefrontUrl: listing.funnelUrl ?? undefined,
         published: true,
+        fulfillmentType: listing.fulfillmentType,
+        requiresShipping: listing.requiresShipping,
       };
     });
 
