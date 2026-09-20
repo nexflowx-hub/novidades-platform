@@ -1,0 +1,35 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bag" x1="110" y1="140" x2="520" y2="560" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#0B7BFF"/><stop offset=".48" stop-color="#063AA7"/><stop offset="1" stop-color="#021B5D"/>
+  </linearGradient>
+  <linearGradient id="n" x1="120" y1="230" x2="500" y2="520" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#14F0E8"/><stop offset=".45" stop-color="#07A9F5"/><stop offset="1" stop-color="#1748E8"/>
+  </linearGradient>
+  <linearGradient id="metal" x1="180" y1="220" x2="430" y2="520" gradientUnits="userSpaceOnUse">
+    <stop stop-color="white"/><stop offset=".48" stop-color="#D7E1ED"/><stop offset="1" stop-color="#8FA5BB"/>
+  </linearGradient>
+  <linearGradient id="gold" x1="470" y1="130" x2="570" y2="255" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#FFE26D"/><stop offset=".5" stop-color="#FFB21E"/><stop offset="1" stop-color="#E87800"/>
+  </linearGradient>
+  <filter id="shadow" x="40" y="50" width="560" height="560" filterUnits="userSpaceOnUse">
+    <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#00102F" flood-opacity=".55"/>
+  </filter>
+  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<g filter="url(#shadow)">
+  <path d="M222 220v-57c0-82 56-128 118-128 63 0 118 46 118 128v57" stroke="url(#bag)" stroke-width="42" stroke-linecap="round"/>
+  <path d="M121 224c3-31 26-50 56-50h326c30 0 53 19 56 50l40 294c5 38-24 72-62 72H142c-38 0-67-34-62-72l41-294Z" fill="url(#bag)" stroke="#64D7FF" stroke-width="6"/>
+  <path d="M135 487V257c0-21 24-31 39-17l279 261c17 16 6 45-18 45h-38L184 347v140c0 32-49 32-49 0Z" fill="url(#n)" stroke="#69F3FF" stroke-width="5"/>
+  <path d="M184 347 338 491l-52 55L135 404l49-57Z" fill="url(#n)"/>
+  <path d="M367 307v180l54 50V264c0-20-24-31-39-17l-15 14v46Z" fill="url(#metal)" opacity=".95"/>
+  <path d="M180 240 397 444" stroke="#C8FAFF" stroke-opacity=".35" stroke-width="9" stroke-linecap="round"/>
+</g>
+<g fill="url(#gold)" stroke="#FFE48B" stroke-width="3" filter="url(#glow)">
+  <rect x="480" y="117" width="30" height="88" rx="15" transform="rotate(14 480 117)"/>
+  <rect x="525" y="157" width="30" height="96" rx="15" transform="rotate(42 525 157)"/>
+  <rect x="540" y="226" width="30" height="88" rx="15" transform="rotate(75 540 226)"/>
+</g>
+</svg>
