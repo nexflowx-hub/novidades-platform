@@ -68,6 +68,13 @@ const tools = [
       "Release gate para produto, checkout, delivery, mobile e suporte.",
     icon: Rocket,
   },
+  {
+    href: "/ferramentas/content-planner",
+    title: "Content Planner",
+    description:
+      "Transforme uma ideia verificável em jobs de conteúdo, formatos e CTAs.",
+    icon: Layers3,
+  },
 ];
 
 export default async function DigitalContentPage() {
@@ -125,13 +132,14 @@ export default async function DigitalContentPage() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
             {[
               ["1", "Mensagem", "Conversion Content OS"],
-              ["2", "Página", "Sales Page Blueprint"],
-              ["3", "Email", "Email Conversion Kit"],
-              ["4", "Lançamento", "Digital Product Launch Kit"],
-              ["5", "Operação", "FinanceOS MEI"],
+              ["2", "Social", "Social Content OS"],
+              ["3", "Página", "Sales Page Blueprint"],
+              ["4", "Email", "Email Conversion Kit"],
+              ["5", "Lançamento", "Digital Product Launch Kit"],
+              ["6", "Operação", "FinanceOS MEI"],
             ].map(([step, label, product]) => (
               <div
                 key={step}
