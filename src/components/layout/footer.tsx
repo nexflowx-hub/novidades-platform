@@ -1,13 +1,14 @@
 import Link from "next/link";
-import { Building2, ShieldCheck, Zap } from "lucide-react";
+import { Building2, ShieldCheck, Sparkles, Zap } from "lucide-react";
 
 const LINK_GROUPS = [
   {
-    title: "Comprar",
+    title: "Explorar",
     links: [
       { label: "Início", href: "/" },
-      { label: "Arte & Vida", href: "/#destaques" },
-      { label: "Presentes", href: "/#presentes" },
+      { label: "Academia Digital", href: "/conteudos-digitais" },
+      { label: "Ofertas & Descobertas", href: "/#destaques" },
+      { label: "Categorias", href: "/#categorias" },
     ],
   },
   {
@@ -36,39 +37,37 @@ const LINK_GROUPS = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto bg-header pb-24 text-white lg:pb-0">
+    <footer className="mt-auto bg-[#021126] pb-24 text-white lg:pb-0">
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-12 md:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-[1.55fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-block">
-              <p className="text-xl font-extrabold tracking-tight">
-                NOVIDADES<span className="text-brand">.store</span>
+              <p className="text-2xl font-black tracking-[-.04em]">
+                Novidades<span className="text-cyan-300">.store</span>
               </p>
-              <p className="mt-1.5 text-[13px] text-white/60">
+              <p className="mt-1.5 text-[13px] font-semibold text-white/62">
+                Mais do que você procura.
+              </p>
+              <p className="mt-1 text-[11px] text-cyan-200/70">
                 Todo dia, uma boa descoberta.
               </p>
             </Link>
 
-            <div className="mt-5 space-y-2.5 text-xs text-white/55">
+            <div className="mt-5 space-y-2.5 text-xs text-white/52">
               <p className="flex items-start gap-2">
-                <ShieldCheck
-                  className="mt-0.5 h-4 w-4 shrink-0 text-success"
-                  aria-hidden="true"
-                />
+                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" aria-hidden="true" />
+                Variedade com curadoria, informação e identidade própria.
+              </p>
+              <p className="flex items-start gap-2">
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-hidden="true" />
                 Vendedor, moeda e condições identificados antes do pagamento.
               </p>
               <p className="flex items-start gap-2">
-                <Zap
-                  className="mt-0.5 h-4 w-4 shrink-0 text-brand"
-                  aria-hidden="true"
-                />
+                <Zap className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" aria-hidden="true" />
                 Brasil: PIX via XPAYMENTS · Store NOVIDADES-BRL.
               </p>
               <p className="flex items-start gap-2">
-                <Building2
-                  className="mt-0.5 h-4 w-4 shrink-0 text-white/55"
-                  aria-hidden="true"
-                />
+                <Building2 className="mt-0.5 h-4 w-4 shrink-0 text-white/55" aria-hidden="true" />
                 NOVIDADES.STORE · CNPJ 69.093.616/0001-50
               </p>
             </div>
@@ -76,7 +75,7 @@ export function SiteFooter() {
 
           {LINK_GROUPS.map((group) => (
             <nav key={group.title} aria-label={group.title}>
-              <h3 className="text-[11px] font-bold tracking-wider text-white/40 uppercase">
+              <h3 className="text-[11px] font-bold tracking-wider text-cyan-200/55 uppercase">
                 {group.title}
               </h3>
               <ul className="mt-3.5 space-y-2.5">
@@ -84,7 +83,7 @@ export function SiteFooter() {
                   <li key={link.href + link.label}>
                     <Link
                       href={link.href}
-                      className="text-[13px] text-white/75 transition-colors hover:text-brand"
+                      className="text-[13px] text-white/70 transition-colors hover:text-cyan-300"
                     >
                       {link.label}
                     </Link>
@@ -95,7 +94,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-4 border-t border-white/10 py-6 text-[11px] text-white/45 md:grid-cols-[1fr_auto] md:items-end">
+        <div className="mt-10 grid gap-4 border-t border-white/10 py-6 text-[11px] text-white/40 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <p>© {new Date().getFullYear()} Novidades.store. Todos os direitos reservados.</p>
             <p className="mt-1">
