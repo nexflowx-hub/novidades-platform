@@ -48,8 +48,15 @@ function headers() {
 
 function safeProductImage(slug: string, remote?: string | null) {
   if (remote) return remote;
-  if (slug === "signum-312") return "/images/products/signum-patina-real.webp";
-  return "/images/products/signum-patina-real.webp";
+
+  const localImages: Record<string, string> = {
+    "signum-312": "/images/products/signum-patina-real.webp",
+    "conversion-content-os": "/images/products/conversion-content-os.svg",
+    "financeos-mei-2026": "/images/products/financeos-mei-2026.svg",
+    "sales-page-blueprint": "/images/products/sales-page-blueprint.svg",
+  };
+
+  return localImages[slug] ?? "/images/products/signum-patina-real.webp";
 }
 
 async function rest<T>(path: string): Promise<T> {

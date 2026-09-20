@@ -161,6 +161,24 @@ export const PRODUCTS: Product[] = [
     requiresShipping: false,
   },
   {
+    id: "sales-page-blueprint",
+    slug: "sales-page-blueprint",
+    name: "Sales Page Blueprint",
+    categoryId: "conteudos-digitais",
+    price: 67,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/sales-page-blueprint.svg",
+    tagline: "Wireframes, proof governance, checkout continuity e QA.",
+    description:
+      "Guia, wireframes, auditoria de claims e prova, QA mobile e de funil, spec para developers e scorecard.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/sales-page-blueprint",
+    published: false,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
     id: "financeos-mei-2026",
     slug: "financeos-mei-2026",
     name: "FinanceOS MEI 2026",
@@ -189,6 +207,8 @@ export const POPULAR_SEARCHES = [
   "Conteúdos Digitais",
   "Conversion Content OS",
   "FinanceOS MEI",
+  "Sales Page Blueprint",
+  "Hook Lab",
   "Pets",
   "Casa",
 ];

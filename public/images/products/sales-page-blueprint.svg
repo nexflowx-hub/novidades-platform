@@ -1,0 +1,17 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="1200" rx="96" fill="#07111F"/>
+<circle cx="976" cy="180" r="220" fill="#0E7490" fill-opacity=".28"/>
+<circle cx="180" cy="1030" r="260" fill="#16B8D4" fill-opacity=".12"/>
+<rect x="122" y="144" width="956" height="718" rx="42" fill="#0F1D2C" stroke="#24435A" stroke-width="4"/>
+<rect x="170" y="198" width="405" height="54" rx="16" fill="#16B8D4"/>
+<rect x="170" y="294" width="782" height="36" rx="12" fill="#D9F3F8" fill-opacity=".94"/>
+<rect x="170" y="350" width="618" height="25" rx="10" fill="#D9F3F8" fill-opacity=".45"/>
+<rect x="170" y="432" width="270" height="170" rx="24" fill="#162B3D" stroke="#2E5168"/>
+<rect x="465" y="432" width="270" height="170" rx="24" fill="#162B3D" stroke="#2E5168"/>
+<rect x="760" y="432" width="270" height="170" rx="24" fill="#162B3D" stroke="#2E5168"/>
+<rect x="170" y="650" width="860" height="68" rx="22" fill="#E9843D"/>
+<rect x="170" y="756" width="560" height="28" rx="10" fill="#D9F3F8" fill-opacity=".42"/>
+<text x="122" y="970" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">SALES PAGE</text>
+<text x="122" y="1052" fill="#67E8F9" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">BLUEPRINT</text>
+<text x="126" y="1113" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">WIREFRAMES · PROOF · CHECKOUT · QA</text>
+</svg>

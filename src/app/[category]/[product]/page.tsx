@@ -9,8 +9,7 @@ import {
   ShieldCheck,
   Zap,
 } from "lucide-react";
-import { CcosCheckout } from "@/components/digital/ccos-checkout";
-import { FinanceOsCheckout } from "@/components/digital/financeos-checkout";
+import { DigitalCheckout } from "@/components/digital/digital-checkout";
 import { getPublicListingBySlug } from "@/lib/commerce-db";
 import { formatMoney } from "@/lib/format";
 
@@ -18,15 +17,113 @@ type Props = {
   params: Promise<{ category: string; product: string }>;
 };
 
+const DIGITAL_DETAILS: Record<
+  string,
+  {
+    intro: string;
+    deliverables: string[];
+    highlights: Array<{ title: string; body: string }>;
+    checkoutMicrocopy?: string;
+  }
+> = {
+  "conversion-content-os": {
+    intro:
+      "Toolkit operacional para estruturar mensagem, prova, hooks, conteúdo, CTAs, adaptação multicanal e testes. Não promete receita, crescimento ou taxa de conversão.",
+    deliverables: [
+      "Conversion Content OS - Guide",
+      "Conversion Workbook",
+      "Hook Library - 300 Structures",
+      "Prompt Library - 36 prompts",
+      "CTA & Offer Swipe File",
+      "Content Repurposing Matrix",
+      "Quick Start & Activation Guide",
+      "Customer License & Terms",
+    ],
+    highlights: [
+      {
+        title: "Uso prático",
+        body: "Para projetos próprios, empresas e trabalho de cliente.",
+      },
+      {
+        title: "Entrega protegida",
+        body: "Downloads privados com URLs assinadas e de curta duração.",
+      },
+      {
+        title: "Guardrails",
+        body: "Sem testemunhos inventados, falsa urgência ou prova fabricada.",
+      },
+    ],
+  },
+  "financeos-mei-2026": {
+    intro:
+      "Planilha gerencial para centralizar receitas, despesas, taxas, compromissos, precificação, projeção e monitoramento do teto anual. Não substitui contador, Receita Federal, Portal do Empreendedor ou PGMEI.",
+    deliverables: [
+      "FinanceOS MEI 2026 - XLSX editável",
+      "Dashboard financeiro",
+      "Transações e Resumo Mensal",
+      "Monitor do teto MEI",
+      "Compromissos",
+      "Precificação & Margem",
+      "Quick Start",
+      "Customer License & Terms",
+    ],
+    highlights: [
+      {
+        title: "Referência anual",
+        body: "Parâmetros 2026 documentados e centralizados para facilitar revisão.",
+      },
+      {
+        title: "Entrega protegida",
+        body: "XLSX e materiais auxiliares por URLs assinadas e temporárias.",
+      },
+      {
+        title: "Limite de uso",
+        body: "Apoio gerencial e educacional; não realiza apuração fiscal oficial.",
+      },
+    ],
+    checkoutMicrocopy:
+      "XLSX editável · ferramenta gerencial · sem assinatura.",
+  },
+  "sales-page-blueprint": {
+    intro:
+      "Sistema moderno para transformar páginas de venda em interfaces de decisão: hero, mecanismo, prova, offer stack, termos, checkout, upsell, success e QA mobile.",
+    deliverables: [
+      "Quick Start",
+      "Sales Page Blueprint Guide",
+      "Wireframe Library",
+      "Claims & Proof Audit",
+      "Mobile & Funnel QA",
+      "Developer Implementation Spec",
+      "Sales Page Audit Scorecard XLSX",
+      "Customer License & Terms",
+    ],
+    highlights: [
+      {
+        title: "Wireframes operacionais",
+        body: "Sales, pre-sell, lead capture, checkout, upsell e success.",
+      },
+      {
+        title: "Proof governance",
+        body: "Classifique facts, demonstrations, customer evidence, hypotheses e unsupported claims.",
+      },
+      {
+        title: "Release gate",
+        body: "Scorecard para mobile, checkout continuity, proof e entrega.",
+      },
+    ],
+    checkoutMicrocopy:
+      "Bundle ZIP + scorecard XLSX · pagamento único · sem assinatura.",
+  },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, product } = await params;
   const listing = await getPublicListingBySlug(category, product);
 
-  if (!listing) {
-    return { title: "Produto não encontrado" };
-  }
+  if (!listing) return { title: "Produto não encontrado" };
 
-  const canonical = `https://novidades.store/${category}/${product}`;
+  const canonical =
+    "https://novidades.store/" + category + "/" + product;
 
   return {
     title: listing.title,
@@ -51,10 +148,10 @@ export default async function ProductPage({ params }: Props) {
   const price = listing.priceCents / 100;
   const funnelUrl = listing.funnelUrl;
   const isDigital = listing.fulfillmentType === "digital";
-  const isCcos = isDigital && listing.slug === "conversion-content-os";
-  const isFinanceOs = isDigital && listing.slug === "financeos-mei-2026";
-  const canonicalUrl = `https://novidades.store/${category}/${product}`;
-  const offerActive = Boolean(funnelUrl || isCcos || isFinanceOs);
+  const detail = isDigital ? DIGITAL_DETAILS[listing.slug] : undefined;
+  const canonicalUrl =
+    "https://novidades.store/" + category + "/" + product;
+  const offerActive = Boolean(funnelUrl || isDigital);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -75,28 +172,6 @@ export default async function ProductPage({ params }: Props) {
         }
       : {}),
   };
-
-  const ccosDeliverables = [
-    "Conversion Content OS — Guide",
-    "Conversion Workbook",
-    "Hook Library — 300 Structures",
-    "Prompt Library — 36 prompts",
-    "CTA & Offer Swipe File",
-    "Content Repurposing Matrix",
-    "Quick Start & Activation Guide",
-    "Customer License & Terms",
-  ];
-
-  const financeOsDeliverables = [
-    "FinanceOS MEI 2026 — XLSX editável",
-    "Dashboard financeiro",
-    "Transações e Resumo Mensal",
-    "Monitor do teto MEI",
-    "Compromissos",
-    "Precificação & Margem",
-    "Quick Start",
-    "Customer License & Terms",
-  ];
 
   return (
     <article className="bg-[#f7f7f5]">
@@ -164,15 +239,17 @@ export default async function ProductPage({ params }: Props) {
               {isDigital ? (
                 <p className="mt-2 inline-flex items-center gap-2 text-xs text-muted-foreground">
                   <Download className="h-4 w-4 text-brand" aria-hidden="true" />
-                  Produto digital — sem frete ou entrega física
+                  Produto digital - sem frete ou entrega física
                 </p>
               ) : null}
             </div>
 
-            {isCcos ? (
-              <CcosCheckout />
-            ) : isFinanceOs ? (
-              <FinanceOsCheckout />
+            {isDigital ? (
+              <DigitalCheckout
+                productSlug={listing.slug}
+                priceLabel={formatMoney(price, listing.currency)}
+                microcopy={detail?.checkoutMicrocopy}
+              />
             ) : funnelUrl ? (
               <a
                 href={funnelUrl}
@@ -183,9 +260,7 @@ export default async function ProductPage({ params }: Props) {
               </a>
             ) : (
               <div className="mt-6 rounded-xl bg-soft p-4 text-sm text-muted-foreground">
-                {isDigital
-                  ? "Checkout e entrega digital em ativação. O produto já está catalogado, mas a compra só será liberada quando pagamento e acesso protegido estiverem operacionais."
-                  : "Esta oferta ainda não está disponível para compra."}
+                Esta oferta ainda não está disponível para compra.
               </div>
             )}
 
@@ -203,7 +278,7 @@ export default async function ProductPage({ params }: Props) {
           </section>
         </div>
 
-        {isCcos || isFinanceOs ? (
+        {isDigital && detail ? (
           <section className="mt-8 rounded-[22px] border border-border bg-white p-5 shadow-card md:p-8">
             <p className="text-[11px] font-bold tracking-[0.14em] text-brand-dark uppercase">
               Release 1.0
@@ -212,60 +287,31 @@ export default async function ProductPage({ params }: Props) {
               O que está incluído no pacote
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">
-              {isCcos
-                ? "O Conversion Content OS é um toolkit operacional para estruturar mensagem, prova, hooks, conteúdo, CTAs, adaptação multicanal e testes. Não promete receita, crescimento ou taxa de conversão."
-                : "FinanceOS MEI 2026 centraliza receitas, despesas, taxas, compromissos, precificação, projeção e monitoramento gerencial do teto anual. É uma ferramenta de gestão e não substitui contador, Receita Federal, Portal do Empreendedor ou PGMEI."}
+              {detail.intro}
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {(isCcos ? ccosDeliverables : financeOsDeliverables).map(
-                (item) => (
-                  <div
-                    key={item}
-                    className="flex items-start gap-2 rounded-xl border border-border bg-soft/60 p-4 text-sm font-semibold"
-                  >
-                    <CheckCircle2
-                      className="mt-0.5 h-4 w-4 shrink-0 text-success"
-                      aria-hidden="true"
-                    />
-                    <span>{item}</span>
-                  </div>
-                ),
-              )}
+              {detail.deliverables.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-2 rounded-xl border border-border bg-soft/60 p-4 text-sm font-semibold"
+                >
+                  <CheckCircle2
+                    className="mt-0.5 h-4 w-4 shrink-0 text-success"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
 
             <div className="mt-6 grid gap-3 rounded-xl bg-[#0b1220] p-5 text-sm text-slate-300 md:grid-cols-3">
-              {isCcos ? (
-                <>
-                  <p>
-                    <strong className="block text-white">Uso prático</strong>
-                    Para projetos próprios, empresas e trabalho de cliente.
-                  </p>
-                  <p>
-                    <strong className="block text-white">Entrega protegida</strong>
-                    Downloads privados com URLs assinadas e de curta duração.
-                  </p>
-                  <p>
-                    <strong className="block text-white">Guardrails</strong>
-                    Sem testemunhos inventados, falsa urgência ou prova fabricada.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>
-                    <strong className="block text-white">Referência 2026</strong>
-                    Teto configurado em R$ 81 mil e parâmetros anuais documentados em fontes oficiais.
-                  </p>
-                  <p>
-                    <strong className="block text-white">Entrega protegida</strong>
-                    XLSX e materiais auxiliares por URLs assinadas e temporárias.
-                  </p>
-                  <p>
-                    <strong className="block text-white">Limite de uso</strong>
-                    Apoio gerencial e educacional; não realiza apuração fiscal oficial nem garante enquadramento.
-                  </p>
-                </>
-              )}
+              {detail.highlights.map((item) => (
+                <p key={item.title}>
+                  <strong className="block text-white">{item.title}</strong>
+                  {item.body}
+                </p>
+              ))}
             </div>
           </section>
         ) : null}
