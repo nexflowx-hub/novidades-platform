@@ -39,6 +39,8 @@ export interface Product {
   description: string;
   storefrontUrl?: string;
   published: boolean;
+  fulfillmentType?: "physical" | "digital" | "service";
+  requiresShipping?: boolean;
 }
 
 export interface VideoCard {
@@ -72,6 +74,14 @@ export const CATEGORIES: Category[] = [
     description: "Mobilidade, acessórios e tecnologia útil.",
     color: "#C7DEE8",
     image: "/images/categories/auto.png",
+  },
+  {
+    id: "conteudos-digitais",
+    name: "Conteúdos Digitais",
+    slug: "conteudos-digitais",
+    description: "Guias, sistemas, templates, planilhas e ferramentas digitais.",
+    color: "#D9E7FF",
+    image: "/images/categories/digital.svg",
   },
   {
     id: "pets",
@@ -130,6 +140,40 @@ export const PRODUCTS: Product[] = [
       "Coleção contemporânea inspirada em simbolismo histórico e cristão.",
     storefrontUrl: "https://signum312.novidades.store",
     published: true,
+    fulfillmentType: "physical",
+    requiresShipping: true,
+  },
+  {
+    id: "conversion-content-os",
+    slug: "conversion-content-os",
+    name: "Conversion Content OS",
+    categoryId: "conteudos-digitais",
+    price: 97,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/conversion-content-os.svg",
+    tagline: "Sistema prático de conteúdo, persuasão e conversão.",
+    description:
+      "Guia, workbook, Hook Library, Prompt Library, swipe files e matriz de reaproveitamento.",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
+    id: "financeos-mei-2026",
+    slug: "financeos-mei-2026",
+    name: "FinanceOS MEI 2026",
+    categoryId: "conteudos-digitais",
+    price: 47,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/financeos-mei-2026.svg",
+    tagline: "Controle financeiro e monitor gerencial para MEI.",
+    description:
+      "Dashboard, transações, resumo mensal, monitor do teto, compromissos, precificação e fontes.",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
   },
 ];
 
@@ -140,6 +184,9 @@ export const POPULAR_SEARCHES = [
   "Arte & Vida",
   "Presentes",
   "Auto & Tech",
+  "Conteúdos Digitais",
+  "Conversion Content OS",
+  "FinanceOS MEI",
   "Pets",
   "Casa",
 ];

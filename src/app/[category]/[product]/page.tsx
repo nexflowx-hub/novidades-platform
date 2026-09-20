@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Download, ShieldCheck, Zap } from "lucide-react";
 import { getPublicListingBySlug } from "@/lib/commerce-db";
 import { formatMoney } from "@/lib/format";
 
@@ -42,6 +42,8 @@ export default async function ProductPage({ params }: Props) {
 
   const price = listing.priceCents / 100;
   const funnelUrl = listing.funnelUrl;
+  const isDigital = listing.fulfillmentType === "digital";
+  const canonicalUrl = `https://novidades.store/${category}/${product}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -49,13 +51,17 @@ export default async function ProductPage({ params }: Props) {
     description: listing.description,
     image: [listing.image, ...listing.gallery].filter(Boolean),
     sku: listing.slug,
-    offers: {
-      "@type": "Offer",
-      priceCurrency: listing.currency,
-      price: price.toFixed(2),
-      availability: "https://schema.org/InStock",
-      url: `https://novidades.store/${category}/${product}`,
-    },
+    ...(funnelUrl
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: listing.currency,
+            price: price.toFixed(2),
+            availability: "https://schema.org/InStock",
+            url: canonicalUrl,
+          },
+        }
+      : {}),
   };
 
   return (
@@ -108,7 +114,7 @@ export default async function ProductPage({ params }: Props) {
 
             <div className="mt-7 border-y border-border py-5">
               <span className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
-                A partir de
+                {isDigital ? "Acesso por" : "A partir de"}
               </span>
               <strong className="mt-1 block text-3xl tracking-tight">
                 {formatMoney(price, listing.currency)}
@@ -117,6 +123,12 @@ export default async function ProductPage({ params }: Props) {
                 <p className="mt-2 inline-flex items-center gap-2 text-xs text-muted-foreground">
                   <Zap className="h-4 w-4 text-brand" aria-hidden="true" />
                   PIX via XPAYMENTS no checkout da oferta
+                </p>
+              ) : null}
+              {isDigital ? (
+                <p className="mt-2 inline-flex items-center gap-2 text-xs text-muted-foreground">
+                  <Download className="h-4 w-4 text-brand" aria-hidden="true" />
+                  Produto digital — sem frete ou entrega física
                 </p>
               ) : null}
             </div>
@@ -131,7 +143,9 @@ export default async function ProductPage({ params }: Props) {
               </a>
             ) : (
               <div className="mt-6 rounded-xl bg-soft p-4 text-sm text-muted-foreground">
-                Esta oferta ainda não está disponível para compra.
+                {isDigital
+                  ? "Checkout e entrega digital em ativação. O produto já está catalogado, mas a compra só será liberada quando pagamento e acesso protegido estiverem operacionais."
+                  : "Esta oferta ainda não está disponível para compra."}
               </div>
             )}
 
@@ -140,7 +154,11 @@ export default async function ProductPage({ params }: Props) {
                 <ShieldCheck className="h-4 w-4 text-success" aria-hidden="true" />
                 Vendedor, total, entrega e políticas identificados antes do pagamento.
               </p>
-              <p>Uma experiência Novidades.store.</p>
+              <p>
+                {isDigital
+                  ? "Entrega digital desacoplada do frete físico e liberada pelo fluxo da oferta."
+                  : "Uma experiência Novidades.store."}
+              </p>
             </div>
           </section>
         </div>

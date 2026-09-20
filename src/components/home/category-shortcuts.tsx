@@ -64,9 +64,9 @@ export function CategoryShortcuts() {
         ))}
       </div>
 
-      {/* Desktop: 9 colunas (8 categorias + ver todas) */}
+      {/* Desktop: 10 colunas (9 categorias + ver todas) */}
       <div className="mx-auto hidden w-full max-w-[1440px] px-8 lg:block">
-        <div className="grid grid-cols-9 gap-2">
+        <div className="grid grid-cols-10 gap-2">
           {CATEGORIES.map((cat) => (
             <CategoryBubble
               key={cat.id}

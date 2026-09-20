@@ -77,7 +77,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
           <div className="mt-auto flex items-center justify-between gap-2 pt-2">
             <span className="text-[10px] font-medium text-muted-foreground">
-              {product.freeShipping ? "Frete grátis" : "Condições no checkout"}
+              {product.fulfillmentType === "digital"
+                ? "Entrega digital"
+                : product.freeShipping
+                  ? "Frete grátis"
+                  : "Condições no checkout"}
             </span>
 
             <span

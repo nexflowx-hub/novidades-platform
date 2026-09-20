@@ -34,6 +34,8 @@ export interface CommerceListing {
   badges: string[];
   priceCents: number | null;
   currency: "BRL" | "EUR";
+  fulfillmentType: "physical" | "digital" | "service";
+  requiresShipping: boolean;
 }
 
 function headers() {
@@ -88,9 +90,11 @@ export async function getPublicCatalog(): Promise<CommerceListing[]> {
         category_name: string;
         brand_name: string | null;
         default_currency: "BRL" | "EUR";
+        fulfillment_type: "physical" | "digital" | "service";
+        requires_shipping: boolean;
       }>
     >(
-      "storefront_catalog?select=storefront_code,listing_id,listing_slug,title,subtitle,description,external_funnel_url,featured,badges,product_id,image_url,gallery_urls,category_slug,category_name,brand_name,default_currency&storefront_code=eq." +
+      "storefront_catalog?select=storefront_code,listing_id,listing_slug,title,subtitle,description,external_funnel_url,featured,badges,product_id,image_url,gallery_urls,category_slug,category_name,brand_name,default_currency,fulfillment_type,requires_shipping&storefront_code=eq." +
         encodeURIComponent(STOREFRONT_CODE)
     );
 
@@ -134,6 +138,8 @@ export async function getPublicCatalog(): Promise<CommerceListing[]> {
         badges: row.badges ?? [],
         priceCents: rowPrices[0]?.amount_cents ?? null,
         currency: rowPrices[0]?.currency ?? row.default_currency,
+        fulfillmentType: row.fulfillment_type,
+        requiresShipping: row.requires_shipping,
       };
     });
   } catch (error) {
@@ -158,6 +164,8 @@ export async function getPublicCatalog(): Promise<CommerceListing[]> {
       badges: [],
       priceCents: Math.round(product.price * 100),
       currency: product.currency,
+      fulfillmentType: product.fulfillmentType ?? "physical",
+      requiresShipping: product.requiresShipping ?? true,
     }));
   }
 }
