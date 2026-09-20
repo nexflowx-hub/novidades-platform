@@ -1,0 +1,32 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bg" x1="80" y1="80" x2="1120" y2="1120"><stop stop-color="#07111F"/><stop offset="1" stop-color="#102338"/></linearGradient>
+<linearGradient id="a" x1="150" y1="150" x2="1000" y2="1000"><stop stop-color="#22D3EE"/><stop offset="1" stop-color="#F472B6"/></linearGradient>
+</defs>
+<rect width="1200" height="1200" rx="64" fill="url(#bg)"/>
+<circle cx="930" cy="240" r="230" fill="#22D3EE" opacity=".11"/>
+<circle cx="250" cy="930" r="270" fill="#F472B6" opacity=".09"/>
+<rect x="88" y="88" width="1024" height="1024" rx="44" stroke="white" stroke-opacity=".1" stroke-width="2"/>
+<rect x="120" y="120" width="260" height="48" rx="24" fill="url(#a)"/>
+<text x="250" y="151" text-anchor="middle" font-family="Arial" font-size="20" font-weight="900" letter-spacing="3" fill="#07111F">SOCIAL OS</text>
+<g transform="translate(120 270)">
+<rect width="960" height="210" rx="32" fill="white" fill-opacity=".05" stroke="white" stroke-opacity=".08"/>
+<g transform="translate(36 40)">
+<rect width="122" height="130" rx="18" fill="#22D3EE" opacity=".92"/>
+<rect x="146" width="122" height="130" rx="18" fill="#67E8F9" opacity=".7"/>
+<rect x="292" width="122" height="130" rx="18" fill="#A78BFA" opacity=".7"/>
+<rect x="438" width="122" height="130" rx="18" fill="#F472B6" opacity=".72"/>
+<rect x="584" width="122" height="130" rx="18" fill="#FB7185" opacity=".62"/>
+<rect x="730" width="122" height="130" rx="18" fill="#FBBF24" opacity=".7"/>
+</g>
+</g>
+<text x="120" y="645" font-family="Arial" font-size="82" font-weight="900" fill="white">Social Content OS</text>
+<text x="120" y="718" font-family="Arial" font-size="29" font-weight="600" fill="#B6C2D1">30/60/90-day planner · channel adaptation · creative briefs</text>
+<g transform="translate(120 810)">
+<rect width="960" height="170" rx="32" fill="white" fill-opacity=".045" stroke="white" stroke-opacity=".08"/>
+<text x="38" y="53" font-family="Arial" font-size="18" font-weight="900" fill="#67E8F9">SOURCE → ANGLE → HOOK → FORMAT → CHANNEL → CTA → LEARN</text>
+<rect x="38" y="83" width="680" height="15" rx="7.5" fill="white" fill-opacity=".18"/>
+<rect x="38" y="117" width="520" height="12" rx="6" fill="white" fill-opacity=".09"/>
+</g>
+<text x="120" y="1060" font-family="Arial" font-size="21" font-weight="700" letter-spacing="2" fill="#22D3EE">NOVIDADES DIGITAL · RELEASE 1.0</text>
+</svg>
