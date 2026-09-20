@@ -146,6 +146,126 @@ const DIGITAL_DETAILS: Record<
     checkoutMicrocopy:
       "Bundle ZIP + scorecard XLSX · pagamento único · sem assinatura.",
   },
+  "email-conversion-kit": {
+    intro:
+      "Sistema de lifecycle email para welcome, nurture, checkout recovery, launch, post-purchase e reactivation, com governança de claims, consentimento/base legal e stopping rules.",
+    deliverables: [
+      "Email Conversion Playbook",
+      "Welcome Sequence - 5 emails",
+      "Lead Nurture - 5 emails",
+      "Checkout Recovery - 3 emails",
+      "Launch Sequence - 5 emails",
+      "Post-purchase Activation - 4 emails",
+      "Subject Line & CTA Library",
+      "Email Campaign Planner XLSX",
+    ],
+    highlights: [
+      {
+        title: "Lifecycle, não spam",
+        body: "Sequências ligadas a eventos reais, finalidade definida e stopping conditions.",
+      },
+      {
+        title: "QA operacional",
+        body: "Guardrails para claims, CTA continuity, dados necessários e mensagens não essenciais.",
+      },
+      {
+        title: "Execução editável",
+        body: "Planner XLSX para briefing, sequência, QA e aprendizagem por campanha.",
+      },
+    ],
+    checkoutMicrocopy:
+      "Playbook + libraries + Campaign Planner XLSX · pagamento único · sem assinatura.",
+  },
+  "digital-product-launch-kit": {
+    intro:
+      "Sistema de release para transformar um produto digital num lançamento operacional: direitos, packaging, proof, sales surface, checkout, delivery, activation e aprendizagem.",
+    deliverables: [
+      "Digital Product Launch Playbook",
+      "Funnel Map & Release Gates",
+      "Launch Workspace XLSX",
+      "30-Day Launch Plan",
+      "Asset Tracker",
+      "Release QA",
+      "Quick Start",
+      "Customer License & Terms",
+    ],
+    highlights: [
+      {
+        title: "Release system",
+        body: "VALIDATE → PACKAGE → PROVE → PUBLISH → SELL → DELIVER → LEARN.",
+      },
+      {
+        title: "Delivery-first",
+        body: "O produto só fica READY quando checkout, entitlement e acesso foram testados.",
+      },
+      {
+        title: "Workspace prático",
+        body: "Dashboard, asset tracker, 30-day plan e QA gate numa planilha editável.",
+      },
+    ],
+    checkoutMicrocopy:
+      "Playbook + Funnel Map + Launch Workspace · pagamento único · sem assinatura.",
+  },
+  "creator-prompt-library": {
+    intro:
+      "Biblioteca original de 50 prompts estruturados para research, messaging, sales pages, email, social, ecommerce, operations, analytics e AI workflow design.",
+    deliverables: [
+      "Creator Prompt Library - 50 prompts",
+      "Prompt Quality & Safety Guide",
+      "Prompt Builder Workbook XLSX",
+      "Output QA",
+      "Strategy & Briefing prompts",
+      "Research & Synthesis prompts",
+      "Marketing & Ecommerce prompts",
+      "Operations, Analytics & AI Workflow prompts",
+    ],
+    highlights: [
+      {
+        title: "Estrutura repetível",
+        body: "ROLE → CONTEXT → TASK → CONSTRAINTS → OUTPUT → EVIDENCE RULE → QUALITY CHECK.",
+      },
+      {
+        title: "Evidence-first",
+        body: "Os prompts instruem a não inventar facts, metrics, testimonials ou source support.",
+      },
+      {
+        title: "Prompt Builder",
+        body: "Workbook para montar prompts reutilizáveis e auditar a saída antes de uso.",
+      },
+    ],
+    checkoutMicrocopy:
+      "50 prompts + Prompt Builder XLSX + Quality Guide · pagamento único.",
+  },
+  "creator-growth-suite": {
+    intro:
+      "Suite para creators, ecommerce e equipas pequenas que liga mensagem, sales pages, lifecycle email, prompts e lançamento num único sistema de trabalho.",
+    deliverables: [
+      "Conversion Content OS - pacote completo",
+      "Sales Page Blueprint - pacote completo",
+      "Email Conversion Kit - pacote completo",
+      "Digital Product Launch Kit - pacote completo",
+      "Creator Prompt Library - pacote completo",
+      "Workbooks e scorecards incluídos",
+      "Bibliotecas de hooks, prompts e CTAs",
+      "Acesso único aos cinco produtos",
+    ],
+    highlights: [
+      {
+        title: "5 produtos num acesso",
+        body: "Entitlement do bundle libera automaticamente todos os SKUs incluídos.",
+      },
+      {
+        title: "Valor separado R$ 315",
+        body: "Suite por R$ 219 em pagamento único com os produtos atuais incluídos.",
+      },
+      {
+        title: "Do briefing à entrega",
+        body: "Mensagem, página, email, IA assistida, release, checkout e activation.",
+      },
+    ],
+    checkoutMicrocopy:
+      "5 produtos · valor separado R$ 315 · suite R$ 219 · sem assinatura.",
+  },
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
