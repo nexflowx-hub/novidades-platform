@@ -213,6 +213,78 @@ export const PRODUCTS: Product[] = [
     fulfillmentType: "digital",
     requiresShipping: false,
   },
+  {
+    id: "email-conversion-kit",
+    slug: "email-conversion-kit",
+    name: "Email Conversion Kit",
+    categoryId: "conteudos-digitais",
+    price: 47,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/email-conversion-kit.svg",
+    tagline: "Welcome, nurture, recovery, launch e post-purchase.",
+    description:
+      "Lifecycle email playbook, Subject & CTA Library e Campaign Planner XLSX.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/email-conversion-kit",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
+    id: "digital-product-launch-kit",
+    slug: "digital-product-launch-kit",
+    name: "Digital Product Launch Kit",
+    categoryId: "conteudos-digitais",
+    price: 67,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/digital-product-launch-kit.svg",
+    tagline: "Validate, package, prove, publish, sell, deliver and learn.",
+    description:
+      "Playbook, Funnel Map & Release Gates e Launch Workspace XLSX.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/digital-product-launch-kit",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
+    id: "creator-prompt-library",
+    slug: "creator-prompt-library",
+    name: "Creator Prompt Library",
+    categoryId: "conteudos-digitais",
+    price: 37,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/creator-prompt-library.svg",
+    tagline: "50 prompts estruturados + Prompt Builder.",
+    description:
+      "Prompts para research, copy, pages, email, social, ecommerce, operations, analytics e AI workflows.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/creator-prompt-library",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
+    id: "creator-growth-suite",
+    slug: "creator-growth-suite",
+    name: "Creator Growth Suite",
+    categoryId: "conteudos-digitais",
+    price: 219,
+    currency: "BRL",
+    badge: "oferta",
+    image: "/images/products/creator-growth-suite.svg",
+    tagline: "5 sistemas para conteúdo, conversão e lançamento.",
+    description:
+      "CCOS + Sales Page Blueprint + Email Conversion Kit + Launch Kit + Creator Prompt Library.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/creator-growth-suite",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
 ];
 
 export const VIDEO_CARDS: VideoCard[] = [];
@@ -228,6 +300,10 @@ export const POPULAR_SEARCHES = [
   "FinanceOS MEI",
   "Sales Page Blueprint",
   "Hook Lab",
+  "Email Conversion Kit",
+  "Digital Product Launch Kit",
+  "Creator Prompt Library",
+  "Creator Growth Suite",
   "Pets",
   "Casa",
 ];
