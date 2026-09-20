@@ -155,6 +155,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Sistema prático de conteúdo, persuasão e conversão.",
     description:
       "Guia, workbook, Hook Library, Prompt Library, swipe files e matriz de reaproveitamento.",
+    storefrontUrl: "https://novidades.store/conteudos-digitais/conversion-content-os",
     published: true,
     fulfillmentType: "digital",
     requiresShipping: false,
@@ -171,7 +172,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Controle financeiro e monitor gerencial para MEI.",
     description:
       "Dashboard, transações, resumo mensal, monitor do teto, compromissos, precificação e fontes.",
-    published: true,
+    published: false,
     fulfillmentType: "digital",
     requiresShipping: false,
   },
