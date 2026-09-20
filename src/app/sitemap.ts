@@ -10,6 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/sobre",
     "/contato",
     "/ajuda",
+    "/conteudos-digitais",
     "/entregas",
     "/pagamentos",
     "/trocas-e-devolucoes",
@@ -25,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: base + path,
     lastModified: new Date(),
     changeFrequency: path === "" ? "daily" : "monthly",
-    priority: path === "" ? 1 : 0.35,
+    priority: path === "" ? 1 : path === "/conteudos-digitais" ? 0.85 : 0.35,
   }));
 
   const productEntries: MetadataRoute.Sitemap = catalog
