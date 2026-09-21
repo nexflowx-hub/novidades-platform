@@ -112,7 +112,7 @@ export function StorefrontReference({ products }: StorefrontReferenceProps) {
       <section id="categorias" className="nv-reference-shell py-3 md:py-4">
         <div className="scrollbar-none flex snap-x snap-mandatory gap-2.5 overflow-x-auto pb-1 lg:grid lg:grid-cols-10 lg:gap-2.5 lg:overflow-visible">
           {CATEGORY_ORDER.map((item) => {
-            if (item.offer) {
+            if ("offer" in item && item.offer) {
               return (
                 <button
                   key={item.id}
