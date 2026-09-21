@@ -8,6 +8,7 @@ import {
   Gem,
   Gift,
   GraduationCap,
+  Globe2,
   Heart,
   Menu,
   Search,
@@ -238,6 +239,14 @@ export function SiteHeader() {
           >
             <GraduationCap className="h-[15px] w-[15px]" />
             Academia Digital
+          </Link>
+
+          <Link
+            href="/site"
+            className="inline-flex h-[34px] shrink-0 items-center gap-[7px] rounded-[7px] px-[10px] text-[10px] font-extrabold text-white/86 transition hover:bg-white/7 hover:text-cyan-300"
+          >
+            <Globe2 className="h-[15px] w-[15px]" />
+            Sites
           </Link>
 
           <button
