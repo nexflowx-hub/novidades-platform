@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import type { CSSProperties } from "react";
 import type { SiteModel } from "@/lib/site-templates/profiles";
+import { SiteLeadForm } from "@/components/sites/site-lead-form";
 
 type Vars = CSSProperties & {
   "--site-bg": string;
@@ -225,14 +226,8 @@ export function SiteRenderer({ site }: { site: SiteModel }) {
                 <p className="flex items-center gap-3"><MapPin className="h-4 w-4 text-[var(--site-primary)]" /> {site.city}</p>
               </div>
             </div>
-            <div className="grid place-items-center border-t border-white/10 bg-black/10 p-8 lg:border-l lg:border-t-0">
-              <a
-                href={`mailto:${site.email}`}
-                className="inline-flex min-h-14 w-full max-w-sm items-center justify-center gap-2 rounded-full bg-[var(--site-primary)] px-6 text-sm font-black text-slate-950"
-              >
-                Iniciar contato
-                <ArrowRight className="h-4 w-4" />
-              </a>
+            <div className="border-t border-white/10 bg-black/10 p-8 lg:border-l lg:border-t-0">
+              <SiteLeadForm slug={site.slug} />
             </div>
           </div>
         </section>
