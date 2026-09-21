@@ -11,6 +11,8 @@ import {
 import type { CSSProperties } from "react";
 import type { SiteModel } from "@/lib/site-templates/profiles";
 import { SiteLeadForm } from "@/components/sites/site-lead-form";
+import type { SiteBlueprintPayload } from "@/lib/site-templates/blueprint";
+import { blueprintCount } from "@/lib/site-templates/blueprint";
 
 type Vars = CSSProperties & {
   "--site-bg": string;
@@ -21,8 +23,9 @@ type Vars = CSSProperties & {
   "--site-accent": string;
 };
 
-function HeroArtwork({ variant }: { variant: number }) {
-  const shapes = Array.from({ length: 6 }, (_, index) => index);
+function HeroArtwork({ variant, density = 6 }: { variant: number; density?: number }) {
+  const shapeCount = Math.max(4, Math.min(10, density));
+  const shapes = Array.from({ length: shapeCount }, (_, index) => index);
   return (
     <div className="relative h-[360px] min-h-[360px] overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.045] shadow-2xl md:h-[520px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_28%,color-mix(in_srgb,var(--site-primary)_42%,transparent),transparent_24rem),radial-gradient(circle_at_78%_72%,color-mix(in_srgb,var(--site-secondary)_34%,transparent),transparent_22rem)]" />
@@ -62,7 +65,21 @@ function HeroArtwork({ variant }: { variant: number }) {
   );
 }
 
-export function SiteRenderer({ site }: { site: SiteModel }) {
+export function SiteRenderer({
+  site,
+  blueprint,
+}: {
+  site: SiteModel;
+  blueprint?: SiteBlueprintPayload | null;
+}) {
+  const blueprintDensity = Math.max(
+    4,
+    Math.min(10, Math.round(((blueprint?.widgetCount ?? 24) / 8) + 3)),
+  );
+  const blueprintForms = blueprintCount(blueprint, "form");
+  const blueprintVideos = blueprintCount(blueprint, "video");
+  const blueprintTestimonials = blueprintCount(blueprint, "testimonial");
+
   const vars: Vars = {
     "--site-bg": site.palette.bg,
     "--site-surface": site.palette.surface,
@@ -139,7 +156,7 @@ export function SiteRenderer({ site }: { site: SiteModel }) {
                 ))}
               </div>
             </div>
-            <HeroArtwork variant={site.variant} />
+            <HeroArtwork variant={site.variant} density={blueprintDensity} />
           </div>
         </section>
 
@@ -162,6 +179,32 @@ export function SiteRenderer({ site }: { site: SiteModel }) {
                 </article>
               ))}
             </div>
+
+            {blueprint ? (
+              <div className="mt-8 flex flex-wrap gap-2 text-[10px] font-bold text-[color-mix(in_srgb,var(--site-text)_48%,transparent)]">
+                <span className="rounded-full border border-white/10 px-3 py-1.5">
+                  {blueprint.sectionCount ?? 0} seções-base
+                </span>
+                <span className="rounded-full border border-white/10 px-3 py-1.5">
+                  {blueprint.widgetCount ?? 0} elementos-base
+                </span>
+                {blueprintVideos > 0 ? (
+                  <span className="rounded-full border border-white/10 px-3 py-1.5">
+                    composição com vídeo
+                  </span>
+                ) : null}
+                {blueprintForms > 0 ? (
+                  <span className="rounded-full border border-white/10 px-3 py-1.5">
+                    composição com formulário
+                  </span>
+                ) : null}
+                {blueprintTestimonials > 0 ? (
+                  <span className="rounded-full border border-white/10 px-3 py-1.5">
+                    composição com prova social
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         </section>
 
