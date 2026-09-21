@@ -1,9 +1,4 @@
-import { CommerceHero } from "@/components/home/commerce-hero";
-import { CategoryShortcuts } from "@/components/home/category-shortcuts";
-import { FeaturedProducts } from "@/components/home/featured-products";
-import { PromoHighlights } from "@/components/home/promo-highlights";
-import { FeatureBanners } from "@/components/home/feature-banners";
-import { TrustStrip } from "@/components/home/trust-strip";
+import { StorefrontReference } from "@/components/home/storefront-reference";
 import { getPublicCatalog } from "@/lib/commerce-db";
 import { CATEGORIES, type BadgeId, type Product } from "@/lib/data";
 
@@ -53,7 +48,7 @@ export default async function HomePage() {
         CATEGORIES[0];
 
       const firstBadge = listing.badges.find((badge): badge is BadgeId =>
-        validBadges.has(badge as BadgeId)
+        validBadges.has(badge as BadgeId),
       );
 
       return {
@@ -75,19 +70,12 @@ export default async function HomePage() {
     });
 
   return (
-    <div className="nv-home min-h-screen pb-5">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CommerceHero />
-      <CategoryShortcuts />
-      <PromoHighlights />
-      <FeaturedProducts products={products} />
-      <TrustStrip />
-      <div id="colecoes" className="scroll-mt-36">
-        <FeatureBanners />
-      </div>
-    </div>
+      <StorefrontReference products={products} />
+    </>
   );
 }

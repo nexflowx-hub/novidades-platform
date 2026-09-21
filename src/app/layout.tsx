@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/layout/top-header";
@@ -10,6 +10,12 @@ import { CookieConsent } from "@/components/privacy/cookie-consent";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
 });
@@ -77,7 +83,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
+        className={`${inter.variable} ${montserrat.variable} ${playfair.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
         <SiteHeader />
         <main className="flex-1">{children}</main>

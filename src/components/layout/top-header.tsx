@@ -5,15 +5,16 @@ import Link from "next/link";
 import {
   BadgePercent,
   ChevronDown,
+  Gem,
   Gift,
+  GraduationCap,
   Heart,
-  LayoutGrid,
   Menu,
-  PackageSearch,
+  Search,
   ShoppingCart,
   Sparkles,
-  Star,
   UserRound,
+  Zap,
 } from "lucide-react";
 import { useMounted } from "@/hooks/use-mounted";
 import { CATEGORIES } from "@/lib/data";
@@ -21,7 +22,6 @@ import { useUI, type CatalogFilter } from "@/lib/store/ui";
 import { useFavorites } from "@/lib/store/favorites";
 import { useCart } from "@/lib/store/cart";
 import { scrollToId } from "@/lib/scroll";
-import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,57 +32,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { RegionSelector } from "./region-selector";
 
-const NAV_FILTERS: Array<{
-  id: string;
-  label: string;
-  icon: React.ElementType;
-  filter: CatalogFilter;
-  className?: string;
-}> = [
-  {
-    id: "ofertas",
-    label: "Ofertas Especiais",
-    icon: BadgePercent,
-    filter: { type: "badge", value: "oferta", label: "Ofertas Especiais" },
-    className: "text-red-300 hover:bg-red-500/10 hover:text-red-200",
-  },
-  {
-    id: "novidades",
-    label: "Novidades",
-    icon: Sparkles,
-    filter: { type: "badge", value: "novo", label: "Novidades" },
-  },
-  {
-    id: "mais-vendidos",
-    label: "Mais vendidos",
-    icon: Star,
-    filter: { type: "badge", value: "mais-vendido", label: "Mais vendidos" },
-  },
-];
-
-function Brand() {
-  return (
-    <div className="flex items-center gap-2.5">
-      <Image
-        src="/brand/novidades-mark.svg"
-        alt=""
-        width={58}
-        height={58}
-        priority
-        className="h-12 w-12 drop-shadow-[0_0_16px_rgba(0,216,255,.35)] lg:h-14 lg:w-14"
-      />
-      <div className="hidden leading-none sm:block">
-        <p className="text-[22px] font-black tracking-[-.04em] text-white lg:text-[25px]">
-          Novidades
-        </p>
-        <p className="mt-1 text-[10px] font-bold tracking-[.34em] text-cyan-300 uppercase">
-          Store
-        </p>
-      </div>
-    </div>
-  );
-}
-
 export function SiteHeader() {
   const mounted = useMounted();
   const openSearch = useUI((state) => state.openSearch);
@@ -91,181 +40,218 @@ export function SiteHeader() {
   const openCart = useUI((state) => state.openCart);
   const openAccount = useUI((state) => state.openAccount);
   const setFilter = useUI((state) => state.setFilter);
-  const activeFilter = useUI((state) => state.filter);
   const favCount = useFavorites((state) => state.ids.length);
   const cartCount = useCart((state) =>
-    state.items.reduce((total, item) => total + item.qty, 0)
+    state.items.reduce((total, item) => total + item.qty, 0),
   );
 
-  const goFeaturedWithFilter = (filter: CatalogFilter | null) => {
+  const applyFilter = (filter: CatalogFilter) => {
     setFilter(filter);
     scrollToId("destaques");
   };
 
-  const goCategory = (categoryId: string) => {
-    const category = CATEGORIES.find((item) => item.id === categoryId);
-    if (!category) return;
-    goFeaturedWithFilter({
-      type: "category",
-      value: category.id,
-      label: category.name,
-    });
-  };
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#03152f] text-white shadow-[0_12px_35px_rgba(0,12,40,.26)]">
-      <div className="hidden border-b border-white/7 bg-[#021126] lg:block">
-        <div className="mx-auto flex h-8 w-full max-w-[1440px] items-center justify-between px-8 text-[10px] text-white/65">
-          <p>
-            Bem-vindo à Novidades.store
-            <span className="ml-2 font-semibold text-cyan-300">Mais do que você procura.</span>
+    <header className="sticky top-0 z-50 w-full bg-[#021a38] text-white shadow-[0_10px_35px_rgba(0,8,28,.28)]">
+      <div className="hidden h-8 border-b border-cyan-200/10 bg-[#01162f] lg:block">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-5 text-[10px] text-white/72">
+          <p className="flex items-center gap-2">
+            <span className="text-white/85">Bem-vindo à Novidades.store</span>
+            <span className="text-cyan-300">› Mais do que você procura.</span>
           </p>
           <div className="flex items-center gap-5">
-            <Link href="/entregas" className="hover:text-white">Acompanhe seus pedidos</Link>
-            <Link href="/ajuda" className="hover:text-white">Ajuda &amp; Suporte</Link>
+            <Link href="/entregas" className="transition hover:text-cyan-300">
+              Acompanhe seus pedidos
+            </Link>
+            <Link href="/ajuda" className="transition hover:text-cyan-300">
+              Ajuda &amp; Suporte
+            </Link>
             <RegionSelector />
+            <button
+              type="button"
+              onClick={openAccount}
+              className="inline-flex items-center gap-1.5 transition hover:text-cyan-300"
+            >
+              <UserRound className="h-3.5 w-3.5" />
+              Conta
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex h-[68px] w-full max-w-[1440px] items-center gap-3 px-4 md:px-6 lg:h-[82px] lg:px-8">
+      <div className="mx-auto flex min-h-[78px] w-full max-w-[1440px] items-center gap-3 px-3 md:px-5 lg:h-[82px]">
         <button
           type="button"
-          aria-label="Abrir menu"
           onClick={openMobileMenu}
-          className="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white transition hover:bg-white/8 lg:hidden"
+          aria-label="Abrir menu"
+          className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-200/12 bg-white/5 lg:hidden"
         >
-          <Menu className="h-6 w-6" aria-hidden="true" />
+          <Menu className="h-5 w-5" />
         </button>
 
-        <Link href="/" aria-label="Novidades.store — início" className="shrink-0">
-          <Brand />
+        <Link href="/" className="flex shrink-0 items-center gap-2" aria-label="Novidades.store">
+          <Image
+            src="/brand/novidades-mark.svg"
+            alt=""
+            width={58}
+            height={58}
+            priority
+            className="h-[52px] w-[52px] drop-shadow-[0_0_13px_rgba(0,216,255,.34)] lg:h-[58px] lg:w-[58px]"
+          />
+          <div className="leading-none">
+            <p className="nv-display text-[26px] font-black tracking-[-.045em] text-white lg:text-[29px]">
+              Novidades
+            </p>
+            <p className="mt-1 text-center text-[9px] font-black tracking-[.48em] text-cyan-300 lg:text-[10px]">
+              STORE
+            </p>
+          </div>
         </Link>
 
-        <div className="hidden flex-1 justify-center px-5 lg:flex">
-          <button
-            type="button"
-            onClick={openSearch}
-            aria-label="Buscar produtos, categorias ou marcas"
-            className="group flex h-[50px] w-full max-w-[690px] items-center overflow-hidden rounded-[14px] border border-cyan-300/55 bg-white text-left shadow-[0_0_26px_rgba(0,157,255,.22)] transition hover:shadow-[0_0_34px_rgba(0,184,255,.32)]"
-          >
-            <SearchPlaceholder />
-            <span className="grid h-full w-14 place-items-center bg-gradient-to-br from-[#0b8cff] to-[#0451c7] text-white">
-              <PackageSearch className="h-5 w-5" aria-hidden="true" />
-            </span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={openSearch}
+          className="mx-auto hidden h-[48px] w-full max-w-[650px] items-center overflow-hidden rounded-full border border-cyan-300/65 bg-white text-left shadow-[0_0_18px_rgba(0,163,255,.38)] lg:flex"
+          aria-label="Pesquisar"
+        >
+          <span className="flex flex-1 items-center px-5 text-[12px] text-slate-600">
+            O que você procura hoje?
+          </span>
+          <span className="flex h-full min-w-[150px] items-center justify-center gap-2 border-l border-slate-200 bg-[#f9fbfd] px-4 text-[10px] font-semibold text-slate-700">
+            Todas as categorias
+            <ChevronDown className="h-3.5 w-3.5" />
+          </span>
+          <span className="grid h-full w-[52px] place-items-center bg-[#087bff] text-white shadow-[0_0_17px_rgba(0,123,255,.45)]">
+            <Search className="h-5 w-5" />
+          </span>
+        </button>
 
-        <div className="ml-auto hidden items-center gap-1 lg:flex">
-          <HeaderAction label="Minha conta" onClick={openAccount} icon={UserRound} />
+        <div className="ml-auto hidden items-center gap-2 lg:flex">
+          <HeaderAction label="Minha conta" icon={UserRound} onClick={openAccount} />
           <HeaderAction
             label="Favoritos"
-            onClick={openFavorites}
             icon={Heart}
+            onClick={openFavorites}
             badge={mounted ? favCount : 0}
           />
           <HeaderAction
             label="Carrinho"
-            onClick={openCart}
             icon={ShoppingCart}
+            onClick={openCart}
             badge={mounted ? cartCount : 0}
           />
         </div>
 
         <button
           type="button"
-          aria-label="Abrir carrinho"
           onClick={openCart}
-          className="relative z-10 ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white transition hover:bg-white/8 lg:hidden"
+          aria-label="Abrir carrinho"
+          className="relative ml-auto grid h-10 w-10 place-items-center rounded-lg border border-cyan-200/12 bg-white/5 lg:hidden"
         >
-          <ShoppingCart className="h-[22px] w-[22px]" aria-hidden="true" />
+          <ShoppingCart className="h-5 w-5" />
           {mounted && cartCount > 0 ? (
-            <span className="absolute right-0 top-0 grid h-4 min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[9px] font-black text-white">
+            <span className="absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[9px] font-black">
               {cartCount > 9 ? "9+" : cartCount}
             </span>
           ) : null}
         </button>
       </div>
 
-      <div className="px-4 pb-3 lg:hidden">
+      <div className="px-3 pb-3 lg:hidden">
         <button
           type="button"
           onClick={openSearch}
-          aria-label="Buscar produtos e categorias"
-          className="flex h-[44px] w-full items-center gap-2.5 rounded-xl border border-cyan-300/35 bg-white px-4 text-left shadow-[0_0_20px_rgba(0,157,255,.16)]"
+          className="flex h-11 w-full items-center gap-2 rounded-full border border-cyan-300/35 bg-white px-4 text-left text-xs text-slate-600"
         >
-          <SearchPlaceholder />
+          <Search className="h-4 w-4 text-slate-500" />
+          O que você procura hoje?
         </button>
       </div>
 
-      <nav aria-label="Navegação principal" className="hidden border-t border-white/7 bg-[#041a38] lg:block">
-        <div className="mx-auto flex h-[50px] w-full max-w-[1440px] items-center gap-1 px-8">
+      <nav className="border-t border-cyan-200/10 bg-[#031c3d]" aria-label="Navegação principal">
+        <div className="scrollbar-none mx-auto flex h-[48px] w-full max-w-[1440px] items-center gap-1 overflow-x-auto px-3 md:px-5">
           <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex h-9 items-center gap-2 rounded-lg bg-[#082c5d] px-4 text-[12px] font-bold text-white transition hover:bg-[#0a3978] focus-visible:outline-none">
-              <LayoutGrid className="h-4 w-4" aria-hidden="true" />
+            <DropdownMenuTrigger className="inline-flex h-9 shrink-0 items-center gap-2 rounded-lg border border-cyan-300/15 bg-[#073465] px-4 text-[11px] font-black text-white outline-none">
+              <Menu className="h-4 w-4" />
               Todas as categorias
-              <ChevronDown className="h-3.5 w-3.5 text-white/60" aria-hidden="true" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-72">
-              <DropdownMenuLabel className="text-xs text-muted-foreground">
-                Explore por categoria
-              </DropdownMenuLabel>
+              <DropdownMenuLabel>Categorias</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {CATEGORIES.map((category) => (
-                <DropdownMenuItem key={category.id} onSelect={() => goCategory(category.id)}>
+                <DropdownMenuItem
+                  key={category.id}
+                  onSelect={() =>
+                    applyFilter({
+                      type: "category",
+                      value: category.id,
+                      label: category.name,
+                    })
+                  }
+                >
                   {category.name}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {NAV_FILTERS.map((item) => {
-            const Icon = item.icon;
-            const isActive =
-              activeFilter?.type === "badge" &&
-              activeFilter.value === item.filter.value;
-
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => goFeaturedWithFilter(item.filter)}
-                className={cn(
-                  "inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-[12px] font-semibold text-white/75 transition hover:bg-white/7 hover:text-white",
-                  item.className,
-                  isActive && "bg-white/10 text-white"
-                )}
-              >
-                <Icon className="h-4 w-4" aria-hidden="true" />
-                {item.label}
-              </button>
-            );
-          })}
+          <NavButton
+            icon={BadgePercent}
+            label="Ofertas Especiais"
+            sale
+            onClick={() =>
+              applyFilter({
+                type: "badge",
+                value: "oferta",
+                label: "Ofertas Especiais",
+              })
+            }
+          />
+          <NavButton
+            icon={Sparkles}
+            label="Novidades"
+            onClick={() =>
+              applyFilter({
+                type: "badge",
+                value: "novo",
+                label: "Novidades",
+              })
+            }
+          />
+          <NavButton
+            icon={Zap}
+            label="Mais Vendidos"
+            onClick={() =>
+              applyFilter({
+                type: "badge",
+                value: "mais-vendido",
+                label: "Mais vendidos",
+              })
+            }
+          />
 
           <Link
             href="/conteudos-digitais"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-[12px] font-extrabold text-cyan-300 transition hover:bg-cyan-300/10"
+            className="inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-white/82 transition hover:bg-white/7 hover:text-cyan-300"
           >
-            <Sparkles className="h-4 w-4" aria-hidden="true" />
+            <GraduationCap className="h-4 w-4" />
             Academia Digital
           </Link>
 
           <button
             type="button"
             onClick={() => scrollToId("colecoes")}
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-[12px] font-semibold text-white/75 transition hover:bg-white/7 hover:text-white"
+            className="inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-white/82 transition hover:bg-white/7 hover:text-cyan-300"
           >
-            <Gift className="h-4 w-4" aria-hidden="true" />
-            Coleções
+            <Gift className="h-4 w-4" />
+            Presentes
           </button>
-
-          <InfoMenu />
 
           <Link
             href="/sobre"
-            className="ml-auto inline-flex h-9 items-center gap-1.5 rounded-lg border border-cyan-300/20 bg-cyan-300/7 px-3 text-[12px] font-bold text-cyan-200"
+            className="ml-auto inline-flex h-9 shrink-0 items-center gap-2 rounded-lg border border-cyan-300/20 bg-[#04284f] px-4 text-[11px] font-black text-cyan-300"
           >
-            Nossas marcas
+            <Gem className="h-4 w-4" />
+            Nossas Marcas
           </Link>
         </div>
       </nav>
@@ -275,25 +261,25 @@ export function SiteHeader() {
 
 function HeaderAction({
   label,
-  onClick,
   icon: Icon,
+  onClick,
   badge = 0,
 }: {
   label: string;
-  onClick: () => void;
   icon: React.ElementType;
+  onClick: () => void;
   badge?: number;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="relative flex h-[58px] w-[78px] flex-col items-center justify-center gap-1 rounded-xl text-white/80 transition hover:bg-white/7 hover:text-white"
+      className="relative flex h-[58px] w-[66px] flex-col items-center justify-center gap-1 rounded-lg text-white/88 transition hover:bg-white/6 hover:text-cyan-300"
     >
-      <Icon className="h-[22px] w-[22px]" aria-hidden="true" />
-      <span className="text-[10px] font-semibold">{label}</span>
+      <Icon className="h-5 w-5" />
+      <span className="text-[9px] font-semibold">{label}</span>
       {badge > 0 ? (
-        <span className="absolute right-2 top-1 grid h-[17px] min-w-[17px] place-items-center rounded-full bg-red-500 px-1 text-[9px] font-black text-white">
+        <span className="absolute right-2 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[8px] font-black text-white">
           {badge > 99 ? "99+" : badge}
         </span>
       ) : null}
@@ -301,56 +287,29 @@ function HeaderAction({
   );
 }
 
-function SearchPlaceholder() {
+function NavButton({
+  icon: Icon,
+  label,
+  onClick,
+  sale = false,
+}: {
+  icon: React.ElementType;
+  label: string;
+  onClick: () => void;
+  sale?: boolean;
+}) {
   return (
-    <>
-      <svg
-        className="h-4.5 w-4.5 shrink-0 text-[#74849c]"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        aria-hidden="true"
-      >
-        <circle cx="11" cy="11" r="7" />
-        <path d="m20 20-3.5-3.5" />
-      </svg>
-      <span className="flex-1 truncate text-[13px] text-[#718096] md:text-sm">
-        O que você procura hoje?
-      </span>
-    </>
-  );
-}
-
-function InfoMenu() {
-  const links = [
-    { label: "Sobre", href: "/sobre" },
-    { label: "Contato", href: "/contato" },
-    { label: "Central de Ajuda", href: "/ajuda" },
-    { label: "Entregas", href: "/entregas" },
-    { label: "Pagamentos", href: "/pagamentos" },
-    { label: "Trocas e Devoluções", href: "/trocas-e-devolucoes" },
-    { label: "Informações Legais", href: "/informacoes-legais" },
-  ];
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="inline-flex h-9 items-center gap-1 rounded-lg px-3 text-[12px] font-semibold text-white/65 transition hover:bg-white/7 hover:text-white focus-visible:outline-none">
-        Mais
-        <ChevronDown className="h-3.5 w-3.5 opacity-60" aria-hidden="true" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-60">
-        <DropdownMenuLabel className="text-xs text-muted-foreground">
-          Institucional
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        {links.map((link) => (
-          <DropdownMenuItem key={link.href} asChild>
-            <Link href={link.href}>{link.label}</Link>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <button
+      type="button"
+      onClick={onClick}
+      className={
+        sale
+          ? "inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-red-300 transition hover:bg-red-500/10"
+          : "inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-white/82 transition hover:bg-white/7 hover:text-cyan-300"
+      }
+    >
+      <Icon className="h-4 w-4" />
+      {label}
+    </button>
   );
 }

@@ -250,3 +250,90 @@
 @utility pb-safe {
   padding-bottom: max(env(safe-area-inset-bottom), 0px);
 }
+
+
+/* --------------------------------------------------------------------------
+   Novidades.store reference-home implementation
+   Visual target: approved futuristic marketplace mockup.
+   -------------------------------------------------------------------------- */
+
+.nv-display {
+  font-family: var(--font-montserrat), var(--font-inter), system-ui, sans-serif;
+}
+
+.nv-reference-page {
+  color: #fff;
+  background:
+    radial-gradient(circle at 52% 0%, rgba(0, 126, 255, 0.13), transparent 24rem),
+    linear-gradient(180deg, #031b39 0%, #02152e 52%, #011126 100%);
+}
+
+.nv-reference-shell {
+  position: relative;
+  width: min(calc(100% - 28px), 1440px);
+  margin-inline: auto;
+}
+
+.nv-reference-medallion {
+  position: relative;
+  display: block;
+  width: clamp(78px, 9.5vw, 104px);
+  height: clamp(78px, 9.5vw, 104px);
+  border-radius: 999px;
+  padding: 4px;
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #72869c 14%,
+      #f9fdff 31%,
+      #8297ac 47%,
+      #ffffff 63%,
+      #60788f 82%,
+      #f8fcff 100%
+    );
+  box-shadow:
+    0 7px 18px rgba(0, 4, 20, 0.46),
+    0 0 12px rgba(0, 216, 255, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.group:hover .nv-reference-medallion {
+  transform: translateY(-4px) scale(1.025);
+  box-shadow:
+    0 10px 24px rgba(0, 4, 20, 0.5),
+    0 0 18px rgba(0, 216, 255, 0.48);
+}
+
+.nv-reference-medallion-sale {
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(255, 205, 78, 0.72);
+  background:
+    radial-gradient(circle at 36% 25%, #ff7c30 0%, #da102c 44%, #5e0612 84%);
+  box-shadow:
+    0 7px 18px rgba(0, 4, 20, 0.46),
+    0 0 18px rgba(242, 31, 61, 0.55),
+    inset 0 0 18px rgba(255, 200, 70, 0.18);
+}
+
+@media (max-width: 1023px) {
+  .nv-reference-shell {
+    width: min(calc(100% - 24px), 1440px);
+  }
+}
+
+@media (max-width: 639px) {
+  .nv-reference-shell {
+    width: min(calc(100% - 20px), 1440px);
+  }
+
+  .nv-reference-page {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(0, 126, 255, 0.16), transparent 19rem),
+      linear-gradient(180deg, #031b39 0%, #02152e 60%, #011126 100%);
+  }
+}
