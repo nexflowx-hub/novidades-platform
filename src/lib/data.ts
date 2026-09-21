@@ -285,6 +285,24 @@ export const PRODUCTS: Product[] = [
     requiresShipping: false,
   },
   {
+    id: "primeiro-filhote-90-dias",
+    slug: "primeiro-filhote-90-dias",
+    name: "Primeiro Filhote - 90 Dias",
+    categoryId: "conteudos-digitais",
+    price: 57,
+    currency: "BRL",
+    badge: "novo",
+    image: "/images/products/primeiro-filhote-90-dias.svg",
+    tagline: "Guia + planner + checklists para as primeiras semanas.",
+    description:
+      "Sistema prático para rotina, treino baseado em recompensa, socialização, trackers e perguntas ao veterinário.",
+    storefrontUrl:
+      "https://novidades.store/conteudos-digitais/primeiro-filhote-90-dias",
+    published: true,
+    fulfillmentType: "digital",
+    requiresShipping: false,
+  },
+  {
     id: "creator-growth-suite",
     slug: "creator-growth-suite",
     name: "Creator Growth Suite",
