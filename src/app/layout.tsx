@@ -1,12 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
-import { SiteHeader } from "@/components/layout/top-header";
-import { SiteFooter } from "@/components/layout/footer";
-import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
-import { Overlays } from "@/components/layout/overlays";
-import { CookieConsent } from "@/components/privacy/cookie-consent";
+import { AppChrome } from "@/components/layout/app-chrome";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -85,13 +80,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${montserrat.variable} ${playfair.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
-        <MobileBottomNav />
-        <Overlays />
-        <CookieConsent />
-        <Toaster position="top-center" richColors closeButton />
+        <AppChrome>{children}</AppChrome>
       </body>
     </html>
   );
