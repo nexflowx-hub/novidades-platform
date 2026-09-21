@@ -267,6 +267,38 @@ const DIGITAL_DETAILS: Record<
     checkoutMicrocopy:
       "6 produtos · valor separado R$ 362 · suite R$ 219 · sem assinatura.",
   },
+  "primeiro-filhote-90-dias": {
+    intro:
+      "Companheiro prático para organizar os primeiros 90 dias com um filhote: rotina, aprendizagem baseada em recompensa, socialização, trackers, regras da família e preparação de perguntas ao veterinário. Não substitui avaliação veterinária ou comportamental individual.",
+    deliverables: [
+      "Guia Primeiro Filhote - 90 Dias",
+      "Planner 90 Dias - XLSX editável",
+      "Planner 90 Dias - versão imprimível",
+      "Checklist Casa & Primeiras 72 Horas",
+      "Trackers de eliminação e treino",
+      "Diário de Socialização & Exposição",
+      "Veterinário & Quando Pedir Ajuda",
+      "Regras da Família",
+      "Customer License & Terms",
+      "Notas de Fontes & Segurança",
+    ],
+    highlights: [
+      {
+        title: "Rotina sem promessas mágicas",
+        body: "Ajuda a descobrir padrões reais do filhote sem prometer treino perfeito em prazo fixo.",
+      },
+      {
+        title: "Abordagem baseada em recompensa",
+        body: "Conteúdo alinhado a orientação atual de comportamento animal, sem métodos de medo, dor ou intimidação.",
+      },
+      {
+        title: "Saúde com limite claro",
+        body: "Organiza observações e perguntas, mas vacinação, medicação, nutrição e tratamento ficam com o médico-veterinário.",
+      },
+    ],
+    checkoutMicrocopy:
+      "Guia + planner + checklists · produto educativo e organizacional · pagamento único.",
+  },
   "social-content-os": {
     intro:
       "Sistema multicanal 30/60/90 dias para transformar ideias verificadas em conteúdo com funções claras: attract, educate, demonstrate, de-risk, convert e activate.",
