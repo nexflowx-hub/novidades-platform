@@ -1,0 +1,50 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="140" y1="100" x2="1080" y2="1120" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#E8F6F2"/>
+    <stop offset="1" stop-color="#F8F2E8"/>
+  </linearGradient>
+  <linearGradient id="accent" x1="365" y1="318" x2="806" y2="845" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#1C9C91"/>
+    <stop offset="1" stop-color="#126B75"/>
+  </linearGradient>
+  <filter id="shadow" x="180" y="175" width="840" height="860" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <feDropShadow dx="0" dy="28" stdDeviation="30" flood-color="#0F2533" flood-opacity=".15"/>
+  </filter>
+</defs>
+<rect width="1200" height="1200" rx="72" fill="url(#bg)"/>
+<circle cx="980" cy="170" r="190" fill="#CFECE5" fill-opacity=".65"/>
+<circle cx="165" cy="1025" r="230" fill="#F0DFC2" fill-opacity=".55"/>
+<g filter="url(#shadow)">
+  <rect x="250" y="205" width="700" height="790" rx="48" fill="white"/>
+</g>
+<rect x="250" y="205" width="700" height="160" rx="48" fill="url(#accent)"/>
+<rect x="250" y="318" width="700" height="47" fill="url(#accent)"/>
+<text x="305" y="275" fill="#DFF8F4" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" letter-spacing="5">NOVIDADES DIGITAL · PETS</text>
+<text x="305" y="455" fill="#132238" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">Primeiro</text>
+<text x="305" y="535" fill="#132238" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">Filhote</text>
+<text x="305" y="602" fill="#178C8C" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800">90 DIAS</text>
+<text x="305" y="660" fill="#63717E" font-family="Arial, Helvetica, sans-serif" font-size="29">Guia + Planner + Checklists</text>
+<g transform="translate(305 730)">
+  <ellipse cx="125" cy="72" rx="90" ry="72" fill="#E6F4F1"/>
+  <circle cx="85" cy="30" r="29" fill="#178C8C"/>
+  <circle cx="166" cy="30" r="29" fill="#178C8C"/>
+  <ellipse cx="126" cy="72" rx="57" ry="50" fill="#178C8C"/>
+  <circle cx="107" cy="62" r="6" fill="white"/>
+  <circle cx="145" cy="62" r="6" fill="white"/>
+  <ellipse cx="126" cy="82" rx="11" ry="8" fill="#132238"/>
+  <path d="M110 98C119 109 133 109 142 98" stroke="#132238" stroke-width="6" stroke-linecap="round"/>
+</g>
+<g transform="translate(560 735)">
+  <rect width="255" height="56" rx="14" fill="#F2F6F7"/>
+  <circle cx="26" cy="28" r="10" fill="#178C8C"/>
+  <text x="48" y="36" fill="#243242" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Rotina realista</text>
+  <rect y="75" width="255" height="56" rx="14" fill="#F2F6F7"/>
+  <circle cx="26" cy="103" r="10" fill="#178C8C"/>
+  <text x="48" y="111" fill="#243242" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Recompensa</text>
+  <rect y="150" width="255" height="56" rx="14" fill="#F2F6F7"/>
+  <circle cx="26" cy="178" r="10" fill="#178C8C"/>
+  <text x="48" y="186" fill="#243242" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Socialização segura</text>
+</g>
+<text x="305" y="935" fill="#84909B" font-family="Arial, Helvetica, sans-serif" font-size="20">RELEASE 1.0 · GUIA EDUCACIONAL E ORGANIZACIONAL</text>
+</svg>
