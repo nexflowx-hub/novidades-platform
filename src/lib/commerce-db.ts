@@ -59,7 +59,8 @@ function safeProductImage(slug: string, remote?: string | null) {
     "digital-product-launch-kit": "/images/products/digital-product-launch-kit.svg",
     "creator-prompt-library": "/images/products/creator-prompt-library.svg",
     "creator-growth-suite": "/images/products/creator-growth-suite.svg",
-    "social-content-os": "/images/products/social-content-os.svg",\n    "primeiro-filhote-90-dias": "/images/products/primeiro-filhote-90-dias.svg",
+    "social-content-os": "/images/products/social-content-os.svg",
+    "primeiro-filhote-90-dias": "/images/products/primeiro-filhote-90-dias.svg",
   };
 
   return localImages[slug] ?? "/images/products/signum-patina-real.webp";
