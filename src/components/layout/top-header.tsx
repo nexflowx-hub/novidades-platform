@@ -51,57 +51,60 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#021a38] text-white shadow-[0_10px_35px_rgba(0,8,28,.28)]">
-      <div className="hidden h-8 border-b border-cyan-200/10 bg-[#01162f] lg:block">
-        <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-5 text-[10px] text-white/72">
-          <p className="flex items-center gap-2">
-            <span className="text-white/85">Bem-vindo à Novidades.store</span>
+    <header className="sticky top-0 z-50 w-full bg-[#021a38] text-white shadow-[0_8px_28px_rgba(0,8,28,.26)]">
+      <div className="hidden h-[31px] border-b border-cyan-200/10 bg-[#01162f] lg:block">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-[22px] text-[9px] text-white/72">
+          <p className="flex items-center gap-[7px]">
+            <span className="text-white/88">✦ Bem-vindo à Novidades.store</span>
             <span className="text-cyan-300">› Mais do que você procura.</span>
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-[17px]">
             <Link href="/entregas" className="transition hover:text-cyan-300">
-              Acompanhe seus pedidos
+              ▣ Acompanhe seus pedidos
             </Link>
             <Link href="/ajuda" className="transition hover:text-cyan-300">
-              Ajuda &amp; Suporte
+              ◌ Ajuda &amp; Suporte
             </Link>
             <RegionSelector />
             <button
               type="button"
               onClick={openAccount}
-              className="inline-flex items-center gap-1.5 transition hover:text-cyan-300"
+              className="inline-flex items-center gap-1 transition hover:text-cyan-300"
             >
-              <UserRound className="h-3.5 w-3.5" />
+              <UserRound className="h-[12px] w-[12px]" />
               Conta
+              <ChevronDown className="h-[11px] w-[11px]" />
             </button>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex min-h-[78px] w-full max-w-[1440px] items-center gap-3 px-3 md:px-5 lg:h-[82px]">
+      <div className="mx-auto flex h-[84px] w-full max-w-[1440px] items-center gap-[14px] px-[14px] md:px-[20px]">
         <button
           type="button"
           onClick={openMobileMenu}
           aria-label="Abrir menu"
-          className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-200/12 bg-white/5 lg:hidden"
+          className="grid h-10 w-10 place-items-center rounded-[7px] border border-cyan-200/12 bg-white/5 lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
 
-        <Link href="/" className="flex shrink-0 items-center gap-2" aria-label="Novidades.store">
-          <Image
-            src="/brand/novidades-mark.svg"
-            alt=""
-            width={58}
-            height={58}
-            priority
-            className="h-[52px] w-[52px] drop-shadow-[0_0_13px_rgba(0,216,255,.34)] lg:h-[58px] lg:w-[58px]"
-          />
+        <Link href="/" className="flex shrink-0 items-center gap-[8px]" aria-label="Novidades.store">
+          <span className="relative block h-[70px] w-[66px] overflow-hidden rounded-[10px]">
+            <Image
+              src="/brand/reference/header-logo.webp"
+              alt=""
+              fill
+              priority
+              sizes="66px"
+              className="object-cover"
+            />
+          </span>
           <div className="leading-none">
-            <p className="nv-display text-[26px] font-black tracking-[-.045em] text-white lg:text-[29px]">
+            <p className="nv-display text-[30px] font-black tracking-[-.055em] text-white">
               Novidades
             </p>
-            <p className="mt-1 text-center text-[9px] font-black tracking-[.48em] text-cyan-300 lg:text-[10px]">
+            <p className="mt-[5px] text-center text-[10px] font-black tracking-[.48em] text-cyan-300">
               STORE
             </p>
           </div>
@@ -110,22 +113,22 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={openSearch}
-          className="mx-auto hidden h-[48px] w-full max-w-[650px] items-center overflow-hidden rounded-full border border-cyan-300/65 bg-white text-left shadow-[0_0_18px_rgba(0,163,255,.38)] lg:flex"
+          className="mx-auto hidden h-[40px] w-full max-w-[480px] items-center overflow-hidden rounded-full border border-cyan-300/65 bg-white text-left shadow-[0_0_17px_rgba(0,163,255,.42)] lg:flex"
           aria-label="Pesquisar"
         >
-          <span className="flex flex-1 items-center px-5 text-[12px] text-slate-600">
+          <span className="flex flex-1 items-center px-[20px] text-[11px] text-slate-600">
             O que você procura hoje?
           </span>
-          <span className="flex h-full min-w-[150px] items-center justify-center gap-2 border-l border-slate-200 bg-[#f9fbfd] px-4 text-[10px] font-semibold text-slate-700">
+          <span className="flex h-full min-w-[145px] items-center justify-center gap-[7px] border-l border-slate-200 bg-[#f9fbfd] px-[12px] text-[9px] font-semibold text-slate-700">
             Todas as categorias
-            <ChevronDown className="h-3.5 w-3.5" />
+            <ChevronDown className="h-[12px] w-[12px]" />
           </span>
-          <span className="grid h-full w-[52px] place-items-center bg-[#087bff] text-white shadow-[0_0_17px_rgba(0,123,255,.45)]">
-            <Search className="h-5 w-5" />
+          <span className="grid h-full w-[50px] place-items-center bg-[#087bff] text-white shadow-[0_0_16px_rgba(0,123,255,.45)]">
+            <Search className="h-[18px] w-[18px]" />
           </span>
         </button>
 
-        <div className="ml-auto hidden items-center gap-2 lg:flex">
+        <div className="ml-auto hidden items-center gap-[5px] lg:flex">
           <HeaderAction label="Minha conta" icon={UserRound} onClick={openAccount} />
           <HeaderAction
             label="Favoritos"
@@ -145,7 +148,7 @@ export function SiteHeader() {
           type="button"
           onClick={openCart}
           aria-label="Abrir carrinho"
-          className="relative ml-auto grid h-10 w-10 place-items-center rounded-lg border border-cyan-200/12 bg-white/5 lg:hidden"
+          className="relative ml-auto grid h-10 w-10 place-items-center rounded-[7px] border border-cyan-200/12 bg-white/5 lg:hidden"
         >
           <ShoppingCart className="h-5 w-5" />
           {mounted && cartCount > 0 ? (
@@ -156,11 +159,11 @@ export function SiteHeader() {
         </button>
       </div>
 
-      <div className="px-3 pb-3 lg:hidden">
+      <div className="px-[12px] pb-[10px] lg:hidden">
         <button
           type="button"
           onClick={openSearch}
-          className="flex h-11 w-full items-center gap-2 rounded-full border border-cyan-300/35 bg-white px-4 text-left text-xs text-slate-600"
+          className="flex h-[42px] w-full items-center gap-2 rounded-full border border-cyan-300/35 bg-white px-4 text-left text-xs text-slate-600"
         >
           <Search className="h-4 w-4 text-slate-500" />
           O que você procura hoje?
@@ -168,10 +171,10 @@ export function SiteHeader() {
       </div>
 
       <nav className="border-t border-cyan-200/10 bg-[#031c3d]" aria-label="Navegação principal">
-        <div className="scrollbar-none mx-auto flex h-[48px] w-full max-w-[1440px] items-center gap-1 overflow-x-auto px-3 md:px-5">
+        <div className="scrollbar-none mx-auto flex h-[40px] w-full max-w-[1440px] items-center gap-[5px] overflow-x-auto px-[20px]">
           <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex h-9 shrink-0 items-center gap-2 rounded-lg border border-cyan-300/15 bg-[#073465] px-4 text-[11px] font-black text-white outline-none">
-              <Menu className="h-4 w-4" />
+            <DropdownMenuTrigger className="inline-flex h-[34px] shrink-0 items-center gap-[8px] rounded-[7px] border border-cyan-300/15 bg-[#073465] px-[13px] text-[10px] font-extrabold text-white outline-none">
+              <Menu className="h-[16px] w-[16px]" />
               Todas as categorias
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-72">
@@ -231,26 +234,26 @@ export function SiteHeader() {
 
           <Link
             href="/conteudos-digitais"
-            className="inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-white/82 transition hover:bg-white/7 hover:text-cyan-300"
+            className="inline-flex h-[34px] shrink-0 items-center gap-[7px] rounded-[7px] px-[10px] text-[10px] font-extrabold text-white/86 transition hover:bg-white/7 hover:text-cyan-300"
           >
-            <GraduationCap className="h-4 w-4" />
+            <GraduationCap className="h-[15px] w-[15px]" />
             Academia Digital
           </Link>
 
           <button
             type="button"
             onClick={() => scrollToId("colecoes")}
-            className="inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-white/82 transition hover:bg-white/7 hover:text-cyan-300"
+            className="inline-flex h-[34px] shrink-0 items-center gap-[7px] rounded-[7px] px-[10px] text-[10px] font-extrabold text-white/86 transition hover:bg-white/7 hover:text-cyan-300"
           >
-            <Gift className="h-4 w-4" />
+            <Gift className="h-[15px] w-[15px]" />
             Presentes
           </button>
 
           <Link
             href="/sobre"
-            className="ml-auto inline-flex h-9 shrink-0 items-center gap-2 rounded-lg border border-cyan-300/20 bg-[#04284f] px-4 text-[11px] font-black text-cyan-300"
+            className="ml-auto inline-flex h-[34px] shrink-0 items-center gap-[7px] rounded-[7px] border border-cyan-300/22 bg-[#04284f] px-[17px] text-[10px] font-extrabold text-cyan-300"
           >
-            <Gem className="h-4 w-4" />
+            <Gem className="h-[15px] w-[15px]" />
             Nossas Marcas
           </Link>
         </div>
@@ -274,12 +277,12 @@ function HeaderAction({
     <button
       type="button"
       onClick={onClick}
-      className="relative flex h-[58px] w-[66px] flex-col items-center justify-center gap-1 rounded-lg text-white/88 transition hover:bg-white/6 hover:text-cyan-300"
+      className="relative flex h-[56px] w-[68px] flex-col items-center justify-center gap-[4px] rounded-[7px] text-white/90 transition hover:bg-white/6 hover:text-cyan-300"
     >
-      <Icon className="h-5 w-5" />
-      <span className="text-[9px] font-semibold">{label}</span>
+      <Icon className="h-[23px] w-[23px]" strokeWidth={1.8} />
+      <span className="text-[8px] font-semibold">{label}</span>
       {badge > 0 ? (
-        <span className="absolute right-2 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-red-500 px-1 text-[8px] font-black text-white">
+        <span className="absolute right-[5px] top-[1px] grid h-[17px] min-w-[17px] place-items-center rounded-full bg-red-500 px-1 text-[8px] font-black text-white">
           {badge > 99 ? "99+" : badge}
         </span>
       ) : null}
@@ -304,11 +307,11 @@ function NavButton({
       onClick={onClick}
       className={
         sale
-          ? "inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-red-300 transition hover:bg-red-500/10"
-          : "inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-[11px] font-black text-white/82 transition hover:bg-white/7 hover:text-cyan-300"
+          ? "inline-flex h-[34px] shrink-0 items-center gap-[7px] rounded-[7px] px-[10px] text-[10px] font-extrabold text-red-300 transition hover:bg-red-500/10"
+          : "inline-flex h-[34px] shrink-0 items-center gap-[7px] rounded-[7px] px-[10px] text-[10px] font-extrabold text-white/86 transition hover:bg-white/7 hover:text-cyan-300"
       }
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-[15px] w-[15px]" />
       {label}
     </button>
   );
