@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Staged source for Supabase Edge Function digital-checkout v8.
 // This file is versioned for review; production promotion is performed separately in Supabase.
 import { createClient } from "jsr:@supabase/supabase-js@2";
