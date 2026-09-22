@@ -166,7 +166,7 @@ export default async function DigitalContentPage() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-[1fr_auto]">
+        <div className="mt-8 grid gap-3 md:grid-cols-[1fr_auto_auto]">
           <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-4 text-sm text-muted-foreground shadow-card">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-success" />
             <p>
@@ -181,6 +181,13 @@ export default async function DigitalContentPage() {
           >
             <BookMarked className="h-4 w-4" aria-hidden="true" />
             Minha biblioteca
+          </Link>
+          <Link
+            href="/ebooks"
+            className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-border bg-white px-5 text-sm font-extrabold text-[#07142a] shadow-card"
+          >
+            <BookMarked className="h-4 w-4" aria-hidden="true" />
+            E-Books & Packs
           </Link>
         </div>
 
