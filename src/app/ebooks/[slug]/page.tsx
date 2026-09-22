@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -36,6 +37,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: item.title,
     description: item.description,
     alternates: { canonical: `https://novidades.store/ebooks/${item.slug}` },
+    openGraph: item.coverImage
+      ? {
+          title: item.title,
+          description: item.description,
+          images: [{ url: item.coverImage, alt: item.coverAlt ?? item.title }],
+        }
+      : undefined,
     robots: item.status === "live" ? undefined : { index: true, follow: true },
   };
 }
@@ -66,22 +74,40 @@ export default async function EbookProductPage({ params }: Props) {
       <section className="mx-auto grid max-w-[1180px] gap-8 px-4 py-9 md:px-6 lg:grid-cols-[.85fr_1.15fr] lg:py-14">
         <div>
           <div
-            className={`relative mx-auto aspect-[4/5] max-w-[390px] overflow-hidden rounded-[28px] bg-gradient-to-br ${item.coverTone} p-8 text-white shadow-[0_30px_80px_rgba(15,23,42,.28)]`}
+            className={`relative mx-auto aspect-[4/5] max-w-[390px] overflow-hidden rounded-[28px] bg-gradient-to-br ${item.coverTone} text-white shadow-[0_30px_80px_rgba(15,23,42,.28)]`}
           >
+            {item.coverImage ? (
+              <Image
+                src={item.coverImage}
+                alt={item.coverAlt ?? item.title}
+                fill
+                priority={item.status === "live"}
+                sizes="(max-width: 1024px) 390px, 32vw"
+                className="object-cover"
+              />
+            ) : null}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-slate-950/20" />
             <div className="absolute inset-y-0 left-6 w-px bg-white/18" />
-            <span className="text-[11px] font-black uppercase tracking-[0.18em] text-white/70">
-              Novidades · {item.kind === "pack" ? "Pack Digital" : "E-Book"}
-            </span>
-            <h1 className="mt-16 text-4xl font-black leading-[.98] tracking-[-0.055em]">
-              {item.title}
-            </h1>
-            <p className="mt-5 max-w-[85%] text-sm leading-6 text-white/75">
-              {item.subtitle}
-            </p>
+            <div className="absolute inset-x-0 top-0 flex items-center justify-between p-7">
+              <span className="rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-white/90 backdrop-blur">
+                Novidades · {item.kind === "pack" ? "Pack Digital" : "E-Book"}
+              </span>
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-8">
+              <h1 className="max-w-[92%] text-4xl font-black leading-[.98] tracking-[-0.055em] drop-shadow-lg">
+                {item.title}
+              </h1>
+              <p className="mt-4 max-w-[88%] text-sm leading-6 text-white/80">
+                {item.subtitle}
+              </p>
+              <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">
+                Pré-capa editorial
+              </p>
+            </div>
             {item.kind === "pack" ? (
-              <Layers3 className="absolute bottom-8 right-8 h-10 w-10 text-white/55" />
+              <Layers3 className="absolute bottom-8 right-8 h-10 w-10 text-white/50" />
             ) : (
-              <BookOpen className="absolute bottom-8 right-8 h-10 w-10 text-white/55" />
+              <BookOpen className="absolute bottom-8 right-8 h-10 w-10 text-white/50" />
             )}
           </div>
         </div>
