@@ -13,6 +13,8 @@ export type EbookItem = {
   kind: "ebook" | "pack";
   status: EbookStatus;
   coverTone: string;
+  coverImage?: string;
+  coverAlt?: string;
   highlights: string[];
   chapters: string[];
   includedSlugs?: string[];
