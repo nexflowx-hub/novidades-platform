@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -123,14 +124,33 @@ export default function EbooksPage() {
               href={`/ebooks/${item.slug}`}
               className="group overflow-hidden rounded-[22px] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,.08)] transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(15,23,42,.14)]"
             >
-              <div className={`relative aspect-[4/3] bg-gradient-to-br ${item.coverTone} p-5 text-white`}>
-                <span className="text-[10px] font-black uppercase tracking-[0.16em] text-white/70">
-                  E-Book
-                </span>
-                <p className="mt-7 max-w-[90%] text-2xl font-black leading-[1.02] tracking-[-0.04em]">
-                  {item.title}
-                </p>
-                <BookOpen className="absolute bottom-5 right-5 h-8 w-8 text-white/55" />
+              <div className={`relative aspect-[4/5] overflow-hidden bg-gradient-to-br ${item.coverTone} text-white`}>
+                {item.coverImage ? (
+                  <Image
+                    src={item.coverImage}
+                    alt={item.coverAlt ?? item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition duration-500 group-hover:scale-[1.035]"
+                  />
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/15 to-slate-950/15" />
+                <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5">
+                  <span className="rounded-full border border-white/25 bg-black/20 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.16em] text-white/90 backdrop-blur">
+                    E-Book
+                  </span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-white/65">
+                    Novidades
+                  </span>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="max-w-[92%] text-2xl font-black leading-[1.02] tracking-[-0.045em] drop-shadow-lg">
+                    {item.title}
+                  </p>
+                  <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.12em] text-white/70">
+                    Pré-capa editorial
+                  </p>
+                </div>
               </div>
               <div className="p-5">
                 <p className="text-[10px] font-black uppercase tracking-[0.12em] text-blue-700">
@@ -208,23 +228,38 @@ export default function EbooksPage() {
               id={item.categorySlug}
               key={item.slug}
               href={`/ebooks/${item.slug}`}
-              className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-300"
+              className="group grid min-h-[190px] grid-cols-[118px_1fr] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_8px_24px_rgba(15,23,42,.05)] transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-[0_14px_34px_rgba(15,23,42,.1)]"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-[0.12em] text-slate-500">
-                    {item.category}
-                  </p>
-                  <h3 className="mt-1 text-lg font-black">{item.title}</h3>
-                </div>
-                <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-black text-amber-900">
-                  EM QA
-                </span>
+              <div className={`relative min-h-full overflow-hidden bg-gradient-to-br ${item.coverTone}`}>
+                {item.coverImage ? (
+                  <Image
+                    src={item.coverImage}
+                    alt={item.coverAlt ?? item.title}
+                    fill
+                    sizes="118px"
+                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                  />
+                ) : null}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/10" />
+                <BookOpen className="absolute bottom-3 right-3 h-5 w-5 text-white/80" />
               </div>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.subtitle}</p>
-              <div className="mt-4 flex items-center gap-2 text-xs font-bold text-slate-500">
-                <CheckCircle2 className="h-4 w-4 text-slate-400" />
-                Checkout desativado até aprovação
+              <div className="p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-slate-500">
+                      {item.category}
+                    </p>
+                    <h3 className="mt-1 text-lg font-black leading-tight">{item.title}</h3>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-black text-amber-900">
+                    EM QA
+                  </span>
+                </div>
+                <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">{item.subtitle}</p>
+                <div className="mt-4 flex items-center gap-2 text-xs font-bold text-slate-500">
+                  <CheckCircle2 className="h-4 w-4 text-slate-400" />
+                  Checkout desativado até aprovação
+                </div>
               </div>
             </Link>
           ))}
