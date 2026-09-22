@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
+  BookOpen,
   CheckCircle2,
   Download,
   LoaderCircle,
@@ -17,6 +18,13 @@ type DownloadFile = {
   version: string;
   url: string;
   expiresIn: number;
+};
+
+type ReaderItem = {
+  sku: string;
+  slug: string;
+  title: string;
+  url: string;
 };
 
 type SavedAccess = {
@@ -49,7 +57,7 @@ function rememberAccess(access: SavedAccess) {
           typeof item.reference === "string" &&
           item.reference !== access.reference,
       ),
-    ].slice(0, 20);
+    ].slice(0, 30);
 
     localStorage.setItem("nv:digital:accesses", JSON.stringify(next));
   } catch {
@@ -78,6 +86,7 @@ export function DigitalAccessPanel({
     "checking" | "pending" | "ready" | "preparing" | "error"
   >("checking");
   const [files, setFiles] = useState<DownloadFile[]>([]);
+  const [readers, setReaders] = useState<ReaderItem[]>([]);
   const [message, setMessage] = useState("Validando o pagamento...");
 
   useEffect(() => {
@@ -183,15 +192,16 @@ export function DigitalAccessPanel({
         if (data.paid && !data.deliveryReady) {
           setState("preparing");
           setMessage(
-            "Pagamento confirmado. O pacote está a ser preparado para download.",
+            "Pagamento confirmado. O conteúdo está a ser preparado para acesso.",
           );
           return;
         }
 
-        setFiles(data.files ?? []);
+        setFiles(Array.isArray(data.files) ? data.files : []);
+        setReaders(Array.isArray(data.readers) ? data.readers : []);
         setState("ready");
         setMessage(
-          "Acesso liberado. Os links são privados e expiram em poucos minutos.",
+          "Acesso liberado. Abra a leitura online ou use os downloads privados disponíveis.",
         );
       } catch (err) {
         if (!cancelled) {
@@ -257,6 +267,22 @@ export function DigitalAccessPanel({
 
       {state === "ready" ? (
         <div className="mt-4 grid gap-2">
+          {readers.map((reader) => (
+            <a
+              key={reader.sku}
+              href={reader.url}
+              referrerPolicy="no-referrer"
+              rel="nofollow"
+              className="flex items-center justify-between gap-3 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-extrabold text-blue-950 transition hover:border-blue-400"
+            >
+              <span>Começar leitura — {reader.title}</span>
+              <BookOpen
+                className="h-4 w-4 shrink-0 text-blue-700"
+                aria-hidden="true"
+              />
+            </a>
+          ))}
+
           {files.map((file) => (
             <a
               key={file.id}
