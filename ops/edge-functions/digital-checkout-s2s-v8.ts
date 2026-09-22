@@ -218,18 +218,50 @@ Deno.serve(async (req: Request) => {
       return json({ message: "Preço PIX indisponível." }, 409);
     }
 
-    const { count: assetCount } = await supabase
-      .from("digital_assets")
-      .select("id", { count: "exact", head: true })
-      .eq("product_sku", product.sku)
-      .eq("active", true);
-    const { count: readerBlocks } = await supabase
-      .from("digital_content_blocks")
-      .select("id", { count: "exact", head: true })
-      .eq("product_slug", product.slug)
-      .eq("active", true);
+    const { data: inclusions, error: inclusionError } = await supabase
+      .from("digital_product_inclusions")
+      .select("included_sku,sort_order")
+      .eq("parent_sku", product.sku)
+      .eq("active", true)
+      .order("sort_order", { ascending: true });
+    if (inclusionError) throw inclusionError;
 
-    if (!(assetCount || 0) && !(readerBlocks || 0)) {
+    const deliverySkus = [
+      product.sku,
+      ...(inclusions || []).map((item: any) => String(item.included_sku)),
+    ];
+
+    const [{ count: assetCount }, deliveryProducts] = await Promise.all([
+      supabase
+        .from("digital_assets")
+        .select("id", { count: "exact", head: true })
+        .in("product_sku", deliverySkus)
+        .eq("active", true),
+      supabase
+        .from("products")
+        .select("sku,slug")
+        .in("sku", deliverySkus)
+        .eq("published", true),
+    ]);
+
+    if (deliveryProducts.error) throw deliveryProducts.error;
+
+    const deliverySlugs = (deliveryProducts.data || [])
+      .map((item: any) => String(item.slug || ""))
+      .filter(Boolean);
+
+    let readerBlocks = 0;
+    if (deliverySlugs.length) {
+      const { count, error } = await supabase
+        .from("digital_content_blocks")
+        .select("id", { count: "exact", head: true })
+        .in("product_slug", deliverySlugs)
+        .eq("active", true);
+      if (error) throw error;
+      readerBlocks = count || 0;
+    }
+
+    if (!(assetCount || 0) && !readerBlocks) {
       return json({ message: "Entrega digital ainda não está pronta." }, 409);
     }
 
