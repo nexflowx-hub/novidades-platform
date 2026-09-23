@@ -16,7 +16,7 @@ export default function TreinoMilitarCoachPage() {
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <Link
-              href="/treinomilitar"
+              href="https://treinomilitar.novidades.store"
               className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/45 hover:text-lime-300"
             >
               <ArrowLeft className="h-4 w-4" />
