@@ -96,7 +96,7 @@ export default function TreinoMilitarPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/treinomilitar/coach"
+                href="https://treinomilitar.novidades.store/coach"
                 className="inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 text-sm font-black uppercase tracking-wide text-white transition hover:border-lime-300/40 hover:bg-lime-300/8"
               >
                 <Bot className="h-4 w-4 text-lime-300" />
@@ -147,7 +147,7 @@ export default function TreinoMilitarPage() {
                 </div>
 
                 <Link
-                  href="/treinomilitar/coach"
+                  href="https://treinomilitar.novidades.store/coach"
                   className="mt-5 flex h-12 items-center justify-center gap-2 rounded-xl bg-white text-sm font-black text-black transition hover:bg-lime-200"
                 >
                   Abrir Coach IA
@@ -215,7 +215,7 @@ export default function TreinoMilitarPage() {
             </p>
 
             <Link
-              href="/treinomilitar/coach"
+              href="https://treinomilitar.novidades.store/coach"
               className="mt-8 inline-flex h-12 items-center gap-2 rounded-xl bg-lime-300 px-5 text-sm font-black text-[#071007]"
             >
               Conhecer o Coach IA
@@ -256,7 +256,7 @@ export default function TreinoMilitarPage() {
               Ver Academia Digital
             </Link>
             <Link
-              href="/treinomilitar/coach"
+              href="https://treinomilitar.novidades.store/coach"
               className="inline-flex h-12 items-center gap-2 rounded-xl bg-lime-300 px-5 text-sm font-black text-[#071007]"
             >
               <Zap className="h-4 w-4" />
