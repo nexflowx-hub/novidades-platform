@@ -1,0 +1,150 @@
+{
+  "version": "2026-09-26",
+  "total_titles": 437,
+  "normalized_categories": {
+    "desenvolvimento-pessoal": {
+      "label": "Desenvolvimento Pessoal",
+      "source_categories": [
+        "Coaching",
+        "Mindset",
+        "Produtividade",
+        "Prosperidade",
+        "Persuasão"
+      ],
+      "count": 7
+    },
+    "relacionamentos": {
+      "label": "Relacionamentos",
+      "source_categories": [
+        "Relacionamentos",
+        "Casamento"
+      ],
+      "count": 29
+    },
+    "culinaria": {
+      "label": "Culinária",
+      "source_categories": [
+        "Culinária"
+      ],
+      "count": 6
+    },
+    "pets": {
+      "label": "Pets",
+      "source_categories": [
+        "Cães e pets"
+      ],
+      "count": 3
+    },
+    "fitness-saude": {
+      "label": "Fitness & Saúde",
+      "source_categories": [
+        "Fitness",
+        "Musculação",
+        "Emagrecimento e saúde",
+        "Saúde",
+        "Alimentação e Dieta",
+        "Gravidez"
+      ],
+      "count": 60
+    },
+    "marketing": {
+      "label": "Marketing",
+      "source_categories": [
+        "Marketing de conteúdo",
+        "Marketing de afiliados",
+        "Marketing de Rede",
+        "Marketing Digital diversos",
+        "Email marketing",
+        "Redes sociais",
+        "Tráfego e SEO",
+        "Youtube Marketing",
+        "Blogging",
+        "Criação de sites"
+      ],
+      "count": 138
+    },
+    "financas": {
+      "label": "Finanças",
+      "source_categories": [
+        "Finanças",
+        "Investimentos"
+      ],
+      "count": 13
+    },
+    "negocios": {
+      "label": "Negócios",
+      "source_categories": [
+        "Negócios",
+        "Ganhar dinheiro",
+        "Imóveis"
+      ],
+      "count": 112
+    },
+    "casa-jardim": {
+      "label": "Casa & Jardim",
+      "source_categories": [
+        "Decoração",
+        "Construção",
+        "Jardinagem"
+      ],
+      "count": 11
+    },
+    "viagens": {
+      "label": "Viagens",
+      "source_categories": [
+        "Viagem",
+        "Viagens"
+      ],
+      "count": 9
+    },
+    "hobbies-cultura": {
+      "label": "Hobbies & Cultura",
+      "source_categories": [
+        "Musica",
+        "Mágica",
+        "Tatuagens",
+        "Design",
+        "História",
+        "Astrologia",
+        "Espiritualismo",
+        "Idiomas"
+      ],
+      "count": 16
+    },
+    "tecnologia-seguranca": {
+      "label": "Tecnologia & Segurança",
+      "source_categories": [
+        "Tecnologia",
+        "Segurança digital"
+      ],
+      "count": 14
+    },
+    "automotivo": {
+      "label": "Automotivo",
+      "source_categories": [
+        "Automóveis"
+      ],
+      "count": 3
+    },
+    "carreira-educacao": {
+      "label": "Carreira & Educação",
+      "source_categories": [
+        "Emprego"
+      ],
+      "count": 1
+    },
+    "outros": {
+      "label": "Outros",
+      "source_categories": [
+        "Nichos Diversos"
+      ],
+      "count": 15
+    }
+  },
+  "editorial_status_counts": {
+    "PUBLICAR APÓS QA": 70,
+    "ATUALIZAR": 295,
+    "REVISÃO ESPECIALIZADA": 57,
+    "EXCLUIR": 15
+  }
+}
