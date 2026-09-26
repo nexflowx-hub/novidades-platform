@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0433",
+  "title": "Marketing Líquido Livre da Dívida",
+  "category": "marketing",
+  "source_category": "Marketing de Rede",
+  "decision": "ATUALIZAR",
+  "priority": "P2",
+  "risk": "MÉDIO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "R$ 19,90–39,90 após revisão",
+  "suggested_pack": "Pack Marketing de Rede",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "ZIP auditado",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "rewrite_required"
+}

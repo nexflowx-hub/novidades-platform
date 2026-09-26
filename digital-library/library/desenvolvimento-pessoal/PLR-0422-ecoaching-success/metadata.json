@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0422",
+  "title": "eCoaching Success",
+  "category": "desenvolvimento-pessoal",
+  "source_category": "Coaching",
+  "decision": "PUBLICAR APÓS QA",
+  "priority": "P1",
+  "risk": "BAIXO/MÉDIO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "R$ 14,90–29,90",
+  "suggested_pack": "Pack Carreira & Desenvolvimento",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "ZIP auditado",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "qa_required"
+}

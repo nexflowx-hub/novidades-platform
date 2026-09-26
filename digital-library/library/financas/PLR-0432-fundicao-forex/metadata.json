@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0432",
+  "title": "Fundição Forex",
+  "category": "financas",
+  "source_category": "Investimentos",
+  "decision": "ATUALIZAR",
+  "priority": "P2",
+  "risk": "MÉDIO/ALTO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "R$ 19,90–39,90 após revisão",
+  "suggested_pack": "Pack Finanças",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "ZIP auditado",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "rewrite_required"
+}

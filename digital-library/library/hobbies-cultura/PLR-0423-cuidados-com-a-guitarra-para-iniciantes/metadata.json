@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0423",
+  "title": "Cuidados com a guitarra para iniciantes",
+  "category": "hobbies-cultura",
+  "source_category": "Musica",
+  "decision": "PUBLICAR APÓS QA",
+  "priority": "P1",
+  "risk": "BAIXO/MÉDIO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "R$ 14,90–29,90",
+  "suggested_pack": "Pack Musica",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "ZIP auditado",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "qa_required"
+}

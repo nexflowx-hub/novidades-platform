@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0045",
+  "title": "Banho e Beleza Corporal",
+  "category": "casa-jardim",
+  "source_category": "Decoração",
+  "decision": "PUBLICAR APÓS QA",
+  "priority": "P1",
+  "risk": "BAIXO/MÉDIO",
+  "audit_depth": "TÍTULO/PASTA",
+  "indicative_price": "R$ 14,90–29,90",
+  "suggested_pack": "Pack Casa & Jardim",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "qa_required"
+}

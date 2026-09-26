@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0024",
+  "title": "O Guia de Insiders para Venda de Imóveis",
+  "category": "negocios",
+  "source_category": "Imóveis",
+  "decision": "ATUALIZAR",
+  "priority": "P2",
+  "risk": "MÉDIO/ALTO",
+  "audit_depth": "TÍTULO/PASTA",
+  "indicative_price": "R$ 19,90–39,90 após revisão",
+  "suggested_pack": "Pack Imóveis",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "rewrite_required"
+}

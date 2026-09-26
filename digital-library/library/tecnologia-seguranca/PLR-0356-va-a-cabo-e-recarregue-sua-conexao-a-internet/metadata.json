@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0356",
+  "title": "Vá a cabo e recarregue sua conexão à Internet",
+  "category": "tecnologia-seguranca",
+  "source_category": "Tecnologia",
+  "decision": "ATUALIZAR",
+  "priority": "P2",
+  "risk": "MÉDIO",
+  "audit_depth": "TÍTULO/PASTA",
+  "indicative_price": "R$ 19,90–39,90 após revisão",
+  "suggested_pack": "Pack Tecnologia",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "rewrite_required"
+}

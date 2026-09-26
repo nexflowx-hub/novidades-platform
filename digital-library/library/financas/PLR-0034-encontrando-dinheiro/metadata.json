@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0034",
+  "title": "Encontrando Dinheiro",
+  "category": "financas",
+  "source_category": "Finanças",
+  "decision": "ATUALIZAR",
+  "priority": "P2",
+  "risk": "MÉDIO/ALTO",
+  "audit_depth": "TÍTULO/PASTA",
+  "indicative_price": "R$ 19,90–39,90 após revisão",
+  "suggested_pack": "Pack Finanças",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "rewrite_required"
+}

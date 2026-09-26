@@ -1,0 +1,439 @@
+{
+  "generated_at": "2026-09-26",
+  "source_root": "https://drive.google.com/drive/folders/1I2JMho4WWFZ_vKRZxbLFRTPIVdcjktFM",
+  "collections": {
+    "root": [
+      {
+        "id": "1Hj9ToaTcH0zKA8m6t5cjwJ5ueh9gGdTr",
+        "title": "10 Mil PLRs - Parte 03",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1Hj9ToaTcH0zKA8m6t5cjwJ5ueh9gGdTr",
+        "github_direct_file_possible": null
+      },
+      {
+        "id": "1yTKEhIXQ3kqOsYErwQYXzI-G28928bdl",
+        "title": "Bônus 1",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1yTKEhIXQ3kqOsYErwQYXzI-G28928bdl",
+        "github_direct_file_possible": null
+      },
+      {
+        "id": "1-sG9h14QWTaPQ_jofS57BQ1SU_MJjOhy",
+        "title": "Bônus 2",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1-sG9h14QWTaPQ_jofS57BQ1SU_MJjOhy",
+        "github_direct_file_possible": null
+      },
+      {
+        "id": "1T1ljRJ3y9R6Z9Kmh2un7hu6ep9UJsW_-",
+        "title": "10 Mil PLRs - Parte 02",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1T1ljRJ3y9R6Z9Kmh2un7hu6ep9UJsW_-",
+        "github_direct_file_possible": null
+      },
+      {
+        "id": "192lgvKgdDG-LGXOYhPFQWd3UY4IyMrNb",
+        "title": "10 Mil PLRs - Parte 01",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/192lgvKgdDG-LGXOYhPFQWd3UY4IyMrNb",
+        "github_direct_file_possible": null
+      }
+    ],
+    "part-01": [
+      {
+        "id": "1_bTi1D6FxfZljlBHOFTjh0bCpVF9AEKv",
+        "title": "Coaching.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 48228951,
+        "url": "https://drive.google.com/file/d/1_bTi1D6FxfZljlBHOFTjh0bCpVF9AEKv/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1PSGILL0GeslDhR2OyfvhHkGt5w_tL-6h",
+        "title": "Cães e pets.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 7865633,
+        "url": "https://drive.google.com/file/d/1PSGILL0GeslDhR2OyfvhHkGt5w_tL-6h/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1qzmm8lzsQzYvVBUVP6huw7DcaNmMPO0S",
+        "title": "Astrologia.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 3163951,
+        "url": "https://drive.google.com/file/d/1qzmm8lzsQzYvVBUVP6huw7DcaNmMPO0S/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1R6-woDJewVCpOocKBJDcs0HhgZMhHlee",
+        "title": "Saúde e Bem Estar-20220330T022710Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 1780403334,
+        "url": "https://drive.google.com/file/d/1R6-woDJewVCpOocKBJDcs0HhgZMhHlee/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1zO6l6qsXC-ydUII2b5qkXhw2eEbMlOrc",
+        "title": "Viagem-20220330T023224Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 22293888,
+        "url": "https://drive.google.com/file/d/1zO6l6qsXC-ydUII2b5qkXhw2eEbMlOrc/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1X7clN-q_LsYyY70lwmn42y0EZOWuQbsy",
+        "title": "Persuasão-20220330T022429Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 6341300,
+        "url": "https://drive.google.com/file/d/1X7clN-q_LsYyY70lwmn42y0EZOWuQbsy/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1N2vtDZn6zz7_ZYoxE2wJxQTUHKrF2PQS",
+        "title": "Negócios-20220330T022154Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 25104820,
+        "url": "https://drive.google.com/file/d/1N2vtDZn6zz7_ZYoxE2wJxQTUHKrF2PQS/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1IUjgwDMrU2Zpx_MACS0qw-3x1udxCo6N",
+        "title": "Musica-20220330T022152Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 8729026,
+        "url": "https://drive.google.com/file/d/1IUjgwDMrU2Zpx_MACS0qw-3x1udxCo6N/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "11vaPtYCSOc_c9n4KHxmIDvoF0hVX4cLj",
+        "title": "Marketing de Rede-20220330T021612Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 15118779,
+        "url": "https://drive.google.com/file/d/11vaPtYCSOc_c9n4KHxmIDvoF0hVX4cLj/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1Us1ErH1uEAWsFI5nKxPz6mq15ImJw9mF",
+        "title": "Mágica-20220330T021453Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 18645321,
+        "url": "https://drive.google.com/file/d/1Us1ErH1uEAWsFI5nKxPz6mq15ImJw9mF/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1PQCi6CzZ9nb00C_Yj_aaKxWW1KM7eIos",
+        "title": "Jardinagem-20220330T021445Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 11941189,
+        "url": "https://drive.google.com/file/d/1PQCi6CzZ9nb00C_Yj_aaKxWW1KM7eIos/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1lXUmZ8d9Zogw6MjhL3-R6C7brmo5-BZ5",
+        "title": "Imóveis-20220330T021319Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 35736612,
+        "url": "https://drive.google.com/file/d/1lXUmZ8d9Zogw6MjhL3-R6C7brmo5-BZ5/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1yPyP-Q6MK90wnjOVdFnbCTxWrTQAOo8y",
+        "title": "Investimentos-20220330T021312Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 33338014,
+        "url": "https://drive.google.com/file/d/1yPyP-Q6MK90wnjOVdFnbCTxWrTQAOo8y/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1Izi5H8Oi96ooOZX_u84-Pv_T1q8YuxWB",
+        "title": "Espiritualidade-20220330T021204Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 4495958,
+        "url": "https://drive.google.com/file/d/1Izi5H8Oi96ooOZX_u84-Pv_T1q8YuxWB/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1OZescus9VE5MBu1omrE9x9d6jqVqbGoM",
+        "title": "Emprego-20220330T021151Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 3768131,
+        "url": "https://drive.google.com/file/d/1OZescus9VE5MBu1omrE9x9d6jqVqbGoM/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1i9qWwhvR5GXh5d9xNZbbFQb6hfoL58Jq",
+        "title": "Design-20220330T020853Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 10844300,
+        "url": "https://drive.google.com/file/d/1i9qWwhvR5GXh5d9xNZbbFQb6hfoL58Jq/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1zvnKlA8dfKhifg8HQAujltHfB5sGhVA6",
+        "title": "Decoração-20220330T020825Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 17796767,
+        "url": "https://drive.google.com/file/d/1zvnKlA8dfKhifg8HQAujltHfB5sGhVA6/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1qVj_ofgkyx1_sBhfL27VHxAdf-wRzdhM",
+        "title": "Contabilidade-20220330T020424Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 2053439,
+        "url": "https://drive.google.com/file/d/1qVj_ofgkyx1_sBhfL27VHxAdf-wRzdhM/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1a77inGfmywyyMKNFLVJAYIArA_uf9R7d",
+        "title": "Criatividade-20220330T020442Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 39488242,
+        "url": "https://drive.google.com/file/d/1a77inGfmywyyMKNFLVJAYIArA_uf9R7d/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "133ydmEYwAcqr4JiZjwqDdvWKT47tehXC",
+        "title": "Concursos-20220330T020146Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 1313519,
+        "url": "https://drive.google.com/file/d/133ydmEYwAcqr4JiZjwqDdvWKT47tehXC/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1hlUvLOYeqgFt_hzXSLdPBjTDy4NFe-F8",
+        "title": "Construção-20220330T020140Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 4480988,
+        "url": "https://drive.google.com/file/d/1hlUvLOYeqgFt_hzXSLdPBjTDy4NFe-F8/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      }
+    ],
+    "part-02": [
+      {
+        "id": "1jjGXzAOoQUNZun537FAiS977WDwd5vp9",
+        "title": "Musculação-20220330T021951Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 173363357,
+        "url": "https://drive.google.com/file/d/1jjGXzAOoQUNZun537FAiS977WDwd5vp9/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1qY_nM0XbGV8hXqMu5sRqi8TGEaBJlBbf",
+        "title": "Marketing de afiliados-20220330T021615Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 158804926,
+        "url": "https://drive.google.com/file/d/1qY_nM0XbGV8hXqMu5sRqi8TGEaBJlBbf/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1bfb1jxos_10YzjoBDlTy04cjKmdRiXYV",
+        "title": "Tecnologia-20220330T022717Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 84732344,
+        "url": "https://drive.google.com/file/d/1bfb1jxos_10YzjoBDlTy04cjKmdRiXYV/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1jDKqJvaOzZtxMrrrRlOQDJQGbUjOZuMq",
+        "title": "Blogs-20220330T015843Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 64502013,
+        "url": "https://drive.google.com/file/d/1jDKqJvaOzZtxMrrrRlOQDJQGbUjOZuMq/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1Tv6tlQBLyptvOfUJiuVNiaZwYV7grGpj",
+        "title": "Culinária-20220330T020827Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 51637868,
+        "url": "https://drive.google.com/file/d/1Tv6tlQBLyptvOfUJiuVNiaZwYV7grGpj/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1Ow0ZQfkCSZD-kONMzYjox5LAsJFEZGut",
+        "title": "Nichos Diversos-20220330T022456Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 86394805,
+        "url": "https://drive.google.com/file/d/1Ow0ZQfkCSZD-kONMzYjox5LAsJFEZGut/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1QY1-Y2Ps7IrCdyNUsva0asVO53-Mw8Js",
+        "title": "Criptmoedas-20220330T020443Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 77455315,
+        "url": "https://drive.google.com/file/d/1QY1-Y2Ps7IrCdyNUsva0asVO53-Mw8Js/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "14YIuYDDI7vw9ArUMtc5PFTcIEFNjKnOq",
+        "title": "Criação de sites-20220330T020430Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 65118038,
+        "url": "https://drive.google.com/file/d/14YIuYDDI7vw9ArUMtc5PFTcIEFNjKnOq/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1skoVA2RZW7fBTyl_iSr1j3fuNwSoCJnU",
+        "title": "Automotivo-20220330T015849Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 48389353,
+        "url": "https://drive.google.com/file/d/1skoVA2RZW7fBTyl_iSr1j3fuNwSoCJnU/view?usp=drivesdk",
+        "github_direct_file_possible": true
+      },
+      {
+        "id": "1Fjyw_NOpmyB1HF9YG1-O8_fJQV6_IhrI",
+        "title": "Relacionamentos-20220330T022402Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 105163818,
+        "url": "https://drive.google.com/file/d/1Fjyw_NOpmyB1HF9YG1-O8_fJQV6_IhrI/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "13t9uHCTXyVEnkQeL7Sz8YtyFymOJdsBp",
+        "title": "Desenvolvimento Pessoal-20220330T020849Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 1097900630,
+        "url": "https://drive.google.com/file/d/13t9uHCTXyVEnkQeL7Sz8YtyFymOJdsBp/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      }
+    ],
+    "part-03": [
+      {
+        "id": "1ty02o0yKcFq6ZLAslV7dulHHEQPFfwAQ",
+        "title": "Email marketing-20220330T021149Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 247640567,
+        "url": "https://drive.google.com/file/d/1ty02o0yKcFq6ZLAslV7dulHHEQPFfwAQ/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1DF5pXG717YTTOEVShDg6cR04QAkZUs6m",
+        "title": "Marketing Digital-20220330T022008Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 704930356,
+        "url": "https://drive.google.com/file/d/1DF5pXG717YTTOEVShDg6cR04QAkZUs6m/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1toiUjbTQjilaaTlgnwflvWF4dpVclXW5",
+        "title": "Tráfego e SEO-20220330T022849Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 322010547,
+        "url": "https://drive.google.com/file/d/1toiUjbTQjilaaTlgnwflvWF4dpVclXW5/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1i0Fhm302iQq6Og3FSoWsbgVlbNW8QPUW",
+        "title": "Mindset-20220330T021905Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 222292655,
+        "url": "https://drive.google.com/file/d/1i0Fhm302iQq6Og3FSoWsbgVlbNW8QPUW/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1C5p7deK2lRD0Et9sxOHG9jwNB65JoZOh",
+        "title": "Vídeo marketing-20220330T023159Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 136586602,
+        "url": "https://drive.google.com/file/d/1C5p7deK2lRD0Et9sxOHG9jwNB65JoZOh/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1ZqK1LRO8EsxFgDe8sJ6XQnVGui9tvzJ3",
+        "title": "Alimentação e Dieta-20220330T020000Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 185116099,
+        "url": "https://drive.google.com/file/d/1ZqK1LRO8EsxFgDe8sJ6XQnVGui9tvzJ3/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      },
+      {
+        "id": "1WOMcUxbGN42ZVV3Q6Ms-zPHZr6Xn_dIe",
+        "title": "Marketing de Conteúdo e Copywriting-20220330T021612Z-001.zip",
+        "type": "file",
+        "mime_type": "application/x-zip-compressed",
+        "size_bytes": 154811801,
+        "url": "https://drive.google.com/file/d/1WOMcUxbGN42ZVV3Q6Ms-zPHZr6Xn_dIe/view?usp=drivesdk",
+        "github_direct_file_possible": false
+      }
+    ],
+    "bonus-02": [
+      {
+        "id": "1ZAxICBB-XTmUkQC_4HWTewN8ZwOdrLK4",
+        "title": "10 Templates E-Book Canva - Bônus",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1ZAxICBB-XTmUkQC_4HWTewN8ZwOdrLK4",
+        "github_direct_file_possible": null
+      },
+      {
+        "id": "1l4fOAAh3oadLxMAcLK1TAXcr52i39jTE",
+        "title": "13 E-BOOK PREMIUM - Bônus",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1l4fOAAh3oadLxMAcLK1TAXcr52i39jTE",
+        "github_direct_file_possible": null
+      },
+      {
+        "id": "1o-qTkPvDjbzL-R9fjFn-gYkYQ5XhtfAt",
+        "title": "PLR ADICIONAL em Português - Bônus",
+        "type": "folder",
+        "mime_type": "application/vnd.google-apps.folder",
+        "size_bytes": null,
+        "url": "https://drive.google.com/drive/folders/1o-qTkPvDjbzL-R9fjFn-gYkYQ5XhtfAt",
+        "github_direct_file_possible": null
+      }
+    ]
+  }
+}
