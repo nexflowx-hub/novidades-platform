@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0301",
+  "title": "Cuidados com o Cão para iniciantes",
+  "category": "pets",
+  "source_category": "Cães e pets",
+  "decision": "PUBLICAR APÓS QA",
+  "priority": "P1",
+  "risk": "BAIXO/MÉDIO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "R$ 14,90–29,90",
+  "suggested_pack": "Pack Pets",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "qa_required"
+}

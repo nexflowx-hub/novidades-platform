@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0388",
+  "title": "Segredos da Dieta Infantil",
+  "category": "fitness-saude",
+  "source_category": "Alimentação e Dieta",
+  "decision": "EXCLUIR",
+  "priority": "P3",
+  "risk": "ALTO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "NÃO PUBLICAR",
+  "suggested_pack": "Pack Culinária & Receitas",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "ZIP auditado",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "quarantine"
+}

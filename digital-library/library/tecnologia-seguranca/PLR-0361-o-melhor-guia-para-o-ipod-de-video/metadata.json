@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0361",
+  "title": "O melhor guia para o iPod de vídeo",
+  "category": "tecnologia-seguranca",
+  "source_category": "Tecnologia",
+  "decision": "EXCLUIR",
+  "priority": "P3",
+  "risk": "ALTO",
+  "audit_depth": "TÍTULO/PASTA",
+  "indicative_price": "NÃO PUBLICAR",
+  "suggested_pack": "Pack Tecnologia",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "quarantine"
+}

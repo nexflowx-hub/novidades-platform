@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0401",
+  "title": "Engenharia química",
+  "category": "fitness-saude",
+  "source_category": "Musculação",
+  "decision": "EXCLUIR",
+  "priority": "P3",
+  "risk": "ALTO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "NÃO PUBLICAR",
+  "suggested_pack": "Pack Bem-estar (após revisão)",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "ZIP auditado",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "quarantine"
+}

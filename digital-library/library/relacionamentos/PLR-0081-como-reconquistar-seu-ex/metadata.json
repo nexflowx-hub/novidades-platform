@@ -1,0 +1,16 @@
+{
+  "sku": "PLR-0081",
+  "title": "Como reconquistar seu ex",
+  "category": "relacionamentos",
+  "source_category": "Relacionamentos",
+  "decision": "PUBLICAR APÓS QA",
+  "priority": "P1",
+  "risk": "BAIXO/MÉDIO",
+  "audit_depth": "PACOTE/AMOSTRA",
+  "indicative_price": "R$ 14,90–29,90",
+  "suggested_pack": "Pack Relacionamentos",
+  "license": "VERIFICAR POR PRODUTO",
+  "source": "Bônus 1 / pasta descompactada",
+  "audit_status": "AUDITADO / TRIAGEM",
+  "commercial_state": "qa_required"
+}
