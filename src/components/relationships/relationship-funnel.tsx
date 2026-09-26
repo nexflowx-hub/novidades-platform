@@ -527,7 +527,12 @@ export function RelationshipFunnel() {
                   <div className="mt-6 grid gap-3 sm:grid-cols-2">
                     <button
                       type="button"
-                      onClick={() => setSelectedSlug(recommended.slug)}
+                      onClick={() => {
+                        setSelectedSlug(recommended.slug);
+                        requestAnimationFrame(() =>
+                          document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth", block: "start" }),
+                        );
+                      }}
                       className="flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-[#191312] px-5 text-sm font-black text-white transition hover:bg-black"
                     >
                       Quero começar por este
@@ -536,7 +541,12 @@ export function RelationshipFunnel() {
                     {pack ? (
                       <button
                         type="button"
-                        onClick={() => setSelectedSlug(pack.slug)}
+                        onClick={() => {
+                          setSelectedSlug(pack.slug);
+                          requestAnimationFrame(() =>
+                            document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth", block: "start" }),
+                          );
+                        }}
                         className="flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-[#d4a0a8] bg-[#fff5f6] px-5 text-sm font-black text-[#7f3f49] transition hover:bg-[#ffecee]"
                       >
                         Levar os 4 por {money(pack.price)}
@@ -584,7 +594,12 @@ export function RelationshipFunnel() {
                       </p>
                       <button
                         type="button"
-                        onClick={() => setSelectedSlug(pack.slug)}
+                        onClick={() => {
+                          setSelectedSlug(pack.slug);
+                          requestAnimationFrame(() =>
+                            document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth", block: "start" }),
+                          );
+                        }}
                         className="mt-5 flex h-12 w-full items-center justify-center rounded-xl bg-[#f1b7c0] text-sm font-black text-[#231416]"
                       >
                         Fazer upgrade para o pack
