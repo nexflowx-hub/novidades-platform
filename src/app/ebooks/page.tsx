@@ -101,6 +101,30 @@ export default function EbooksPage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-[1280px] px-4 pt-8 md:px-6 lg:px-8">
+        <Link
+          href="/relacionamentos"
+          className="group grid gap-5 overflow-hidden rounded-[24px] bg-[radial-gradient(circle_at_85%_10%,rgba(244,114,182,.28),transparent_24rem),linear-gradient(135deg,#211619,#512431_72%,#25151a)] p-6 text-white shadow-[0_18px_50px_rgba(45,25,32,.16)] md:grid-cols-[1fr_auto] md:items-center md:p-8"
+        >
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-rose-200">
+              Novo · Quiz Relacionamentos
+            </p>
+            <h2 className="mt-2 text-3xl font-black tracking-[-0.045em]">
+              Não sabe qual guia escolher? Descubra em 4 perguntas.
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">
+              O quiz recomenda o melhor ponto de partida entre encontros, reconexão,
+              romance e recomeços — e compara o título individual com o pack completo.
+            </p>
+          </div>
+          <span className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-rose-200 px-5 text-sm font-black text-slate-950 transition group-hover:scale-[1.02]">
+            Fazer quiz
+            <ArrowRight className="h-4 w-4" />
+          </span>
+        </Link>
+      </section>
+
       <section id="disponiveis" className="mx-auto max-w-[1280px] px-4 py-10 md:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
           <div>
