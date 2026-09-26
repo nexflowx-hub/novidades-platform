@@ -1,0 +1,12 @@
+,Gate,Critério,Resultado permitido
+0,Licença,Licença PLR verificada no produto/pasta; guardar prova,PASS / HOLD
+1,Atualidade,"Sem referências obsoletas, plataformas extintas ou dados antigos",PASS / REWRITE
+2,Idioma,PT-BR natural; remover tradução literal/mecânica,PASS / EDIT
+3,Factual,Claims verificáveis e sem promessas absolutas,PASS / REVIEW
+4,Saúde,"Revisão técnica; sem diagnóstico, dose ou promessa terapêutica indevida",PASS / HOLD
+5,Finanças,"Sem garantia de lucro; atualizar normas, riscos e contexto",PASS / HOLD
+6,Fitness/Suplementos,"Sem instruções perigosas, doping/esteroides ou dosagens não revisadas",PASS / REJECT
+7,Relacionamentos,"Sem manipulação, coerção ou conteúdo degradante",PASS / EDIT
+8,Branding,"Nova capa, título comercial quando necessário, identidade própria",PASS / DESIGN
+9,Entrega,PDF final + assets; sem expor Drive de origem,PASS / HOLD
+10,Sales page,Copy fiel ao conteúdo; sem fake scarcity/testimonials,PASS / HOLD
