@@ -1,0 +1,4 @@
+SKU,Título,Categoria de origem,Decisão,Prioridade,Risco,Licença,Fonte,Status
+PLR-0300,Como treinar o seu cachorro,Cães e pets,PUBLICAR APÓS QA,P1,BAIXO/MÉDIO,VERIFICAR POR PRODUTO,Bônus 1 / pasta descompactada,AUDITADO / TRIAGEM
+PLR-0301,Cuidados com o Cão para iniciantes,Cães e pets,PUBLICAR APÓS QA,P1,BAIXO/MÉDIO,VERIFICAR POR PRODUTO,Bônus 1 / pasta descompactada,AUDITADO / TRIAGEM
+PLR-0302,Saúde do cão exposta,Cães e pets,REVISÃO ESPECIALIZADA,P2,ALTO,VERIFICAR POR PRODUTO,Bônus 1 / pasta descompactada,AUDITADO / TRIAGEM
