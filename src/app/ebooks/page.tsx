@@ -46,9 +46,9 @@ export default function EbooksPage() {
               E-Books individuais e packs, organizados para encontrar e comprar sem complicação.
             </h1>
             <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
-              Catálogo curado e reconstruído a partir do nosso acervo editorial. Títulos
-              antigos ou sensíveis permanecem bloqueados; as edições aprovadas usam
-              pagamento protegido e acesso digital individual.
+              Catálogo curado e reconstruído a partir do nosso acervo editorial. Cada edição
+              comercial separa o RAW SOURCE da versão moderna, com QA por risco, Reader
+              protegido e pagamento individual.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
@@ -108,7 +108,7 @@ export default function EbooksPage() {
               Disponíveis agora
             </p>
             <h2 className="mt-1 text-3xl font-black tracking-[-0.04em]">
-              Biblioteca em expansão · ${live.filter((item) => item.kind === "ebook").length} títulos disponíveis
+              Biblioteca em expansão · {live.filter((item) => item.kind === "ebook").length} títulos disponíveis
             </h2>
           </div>
           <p className="max-w-xl text-sm leading-6 text-slate-500">
