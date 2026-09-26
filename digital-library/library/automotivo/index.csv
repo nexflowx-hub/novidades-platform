@@ -1,0 +1,4 @@
+SKU,Título,Categoria de origem,Decisão,Prioridade,Risco,Licença,Fonte,Status
+PLR-0303,Um Curso de Torneamento de Madeira,Automóveis,ATUALIZAR,P2,MÉDIO,VERIFICAR POR PRODUTO,Bônus 1 / pasta descompactada,AUDITADO / TRIAGEM
+PLR-0304,Scooters e outros veículos com baixo consumo de combustível,Automóveis,ATUALIZAR,P2,MÉDIO,VERIFICAR POR PRODUTO,Bônus 1 / pasta descompactada,AUDITADO / TRIAGEM
+PLR-0305,Carros híbridos,Automóveis,ATUALIZAR,P2,MÉDIO,VERIFICAR POR PRODUTO,Bônus 1 / pasta descompactada,AUDITADO / TRIAGEM
